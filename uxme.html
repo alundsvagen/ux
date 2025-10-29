@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UX Me — We are not the users.</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/helios" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f2f2f2;
+      --text: #0b0b0b;
+      --accent: #ffbd59;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-family: 'Garet', sans-serif;
+    }
+
+    .container {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(14px, 2vw, 28px);
+      max-width: 1280px;
+      margin-inline: auto;
+      width: 100%;
+      font-family: 'Helios', sans-serif;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: clamp(11px, 1.2vw, 14px);
+    }
+
+    .brand a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .brand small a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+      color: var(--text);
+    }
+
+    .contact-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--text);
+      padding: .55rem 1.1rem;
+      border-radius: 6px;
+      font-family: 'Helios', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: clamp(11px, 1.2vw, 13px);
+      text-decoration: none;
+      transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
+    }
+
+    .contact-btn:hover { transform: translateY(-1px); }
+    .contact-btn:active { transform: translateY(0); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: clamp(28px, 6vw, 64px);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 1100px;
+      margin-inline: auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .glow {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: min(140vmin, 1100px);
+      height: min(140vmin, 1100px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 189, 89, 0.60) 0%, rgba(255, 189, 89, 0.35) 34%, rgba(255, 189, 89, 0.16) 62%, rgba(255, 189, 89, 0.06) 78%, rgba(255, 189, 89, 0.0) 100%);
+      filter: blur(10px);
+      z-index: 0;
+      animation: floatGlow 28s ease-in-out infinite alternate;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(-2%, -4%) scale(1); opacity: .9; }
+      50% { transform: translate(2%, 3%) scale(1.03); opacity: 1; }
+      100% { transform: translate(-2%, -4%) scale(1); opacity: .9; }
+    }
+
+    .kicker {
+      font-family: 'Helios', sans-serif;
+      font-size: clamp(18px, 2.2vw, 34px);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: clamp(18px, 3vw, 24px);
+    }
+
+    .headline {
+      margin: 0;
+      font-weight: 700;
+      line-height: 0.96;
+      font-size: clamp(40px, 8.4vw, 128px);
+      letter-spacing: 0;
+      font-family: 'Garet', sans-serif;
+    }
+
+    .headline .line { display: block; }
+    .headline .tight { margin-top: clamp(8px, 1vw, 10px); }
+
+    @media (max-width: 600px) {
+      header { flex-direction: row; justify-content: space-between; align-items: center; }
+      .brand { align-items: flex-start; }
+      .contact-btn { border-width: 1.5px; padding: .5rem .9rem; }
+      .hero { min-height: 100dvh; display: grid; place-items: start center; padding-top: 0; }
+      .hero-inner { margin-top: clamp(56px, 12vh, 120px); }
+      .glow { width: 120vmin; height: 120vmin; top: 52%; }
+      .headline { font-size: clamp(36px, 10vw, 56px); line-height: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .glow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <a href="https://alexandrapgrisanti.com/">ALEXANDRA P. GRISANTI</a>
+        <small><a href="https://alexandrapgrisanti.com/">STOCKHOLM</a></small>
+      </div>
+      <a class="contact-btn" href="https://form.fillout.com/t/8jvkJJMYo7us">Contact</a>
+    </header>
+
+    <main class="hero">
+      <div class="hero-inner">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="kicker">UX Me</div>
+        <h1 class="headline">
+          <span class="line">We are not the</span>
+          <span class="line tight">users.</span>
+        </h1>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
