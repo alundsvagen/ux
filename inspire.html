@@ -191,196 +191,190 @@
     </main>
   </div>
 
-  <script>
-    // --- Floating logic (requestAnimationFrame) ---
-    (function () {
-      const blob = document.getElementById('blob');
-      const pinBtn = document.getElementById('btnPin');
-      const xBtn = document.getElementById('btnX');
-      const checkBtn = document.getElementById('btnCheck');
+<script>
+  (function () {
+    const blob = document.getElementById('blob');           // .blob-wrap
+    const pinBtn = document.getElementById('btnPin');
+    const xBtn = document.getElementById('btnX');
+    const checkBtn = document.getElementById('btnCheck');
 
-      let pinned = false;
-      let alive = true;
+    let pinned = false;
+    let alive = true;
 
-      // Velocity in px/sec
-      let speed = 35;             // base
-      let boostUntil = 0;         // timestamp when boost ends
-      let vx = (Math.random() * 2 - 1) * speed;
-      let vy = (Math.random() * 2 - 1) * speed;
+    let speed = 35;
+    let boostUntil = 0;
+    let vx = (Math.random() * 2 - 1) * speed;
+    let vy = (Math.random() * 2 - 1) * speed;
 
-      // position in pixels (center)
-      const rect = blob.getBoundingClientRect();
-      let x = rect.left + rect.width / 2;
-      let y = rect.top + rect.height / 2;
+    const rect = blob.getBoundingClientRect();
+    let x = rect.left + rect.width / 2;
+    let y = rect.top + rect.height / 2;
 
-      // occasionally curve the direction
-      let nextNudge = performance.now() + 1200 + Math.random() * 1600;
+    let nextNudge = performance.now() + 1200 + Math.random() * 1600;
 
-      function raf(t) {
-        if (!alive) return;
+    function raf(t) {
+      if (!alive) return;
 
-        const { innerWidth: W, innerHeight: H } = window;
-        const w = blob.offsetWidth;
-        const h = blob.offsetHeight;
+      const { innerWidth: W, innerHeight: H } = window;
+      const w = blob.offsetWidth;
+      const h = blob.offsetHeight;
 
-        if (!pinned) {
-          // speed boost timing
-          const now = performance.now();
-          const currentSpeed = now < boostUntil ? speed * 2.2 : speed;
+      if (!pinned) {
+        const now = performance.now();
+        const currentSpeed = now < boostUntil ? speed * 2.2 : speed;
 
-          // delta time
-          raf.last ??= t;
-          const dt = Math.min(64, t - raf.last) / 1000; // clamp for tab switches
-          raf.last = t;
+        raf.last ??= t;
+        const dt = Math.min(64, t - raf.last) / 1000;
+        raf.last = t;
 
-          // normalize v, scale to currentSpeed
-          const len = Math.hypot(vx, vy) || 1;
-          vx = (vx / len) * currentSpeed;
-          vy = (vy / len) * currentSpeed;
+        const len = Math.hypot(vx, vy) || 1;
+        vx = (vx / len) * currentSpeed;
+        vy = (vy / len) * currentSpeed;
 
-          x += vx * dt;
-          y += vy * dt;
+        x += vx * dt;
+        y += vy * dt;
 
-          // bounce off edges
-          const padding = 24;
-          const minX = padding + w / 2, maxX = W - padding - w / 2;
-          const minY = padding + h / 2, maxY = H - padding - h / 2;
+        const padding = 24;
+        const minX = padding + w / 2, maxX = W - padding - w / 2;
+        const minY = padding + h / 2, maxY = H - padding - h / 2;
 
-          if (x < minX) { x = minX; vx = Math.abs(vx); }
-          if (x > maxX) { x = maxX; vx = -Math.abs(vx); }
-          if (y < minY) { y = minY; vy = Math.abs(vy); }
-          if (y > maxY) { y = maxY; vy = -Math.abs(vy); }
+        if (x < minX) { x = minX; vx = Math.abs(vx); }
+        if (x > maxX) { x = maxX; vx = -Math.abs(vx); }
+        if (y < minY) { y = minY; vy = Math.abs(vy); }
+        if (y > maxY) { y = maxY; vy = -Math.abs(vy); }
 
-          // gentle random nudge
-          if (now > nextNudge) {
-            const angle = (Math.random() - 0.5) * Math.PI / 3; // small turn
-            const cos = Math.cos(angle), sin = Math.sin(angle);
-            const nx = vx * cos - vy * sin;
-            const ny = vx * sin + vy * cos;
-            vx = nx; vy = ny;
-            nextNudge = now + 1200 + Math.random() * 1600;
-          }
-
-          // apply transform (translate from center)
-          blob.style.left = `${x}px`;
-          blob.style.top  = `${y}px`;
-          blob.style.transform = `translate(-50%,-50%)`;
+        if (now > nextNudge) {
+          const angle = (Math.random() - 0.5) * Math.PI / 3;
+          const cos = Math.cos(angle), sin = Math.sin(angle);
+          const nx = vx * cos - vy * sin;
+          const ny = vx * sin + vy * cos;
+          vx = nx; vy = ny;
+          nextNudge = now + 1200 + Math.random() * 1600;
         }
 
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // Pin toggle
-      pinBtn.addEventListener('click', () => {
-        pinned = !pinned;
-        pinBtn.classList.toggle('active', pinned);
-      });
-
-      // Explode (Candy-Crush-esque)
-      xBtn.addEventListener('click', () => {
-        if (!alive) return;
-        alive = false;
-        createExplosion(blobCenter());
-        blob.style.transition = 'transform 260ms ease, opacity 260ms ease, filter 260ms ease';
-        blob.style.opacity = '0';
-        blob.style.transform = 'translate(-50%,-50%) scale(0.6) rotate(8deg)';
-        blob.style.filter = 'blur(2px)';
-        setTimeout(() => blob.remove(), 280);
-      });
-
-      // Confetti + speed boost (no effect if pinned)
-      checkBtn.addEventListener('click', () => {
-        createConfetti(blobCenter());
-        if (!pinned) {
-          boostUntil = performance.now() + 2200; // ~2.2s boost
-        }
-      });
-
-      // optional: drag to reposition when pinned (nice UX)
-      let dragging = false, dragDx = 0, dragDy = 0;
-      blob.addEventListener('pointerdown', (e) => {
-        dragging = true; blob.setPointerCapture(e.pointerId);
-        const b = blob.getBoundingClientRect();
-        dragDx = e.clientX - (b.left + b.width/2);
-        dragDy = e.clientY - (b.top + b.height/2);
-      });
-      window.addEventListener('pointermove', (e) => {
-        if (!dragging) return;
-        x = e.clientX - dragDx; y = e.clientY - dragDy;
-        pinned = true; pinBtn.classList.add('active');
-        blob.style.left = `${x}px`; blob.style.top = `${y}px`;
+        blob.style.left = `${x}px`;
+        blob.style.top  = `${y}px`;
         blob.style.transform = `translate(-50%,-50%)`;
-      });
-      window.addEventListener('pointerup', () => dragging = false);
-
-      function blobCenter() {
-        const r = blob.getBoundingClientRect();
-        return { x: r.left + r.width/2, y: r.top + r.height/2 };
       }
 
-      // ---- Effects ----
-      function createExplosion({x, y}) {
-        const pieces = 18;
-        for (let i=0;i<pieces;i++){
-          const el = document.createElement('div');
-          el.className = 'particle';
-          const size = 6 + Math.random()*10;
-          el.style.width = `${size}px`;
-          el.style.height = `${size}px`;
-          el.style.borderRadius = '50%';
-          el.style.background = `hsl(${Math.floor(Math.random()*40)+330} 90% 60%)`; // pinks/purples
-          el.style.left = `${x - size/2}px`;
-          el.style.top  = `${y - size/2}px`;
-          document.body.appendChild(el);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
-          const ang = Math.random()*Math.PI*2;
-          const dist = 80 + Math.random()*140;
-          const tx = Math.cos(ang)*dist;
-          const ty = Math.sin(ang)*dist;
-          el.animate(
-            [
-              { transform:`translate(0,0) scale(1)`, opacity:1 },
-              { transform:`translate(${tx}px,${ty}px) scale(${0.6 + Math.random()*0.6})`, opacity:0 }
-            ],
-            { duration: 600 + Math.random()*300, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
-          ).onfinish = () => el.remove();
-        }
+    // --- Buttons: stop events from reaching the drag handler ---
+    pinBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pinned = !pinned;
+      pinBtn.classList.toggle('active', pinned);
+    });
+
+    xBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!alive) return;
+      alive = false;
+      createExplosion(blobCenter());
+      blob.style.transition = 'transform 260ms ease, opacity 260ms ease, filter 260ms ease';
+      blob.style.opacity = '0';
+      blob.style.transform = 'translate(-50%,-50%) scale(0.6) rotate(8deg)';
+      blob.style.filter = 'blur(2px)';
+      setTimeout(() => blob.remove(), 280);
+    });
+
+    checkBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      createConfetti(blobCenter());
+      if (!pinned) boostUntil = performance.now() + 2200;
+    });
+
+    // --- Drag to reposition (only when not clicking controls) ---
+    let dragging = false, dragDx = 0, dragDy = 0;
+
+    blob.addEventListener('pointerdown', (e) => {
+      // ⬇️ KEY FIX: ignore pointerdown that began on the controls tray
+      if (e.target.closest('.controls')) return;
+      dragging = true;
+      blob.setPointerCapture(e.pointerId);
+      const b = blob.getBoundingClientRect();
+      dragDx = e.clientX - (b.left + b.width/2);
+      dragDy = e.clientY - (b.top + b.height/2);
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      x = e.clientX - dragDx; y = e.clientY - dragDy;
+      pinned = true; pinBtn.classList.add('active');
+      blob.style.left = `${x}px`; blob.style.top = `${y}px`;
+      blob.style.transform = `translate(-50%,-50%)`;
+    });
+    window.addEventListener('pointerup', () => dragging = false);
+
+    function blobCenter() {
+      const r = blob.getBoundingClientRect();
+      return { x: r.left + r.width/2, y: r.top + r.height/2 };
+    }
+
+    function createExplosion({x, y}) {
+      const pieces = 18;
+      for (let i=0;i<pieces;i++){
+        const el = document.createElement('div');
+        el.className = 'particle';
+        const size = 6 + Math.random()*10;
+        el.style.width = `${size}px`;
+        el.style.height = `${size}px`;
+        el.style.borderRadius = '50%';
+        el.style.background = `hsl(${Math.floor(Math.random()*40)+330} 90% 60%)`;
+        el.style.left = `${x - size/2}px`;
+        el.style.top  = `${y - size/2}px`;
+        document.body.appendChild(el);
+
+        const ang = Math.random()*Math.PI*2;
+        const dist = 80 + Math.random()*140;
+        const tx = Math.cos(ang)*dist;
+        const ty = Math.sin(ang)*dist;
+        el.animate(
+          [
+            { transform:`translate(0,0) scale(1)`, opacity:1 },
+            { transform:`translate(${tx}px,${ty}px) scale(${0.6 + Math.random()*0.6})`, opacity:0 }
+          ],
+          { duration: 600 + Math.random()*300, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+        ).onfinish = () => el.remove();
       }
+    }
 
-      function createConfetti({x, y}) {
-        const count = 60;
-        for (let i=0;i<count;i++){
-          const el = document.createElement('div');
-          el.className = 'confetti';
-          const w = 6 + Math.random()*6, h = 10 + Math.random()*10;
-          el.style.width = `${w}px`; el.style.height = `${h}px`;
-          el.style.background = `hsl(${Math.floor(Math.random()*360)} 90% 55%)`;
-          el.style.left = `${x - w/2}px`; el.style.top = `${y - h/2}px`;
-          el.style.transform = `rotate(${Math.random()*360}deg)`;
-          el.style.borderRadius = `${Math.random()<0.5 ? 2 : 0}px`;
-          document.body.appendChild(el);
+    function createConfetti({x, y}) {
+      const count = 60;
+      for (let i=0;i<count;i++){
+        const el = document.createElement('div');
+        el.className = 'confetti';
+        const w = 6 + Math.random()*6, h = 10 + Math.random()*10;
+        el.style.width = `${w}px`; el.style.height = `${h}px`;
+        el.style.background = `hsl(${Math.floor(Math.random()*360)} 90% 55%)`;
+        el.style.left = `${x - w/2}px`; el.style.top = `${y - h/2}px`;
+        el.style.transform = `rotate(${Math.random()*360}deg)`;
+        el.style.borderRadius = `${Math.random()<0.5 ? 2 : 0}px`;
+        document.body.appendChild(el);
 
-          const dx = (Math.random()*2 - 1) * 160;
-          const dy = 220 + Math.random()*220;
-          const rot = (Math.random()*720 - 360);
+        const dx = (Math.random()*2 - 1) * 160;
+        const dy = 220 + Math.random()*220;
+        const rot = (Math.random()*720 - 360);
 
-          el.animate(
-            [
-              { transform:`translate(0,0) rotate(0deg)`, opacity:1 },
-              { transform:`translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity:0 }
-            ],
-            { duration: 1300 + Math.random()*700, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
-          ).onfinish = () => el.remove();
-        }
+        el.animate(
+          [
+            { transform:`translate(0,0) rotate(0deg)`, opacity:1 },
+            { transform:`translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity:0 }
+          ],
+          { duration: 1300 + Math.random()*700, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+        ).onfinish = () => el.remove();
       }
+    }
 
-      // keep centered transform after we assign left/top
-      const init = blob.getBoundingClientRect();
-      blob.style.left = `${init.left + init.width/2}px`;
-      blob.style.top  = `${init.top + init.height/2}px`;
-      blob.style.transform = 'translate(-50%,-50%)';
-    })();
-  </script>
+    // initial centering using left/top + translate
+    const init = blob.getBoundingClientRect();
+    blob.style.left = `${init.left + init.width/2}px`;
+    blob.style.top  = `${init.top + init.height/2}px`;
+    blob.style.transform = 'translate(-50%,-50%)';
+  })();
+</script>
+
 </body>
 </html>
