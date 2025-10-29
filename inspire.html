@@ -120,7 +120,11 @@
 
     /* Multi-blob layer + rotation + entrance */
     #blobLayer { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-    #blobLayer .controls, #blobLayer .btn-icon { pointer-events: auto; }
+    /* let blobs and their controls receive events */
+    #blobLayer .blob-wrap,
+    #blobLayer .controls,
+    #blobLayer .btn-icon { pointer-events: auto; }
+
     @keyframes slowSpin { from { rotate: 0deg; } to { rotate: 360deg; } }
     .blob-wrap.entering { animation: blobIn 600ms cubic-bezier(.2,.8,.2,1); }
     @keyframes blobIn { from { transform: translate(-50%,-50%) scale(.85); opacity: 0; } to { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
@@ -217,7 +221,7 @@
         `;
         LAYER.appendChild(this.el);
 
-        // viewport sizes for spawn math (fix: define here)
+        // viewport sizes for spawn math
         const W = window.innerWidth;
         const H = window.innerHeight;
 
@@ -239,11 +243,13 @@
         this.alive = true;
         this.nextNudge = performance.now() + rand(1000, 2500);
 
-        // spin each blob differently
+        // spin each blob differently (store img and control play state)
+        this.img = this.el.querySelector('.blob');
         const spinSec = rand(16, 32).toFixed(1);
-        this.el.querySelector('.blob').style.animation = `slowSpin ${spinSec}s linear infinite`;
-        this.applyTransform();
+        this.img.style.animation = `slowSpin ${spinSec}s linear infinite`;
+        this.img.style.animationPlayState = 'running';
 
+        this.applyTransform();
         this.killAt = performance.now() + rand(...LIFETIME_MS);
 
         const pinBtn   = this.el.querySelector('.btn-pin');
@@ -256,6 +262,7 @@
           this.pinned = !this.pinned;
           pinBtn.classList.toggle('active', this.pinned);
           this.killAt = this.pinned ? Infinity : performance.now() + rand(...LIFETIME_MS);
+          this.setSpin(this.pinned); // pause if pinned, resume if unpinned
         });
 
         xBtn.addEventListener('click', () => this.explode());
@@ -265,7 +272,7 @@
           if (!this.pinned) this.boostUntil = performance.now() + 2200;
         });
 
-        // drag to reposition (pins it)
+        // drag to reposition (pins & pauses spin while dragging)
         let dragging = false, dx = 0, dy = 0;
         this.el.addEventListener('pointerdown', (e) => {
           if (e.target.closest('.controls')) return;
@@ -273,16 +280,27 @@
           const r = this.el.getBoundingClientRect();
           dx = e.clientX - (r.left + r.width/2);
           dy = e.clientY - (r.top  + r.height/2);
+
+          // make it pinned during drag and pause spin
+          this.pinned = true;
+          pinBtn.classList.add('active');
+          this.setSpin(true);
         });
         window.addEventListener('pointermove', (e) => {
           if (!dragging) return;
-          this.pinned = true; pinBtn.classList.add('active');
           this.x = e.clientX - dx; this.y = e.clientY - dy;
           this.applyTransform();
         });
-        window.addEventListener('pointerup', () => dragging = false);
+        window.addEventListener('pointerup', () => {
+          dragging = false;
+          // remains pinned after drop; user can click pin to unpin (which resumes spin)
+        });
 
         setTimeout(() => this.el.classList.remove('entering'), 650);
+      }
+
+      setSpin(paused) {
+        this.img.style.animationPlayState = paused ? 'paused' : 'running';
       }
 
       applyTransform() {
@@ -315,7 +333,7 @@
           if (this.y > maxY) { this.y = maxY; this.vy = -Math.abs(this.vy); }
 
           if (now > this.nextNudge) {
-            const a = rand(-Math.PI/4, Math.PI/4);
+            const a = (Math.random() - 0.5) * Math.PI / 2;
             const c = Math.cos(a), s = Math.sin(a);
             const nx = this.vx * c - this.vy * s;
             const ny = this.vx * s + this.vy * c;
