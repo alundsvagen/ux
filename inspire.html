@@ -452,7 +452,7 @@ function amazingCelebrate({ x, y }) {
         });
 
         checkBtn.addEventListener('click',()=>{
-          glitterBurst(this.center());
+          amazingCelebrate(this.center());
           if(!this.pinned) this.boostUntil=performance.now()+2200;
         });
 
