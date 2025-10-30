@@ -10,44 +10,52 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <style>
-    /* screen shake + flash */
-    @keyframes uishake {
-      0%,100% { transform: translate(0,0); }
-      20% { transform: translate(-6px, 4px) rotate(-0.4deg); }
-      40% { transform: translate(7px, -3px) rotate(0.3deg); }
-      60% { transform: translate(-4px, 6px) rotate(-0.2deg); }
-      80% { transform: translate(3px, -5px) rotate(0.2deg); }
-    }
-    .shake-hard { animation: uishake 450ms cubic-bezier(.36,.07,.19,.97); }
-
-    .explosion-flash {
-      position: fixed; inset: 0; background: white; pointer-events: none;
-      opacity: 0; z-index: 99999;
-    }
-
-    /* shockwave ring */
-    .shockwave {
-      position: fixed; border: 3px solid rgba(255,255,255,.9);
-      border-radius: 50%; width: 8px; height: 8px; left: 0; top: 0;
-      transform: translate(-50%,-50%) scale(1); opacity: 0.9; pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* extra particle flavors */
-    .sparkle, .shard, .smoke {
-      position: fixed; pointer-events: none; z-index: 9998; will-change: transform, opacity;
-    }
-    /* replace your .sparkle rule with this */
-    .sparkle{
-      position: fixed; pointer-events:none; z-index:2147483600;
-      width:8px; height:8px; border-radius:50%;
-      background: radial-gradient(circle, #fff 0%, #ffe36b 45%, rgba(255,255,255,0) 70%);
-      /* no mix-blend-mode: screen (too faint on white) */
-      box-shadow:
-        0 0 10px rgba(255,227,107,.9),
-        0 0 18px rgba(255,227,107,.6);
-      will-change: transform, opacity;
-    }
+    /* 70s candy palette (used below) */
+      :root{
+        --candy1:#FF7AB6; --candy2:#FFB86B; --candy3:#FFE36B;
+        --candy4:#78E3A0; --candy5:#7AD3FF; --candy6:#B28BFF;
+      }
+      
+      /* rainbow ring pulse (pastel conic) */
+      .rainbow-ring{
+        position:fixed; left:0; top:0; width:12px; height:12px; pointer-events:none;
+        border-radius:50%;
+        background: conic-gradient(
+          from 0deg,
+          var(--candy1), var(--candy2), var(--candy3),
+          var(--candy4), var(--candy5), var(--candy6), var(--candy1)
+        );
+        box-shadow: 0 0 30px rgba(255,255,255,.6), inset 0 0 12px rgba(255,255,255,.9);
+        transform: translate(-50%,-50%) scale(.7);
+        opacity:.95; z-index:2147483600;
+      }
+      
+      /* groovy banner with rainbow stripes; fades in & drifts up */
+      .groovy-banner{
+        position:fixed; left:50%; top:40%;
+        transform:translate(-50%,-6px);
+        padding:14px 26px; border-radius:22px;
+        font-family:'Garet',sans-serif; font-weight:900; letter-spacing:.06em;
+        text-transform:uppercase;
+        color:#111;
+        background:
+          repeating-linear-gradient(135deg,
+            rgba(255,255,255,.85) 0 8px,
+            rgba(255,255,255,.7) 8px 16px),
+          linear-gradient(135deg, var(--candy1), var(--candy2), var(--candy3), var(--candy4), var(--candy5), var(--candy6));
+        box-shadow: 0 18px 60px rgba(0,0,0,.25), inset 0 2px 0 #fff;
+        border:2px solid rgba(255,255,255,.8);
+        z-index:2147483600; opacity:0;
+        text-shadow:
+          0 1px 0 rgba(255,255,255,.8),
+          0 3px 0 rgba(0,0,0,.06);
+      }
+      @keyframes bannerFadeUp {
+        0%   { opacity:0; transform:translate(-50%, 16px); }
+        25%  { opacity:1; transform:translate(-50%, 0); }
+        80%  { opacity:1; transform:translate(-50%, -6px); }
+        100% { opacity:0; transform:translate(-50%, -12px); }
+      }
 
     .shard {
       width: 6px; height: 14px; border-radius: 2px;
@@ -401,98 +409,80 @@ function glitterBurst(x, y, count = 200, tighter = false) {
 </script>
 
 
-  <script>
-  // gold glitter (upgraded)
-  const HUES = [48, 50, 52, 200, 280];
-  const COUNT = 180;
-  for (let i=0;i<COUNT;i++){
-    const el = document.createElement('div');
-    el.className = 'sparkle';
-    el.style.left = `${x}px`; el.style.top = `${y}px`;
-    // some diamonds
-    if (Math.random() < 0.35) {
-      el.style.width='8px'; el.style.height='8px';
-      el.style.background='none'; el.style.borderRadius='0';
-      el.style.transform='rotate(45deg)';
-      el.style.background='linear-gradient(45deg, rgba(255,255,255,.95), rgba(255,255,255,0))';
-      el.style.boxShadow='0 0 10px rgba(255,255,255,.85)';
-    } else if (Math.random() < 0.5) {
-      // iridescent pops
-      const hue = HUES[Math|0(Math.random()*HUES.length)];
-      el.style.background = `radial-gradient(circle, hsl(${hue} 100% 95%) 0%, hsl(${hue} 90% 60%) 40%, rgba(255,255,255,0) 70%)`;
-    }
-    document.body.appendChild(el);
+<script>
+function amazingCelebrate({ x, y }) {
+  // rainbow ring pulse (pastel/70s)
+  const ring = document.createElement('div');
+  ring.className = 'rainbow-ring';
+  ring.style.left = `${x}px`; ring.style.top = `${y}px`;
+  document.body.appendChild(ring);
+  ring.animate(
+    [
+      { transform:'translate(-50%,-50%) scale(.7)',  opacity:.95 },
+      { transform:'translate(-50%,-50%) scale(22)',  opacity:0 }
+    ],
+    { duration: 680, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+  ).onfinish = () => ring.remove();
 
-    const ang = Math.random()*Math.PI*2;
-    const dist = 220 + Math.random()*260;
-    const tx = Math.cos(ang)*dist;
-    const ty = Math.sin(ang)*dist + 120; // gravity
-    const rot = Math.random()*360;
+  // CANDY palette particles (bright on white)
+  const COLORS = ['#FF7AB6','#FF6E6E','#FFB86B','#FFE36B','#78E3A0','#7AD3FF','#B28BFF','#FF86D1'];
+  burstGlitter(x, y, 220, COLORS);        // main burst
+  setTimeout(()=>burstGlitter(x, y, 140, COLORS, true), 160); // softer echo
 
-    el.animate(
-      [
-        { transform:`translate(0,0) rotate(0) scale(1)`, opacity:1 },
-        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${0.9 + Math.random()*0.5})`, opacity:0 }
-      ],
-      { duration: 1200 + Math.random()*900, easing:'cubic-bezier(.15,.8,.2,1)', fill:'forwards' }
-    ).onfinish = () => el.remove();
+  // streamers with 70s candy hues
+  for (let i=0;i<26;i++){
+    const s = document.createElement('div');
+    s.style.position='fixed'; s.style.left=`${x}px`; s.style.top=`${y}px`;
+    s.style.width='6px'; s.style.height='30px'; s.style.borderRadius='3px';
+    s.style.background = COLORS[Math.floor(Math.random()*COLORS.length)];
+    s.style.boxShadow='0 2px 8px rgba(0,0,0,.18)';
+    s.style.pointerEvents='none'; s.style.zIndex=2147483600;
+    document.body.appendChild(s);
+    const ang=Math.random()*Math.PI*2, dist=260+Math.random()*320;
+    const tx=Math.cos(ang)*dist, ty=Math.sin(ang)*dist + 150;
+    const rot=(Math.random()*720-360);
+    s.animate(
+      [{ transform:'translate(0,0) rotate(0deg)', opacity:1 },
+       { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg)`, opacity:0 }],
+      { duration: 1300+Math.random()*700, easing:'cubic-bezier(.15,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => s.remove();
   }
 
-  // ribbon streamers
-  for (let i=0;i<24;i++){
-    const r = document.createElement('div');
-    r.style.position='fixed'; r.style.left=`${x}px`; r.style.top=`${y}px`;
-    r.style.width='6px'; r.style.height='32px'; r.style.borderRadius='3px';
-    r.style.background = `hsl(${Math.floor(Math.random()*360)} 90% 55%)`;
-    r.style.boxShadow='0 2px 8px rgba(0,0,0,.18)';
-    r.style.pointerEvents='none'; r.style.zIndex=9998;
-    document.body.appendChild(r);
-    const ang = Math.random()*Math.PI*2;
-    const dist = 260 + Math.random()*300;
-    const tx = Math.cos(ang)*dist;
-    const ty = Math.sin(ang)*dist + 160;
-    const rot = (Math.random()*720 - 360);
-    r.animate(
-      [
-        { transform:'translate(0,0) rotate(0deg) scale(1)', opacity:1 },
-        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(.9)`, opacity:0 }
-      ],
-      { duration: 1300 + Math.random()*700, easing:'cubic-bezier(.1,.7,0,1)', fill:'forwards' }
-    ).onfinish = () => r.remove();
-  }
-
-  // radiant rays
-  for (let i=0;i<14;i++){
-    const ray = document.createElement('div');
-    ray.style.position='fixed'; ray.style.left=`${x}px`; ray.style.top=`${y}px`;
-    ray.style.width='8px'; ray.style.height='0px';
-    ray.style.borderRadius='4px';
-    ray.style.background='linear-gradient(to bottom, rgba(255,255,255,.95), rgba(255,255,255,0))';
-    ray.style.filter='blur(0.5px)'; ray.style.pointerEvents='none'; ray.style.zIndex=9997;
-    document.body.appendChild(ray);
-    const angle = Math.random()*360;
-    ray.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
-    ray.animate(
-      [
-        { height:'0px', opacity:.9 },
-        { height:'180px', opacity:0 }
-      ],
-      { duration: 520, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
-    ).onfinish = () => ray.remove();
-  }
-
-  // BIG “AMAZING!” banner
+  // groovy banner (fade in/up)
   const banner = document.createElement('div');
-  banner.className = 'cele-banner';
-  banner.textContent = 'Amazing!';
-  const shine = document.createElement('div');
-  shine.className = 'banner-shimmer';
-  banner.appendChild(shine);
+  banner.className = 'groovy-banner';
+  banner.textContent = 'Sweet!';
   document.body.appendChild(banner);
-  banner.style.animation = 'bannerPop 1300ms cubic-bezier(.2,.9,.2,1)';
+  banner.style.animation = 'bannerFadeUp 1300ms ease-out forwards';
   setTimeout(()=>banner.remove(), 1350);
 }
+
+// helper: dense glitter with optional tighter gravity
+function burstGlitter(x,y,count,PALETTE,tighter=false){
+  for(let i=0;i<count;i++){
+    const p = document.createElement('div');
+    p.className = 'sparkle';          // keep your existing .sparkle but without mix-blend-mode
+    p.style.left = `${x}px`; p.style.top = `${y}px`;
+    p.style.background = `radial-gradient(circle, #fff 0%, ${PALETTE[i%PALETTE.length]} 42%, rgba(255,255,255,0) 70%)`;
+    document.body.appendChild(p);
+
+    const ang = Math.random()*Math.PI*2;
+    const dist = (tighter?160:220) + Math.random()*(tighter?160:240);
+    const tx = Math.cos(ang)*dist;
+    const ty = Math.sin(ang)*dist + (tighter?90:130);
+    const rot = Math.random()*360;
+
+    p.animate(
+      [
+        { transform:'translate(0,0) rotate(0) scale(1)', opacity:1 },
+        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${0.9 + Math.random()*0.5})`, opacity:0 }
+      ],
+      { duration: 1200 + Math.random()*900, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => p.remove();
+  }
+}
 </script>
+
 
 
   <script>
