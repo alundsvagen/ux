@@ -144,55 +144,47 @@
       .hero-inner, .grid-fade { animation: none; opacity: 1; }
     }
     
-  <style>
-  .share-bar {
-    position: fixed;
-    left: 0; right: 0;
-    bottom: 32px;               /* float above bottom */
-    display: flex; justify-content: center;
-    z-index: 9999;              /* above everything */
-    transform: translateY(16px);
-    opacity: 0;
-    transition: transform 420ms ease, opacity 420ms ease;
-    pointer-events: none;       /* button remains clickable */
-  }
-  .share-bar.show { transform: translateY(0); opacity: 1; }
+  /* --- Share bar (floating) --- */
+.share-bar {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: 32px;               /* float above bottom */
+  display: flex; justify-content: center;
+  z-index: 9999;              /* above everything */
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 420ms ease, opacity 420ms ease;
+  pointer-events: none;       /* button stays clickable */
+}
+.share-bar.show { transform: translateY(0); opacity: 1; }
 
-  .share-btn {
-    font-family: 'Garet', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: #fff;
-    background: #0b0b0b;
-    border: none;
-    border-radius: 18px;
-    padding: 16px 24px;
-    box-shadow: 0 12px 28px rgba(0,0,0,.22);
-    cursor: pointer;
-    pointer-events: auto;
-  }
+.share-btn {
+  font-family: 'Garet', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: #0b0b0b;
+  border: none;
+  border-radius: 18px;
+  padding: 16px 24px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  cursor: pointer;
+  pointer-events: auto;
+}
 
-  @media (max-width: 600px) {
-    .share-bar { bottom: 20px; }
-    .share-btn { padding: 12px 18px; border-radius: 16px; }
-  }
+@media (max-width: 600px) {
+  .share-bar { bottom: 20px; }
+  .share-btn { padding: 12px 18px; border-radius: 16px; }
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    .share-bar { transition: none; transform: none; opacity: 1; }
-  }
+@media (prefers-reduced-motion: reduce) {
+  .share-bar { transition: none; transform: none; opacity: 1; }
+}
 
-  /* Ensure the Fillout overlay is on top, just in case */
-  .fillout-embed, .fillout-embed * { z-index: 2147483647 !important; }
-</style>
-
-  @media (max-width: 600px) {
-    .share-btn { padding: 12px 16px; border-radius: 12px 12px 0 0; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .share-bar { transition: none; transform: none; }
-  }    
+/* Make sure the Fillout overlay sits on top */
+.fillout-embed, .fillout-embed * { z-index: 2147483647 !important; }
   </style>
+  
 </head>
 <body>
   <div class="container">
