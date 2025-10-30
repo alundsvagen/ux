@@ -144,32 +144,33 @@
       .hero-inner, .grid-fade { animation: none; opacity: 1; }
     }
     
-  /* --- Share bar (floating) --- */
+/* --- Share bar (floating) --- */
 .share-bar {
   position: fixed;
   left: 0; right: 0;
-  bottom: 32px;               /* float above bottom */
+  bottom: 32px;
   display: flex; justify-content: center;
-  z-index: 9999;              /* above everything */
+  z-index: 9999;
   transform: translateY(16px);
   opacity: 0;
   transition: transform 420ms ease, opacity 420ms ease;
-  pointer-events: none;       /* button stays clickable */
+  pointer-events: none;          /* hidden = non-interactive */
 }
-.share-bar.show { transform: translateY(0); opacity: 1; }
+.share-bar.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;          /* visible = clickable ✅ */
+}
 
 .share-btn {
   font-family: 'Garet', sans-serif;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #fff;
-  background: #0b0b0b;
-  border: none;
-  border-radius: 18px;
+  color: #fff; background: #0b0b0b;
+  border: 0; border-radius: 18px;
   padding: 16px 24px;
   box-shadow: 0 12px 28px rgba(0,0,0,.22);
   cursor: pointer;
-  pointer-events: auto;
 }
 
 @media (max-width: 600px) {
@@ -507,7 +508,7 @@
     const btn = document.getElementById('shareOpenBtn');
 
     // Reveal after 15s
-    setTimeout(() => bar?.classList.add('show'), 15000);
+    setTimeout(() => bar?.classList.add('show'), 3000);
 
     // Robust opener: wait until Fillout is ready, then open
     function openFilloutPopup() {
