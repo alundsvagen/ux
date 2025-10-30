@@ -131,6 +131,40 @@
     .modal-close{ background:transparent; border:0; color:#fff; font-size:24px; cursor:pointer; line-height:1; }
     .modal-body{ flex:1; }
     .modal-body iframe{ width:100%; height:100%; border:0; display:block; }
+
+    /* WOW banner + shimmer */
+.cele-banner {
+  position: fixed; left: 50%; top: 38%;
+  transform: translate(-50%, -50%) scale(.8);
+  font-family: 'Garet', sans-serif;
+  font-weight: 900; letter-spacing: .06em;
+  padding: 12px 22px; border-radius: 16px;
+  color: #111; background: linear-gradient(135deg,#fff7b3,#ffd66b,#fff);
+  box-shadow: 0 18px 60px rgba(0,0,0,.28), inset 0 2px 0 #fff;
+  z-index: 2147483600; opacity: 0;
+  text-transform: uppercase;
+}
+@keyframes bannerPop {
+  0% { transform: translate(-50%,-50%) scale(.6); opacity: 0 }
+  35% { transform: translate(-50%,-50%) scale(1.14); opacity: 1 }
+  60% { transform: translate(-50%,-50%) scale(1.0) }
+  100% { transform: translate(-50%,-70%) scale(.98); opacity: 0 }
+}
+.banner-shimmer {
+  position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.7) 50%, transparent 100%);
+  transform: skewX(-20deg) translateX(-120%);
+  filter: blur(1px);
+  animation: shimmerMove 1.2s ease-in-out .2s forwards;
+}
+@keyframes shimmerMove { to { transform: skewX(-20deg) translateX(120%); } }
+
+/* quick bloom */
+@keyframes screenBloom { 
+  0% { opacity: 0 } 20% { opacity:.45 } 100% { opacity:0 } 
+}
+.ui-bloom { position:fixed; inset:0; background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.6), rgba(255,255,255,0) 60%); pointer-events:none; z-index:2147483500; opacity:0; animation: screenBloom 520ms ease-out; }
+    
   </style>
 </head>
 
@@ -240,48 +274,108 @@
       ).onfinish = () => s.remove();
     }
   }
-
-  function glitterBurst({ x, y }) {
-    const HUES = [48, 50, 52, 200, 280];
-    for (let i=0;i<120;i++) {
-      const el = document.createElement('div');
-      el.className = 'sparkle';
-      el.style.left = `${x-3}px`; el.style.top = `${y-3}px`;
-
-      if (Math.random() < 0.35) {
-        el.style.width = '7px'; el.style.height = '7px';
-        el.style.background = 'none';
-        el.style.borderRadius = '0';
-        el.style.transform = 'rotate(45deg)';
-        el.style.background = `linear-gradient(45deg, rgba(255,255,255,.95), rgba(255,255,255,0))`;
-        el.style.boxShadow = '0 0 10px rgba(255,255,255,.8)';
-      }
-
-      document.body.appendChild(el);
-
-      const ang = Math.random()*Math.PI*2;
-      const dist = 180 + Math.random()*220;
-      const tx = Math.cos(ang)*dist;
-      const ty = Math.sin(ang)*dist + 60;
-      const rot = Math.random()*360;
-
-      if (Math.random() < 0.65) {
-        el.style.background = 'radial-gradient(circle, #fff 0%, #ffe98a 40%, rgba(255,255,255,0) 70%)';
-      } else {
-        const hue = HUES[Math.floor(Math.random()*HUES.length)];
-        el.style.background = `radial-gradient(circle, hsl(${hue} 100% 95%) 0%, hsl(${hue} 90% 60%) 40%, rgba(255,255,255,0) 70%)`;
-      }
-
-      el.animate(
-        [
-          { transform:`translate(0,0) rotate(0) scale(1)`, opacity:1 },
-          { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${0.8 + Math.random()*0.6})`, opacity:0 }
-        ],
-        { duration: 1200 + Math.random()*800, easing:'cubic-bezier(.15,.8,.2,1)', fill:'forwards' }
-      ).onfinish = () => el.remove();
-    }
-  }
   </script>
+
+  <script>
+function amazingCelebrate({ x, y }) {
+  // quick screen bloom
+  const bloom = document.createElement('div');
+  bloom.className = 'ui-bloom';
+  document.body.appendChild(bloom);
+  bloom.addEventListener('animationend', () => bloom.remove());
+
+  // gold glitter (upgraded)
+  const HUES = [48, 50, 52, 200, 280];
+  const COUNT = 180;
+  for (let i=0;i<COUNT;i++){
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.style.left = `${x}px`; el.style.top = `${y}px`;
+    // some diamonds
+    if (Math.random() < 0.35) {
+      el.style.width='8px'; el.style.height='8px';
+      el.style.background='none'; el.style.borderRadius='0';
+      el.style.transform='rotate(45deg)';
+      el.style.background='linear-gradient(45deg, rgba(255,255,255,.95), rgba(255,255,255,0))';
+      el.style.boxShadow='0 0 10px rgba(255,255,255,.85)';
+    } else if (Math.random() < 0.5) {
+      // iridescent pops
+      const hue = HUES[Math|0(Math.random()*HUES.length)];
+      el.style.background = `radial-gradient(circle, hsl(${hue} 100% 95%) 0%, hsl(${hue} 90% 60%) 40%, rgba(255,255,255,0) 70%)`;
+    }
+    document.body.appendChild(el);
+
+    const ang = Math.random()*Math.PI*2;
+    const dist = 220 + Math.random()*260;
+    const tx = Math.cos(ang)*dist;
+    const ty = Math.sin(ang)*dist + 120; // gravity
+    const rot = Math.random()*360;
+
+    el.animate(
+      [
+        { transform:`translate(0,0) rotate(0) scale(1)`, opacity:1 },
+        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${0.9 + Math.random()*0.5})`, opacity:0 }
+      ],
+      { duration: 1200 + Math.random()*900, easing:'cubic-bezier(.15,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => el.remove();
+  }
+
+  // ribbon streamers
+  for (let i=0;i<24;i++){
+    const r = document.createElement('div');
+    r.style.position='fixed'; r.style.left=`${x}px`; r.style.top=`${y}px`;
+    r.style.width='6px'; r.style.height='32px'; r.style.borderRadius='3px';
+    r.style.background = `hsl(${Math.floor(Math.random()*360)} 90% 55%)`;
+    r.style.boxShadow='0 2px 8px rgba(0,0,0,.18)';
+    r.style.pointerEvents='none'; r.style.zIndex=9998;
+    document.body.appendChild(r);
+    const ang = Math.random()*Math.PI*2;
+    const dist = 260 + Math.random()*300;
+    const tx = Math.cos(ang)*dist;
+    const ty = Math.sin(ang)*dist + 160;
+    const rot = (Math.random()*720 - 360);
+    r.animate(
+      [
+        { transform:'translate(0,0) rotate(0deg) scale(1)', opacity:1 },
+        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(.9)`, opacity:0 }
+      ],
+      { duration: 1300 + Math.random()*700, easing:'cubic-bezier(.1,.7,0,1)', fill:'forwards' }
+    ).onfinish = () => r.remove();
+  }
+
+  // radiant rays
+  for (let i=0;i<14;i++){
+    const ray = document.createElement('div');
+    ray.style.position='fixed'; ray.style.left=`${x}px`; ray.style.top=`${y}px`;
+    ray.style.width='8px'; ray.style.height='0px';
+    ray.style.borderRadius='4px';
+    ray.style.background='linear-gradient(to bottom, rgba(255,255,255,.95), rgba(255,255,255,0))';
+    ray.style.filter='blur(0.5px)'; ray.style.pointerEvents='none'; ray.style.zIndex=9997;
+    document.body.appendChild(ray);
+    const angle = Math.random()*360;
+    ray.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
+    ray.animate(
+      [
+        { height:'0px', opacity:.9 },
+        { height:'180px', opacity:0 }
+      ],
+      { duration: 520, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => ray.remove();
+  }
+
+  // BIG “AMAZING!” banner
+  const banner = document.createElement('div');
+  banner.className = 'cele-banner';
+  banner.textContent = 'Amazing!';
+  const shine = document.createElement('div');
+  shine.className = 'banner-shimmer';
+  banner.appendChild(shine);
+  document.body.appendChild(banner);
+  banner.style.animation = 'bannerPop 1300ms cubic-bezier(.2,.9,.2,1)';
+  setTimeout(()=>banner.remove(), 1350);
+}
+</script>
+
 
   <script>
   // ===== Blobs =====
