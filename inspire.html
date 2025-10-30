@@ -37,13 +37,18 @@
     .sparkle, .shard, .smoke {
       position: fixed; pointer-events: none; z-index: 9998; will-change: transform, opacity;
     }
-    .sparkle {
-      width: 6px; height: 6px;
-      background: radial-gradient(circle, #fff 0%, #ffd66b 45%, rgba(255,255,255,0) 70%);
-      mix-blend-mode: screen;
-      border-radius: 50%;
-      filter: saturate(1.4) brightness(1.1);
+    /* replace your .sparkle rule with this */
+    .sparkle{
+      position: fixed; pointer-events:none; z-index:2147483600;
+      width:8px; height:8px; border-radius:50%;
+      background: radial-gradient(circle, #fff 0%, #ffe36b 45%, rgba(255,255,255,0) 70%);
+      /* no mix-blend-mode: screen (too faint on white) */
+      box-shadow:
+        0 0 10px rgba(255,227,107,.9),
+        0 0 18px rgba(255,227,107,.6);
+      will-change: transform, opacity;
     }
+
     .shard {
       width: 6px; height: 14px; border-radius: 2px;
       background: currentColor; transform-origin: 50% 50%;
@@ -55,6 +60,15 @@
       filter: blur(1px);
       opacity: .7;
     }
+
+    .gold-pulse{
+      position:fixed; left:0; top:0; width:10px; height:10px;
+      border-radius:50%; border:3px solid rgba(255,227,107,.95);
+      box-shadow: 0 0 30px rgba(255,227,107,.75), inset 0 0 8px rgba(255,255,255,.9);
+      transform: translate(-50%,-50%) scale(1); opacity:.9;
+      pointer-events:none; z-index:2147483600;
+    }
+
 
     :root { --bg:#f2f2f2; --text:#0b0b0b; --accent:#ff6ea8; --grid-color:rgba(0,170,255,.25); }
     *,*::before,*::after{ box-sizing:border-box; }
@@ -284,6 +298,110 @@ function amazingCelebrate({ x, y }) {
   document.body.appendChild(bloom);
   bloom.addEventListener('animationend', () => bloom.remove());
 
+  // GOLD RING PULSE
+  const ring = document.createElement('div');
+  ring.className = 'gold-pulse';
+  ring.style.left = `${x}px`; ring.style.top = `${y}px`;
+  document.body.appendChild(ring);
+  ring.animate(
+    [
+      { transform:'translate(-50%,-50%) scale(.6)', opacity:.95 },
+      { transform:'translate(-50%,-50%) scale(20)', opacity:0 }
+    ],
+    { duration: 650, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+  ).onfinish = () => ring.remove();
+
+  // PRIMARY BURST
+  glitterBurst(x, y, 240);
+
+  // Streamers (beefier + brighter)
+  for (let i=0;i<32;i++){
+    const r = document.createElement('div');
+    r.style.position='fixed'; r.style.left=`${x}px`; r.style.top=`${y}px`;
+    r.style.width='7px'; r.style.height='38px'; r.style.borderRadius='3.5px';
+    r.style.background = `hsl(${Math.floor(Math.random()*360)} 92% 58%)`;
+    r.style.boxShadow='0 2px 10px rgba(0,0,0,.22)';
+    r.style.pointerEvents='none'; r.style.zIndex=2147483600;
+    document.body.appendChild(r);
+    const ang = Math.random()*Math.PI*2;
+    const dist = 300 + Math.random()*340;
+    const tx = Math.cos(ang)*dist;
+    const ty = Math.sin(ang)*dist + 160;
+    const rot = (Math.random()*900 - 450);
+    r.animate(
+      [
+        { transform:'translate(0,0) rotate(0deg) scale(1)', opacity:1 },
+        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(.95)`, opacity:0 }
+      ],
+      { duration: 1400 + Math.random()*700, easing:'cubic-bezier(.1,.7,0,1)', fill:'forwards' }
+    ).onfinish = () => r.remove();
+  }
+
+  // Radiant rays
+  for (let i=0;i<18;i++){
+    const ray = document.createElement('div');
+    ray.style.position='fixed'; ray.style.left=`${x}px`; ray.style.top=`${y}px`;
+    ray.style.width='10px'; ray.style.height='0px'; ray.style.borderRadius='5px';
+    ray.style.background='linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0))';
+    ray.style.filter='blur(.5px)'; ray.style.pointerEvents='none'; ray.style.zIndex=2147483600;
+    document.body.appendChild(ray);
+    const angle = Math.random()*360;
+    ray.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
+    ray.animate(
+      [{ height:'0px', opacity:.95 }, { height:'220px', opacity:0 }],
+      { duration: 560, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => ray.remove();
+  }
+
+  // "AMAZING!" banner
+  const banner = document.createElement('div');
+  banner.className = 'cele-banner';
+  banner.textContent = 'Amazing!';
+  const shine = document.createElement('div');
+  shine.className = 'banner-shimmer';
+  banner.appendChild(shine);
+  document.body.appendChild(banner);
+  banner.style.animation = 'bannerPop 1300ms cubic-bezier(.2,.9,.2,1)';
+  setTimeout(()=>banner.remove(), 1350);
+
+  // SECONDARY POP a moment later for that Candy-Crush feel
+  setTimeout(()=>glitterBurst(x, y, 160, true), 160);
+}
+
+// helper: dense glitter (optionally tighter)
+function glitterBurst(x, y, count = 200, tighter = false) {
+  for (let i=0;i<count;i++){
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.style.left = `${x}px`; el.style.top = `${y}px`;
+    // diamond variant
+    if (Math.random() < 0.3) {
+      el.style.width='9px'; el.style.height='9px';
+      el.style.background='linear-gradient(45deg, rgba(255,255,255,.95), rgba(255,255,255,0))';
+      el.style.borderRadius='0'; el.style.transform='rotate(45deg)';
+      el.style.boxShadow='0 0 12px rgba(255,255,255,.95)';
+    }
+    document.body.appendChild(el);
+
+    const ang = Math.random()*Math.PI*2;
+    const dist = (tighter ? 180 : 240) + Math.random()*(tighter ? 180 : 260);
+    const tx = Math.cos(ang)*dist;
+    const ty = Math.sin(ang)*dist + (tighter ? 90 : 130);
+    const rot = Math.random()*360;
+
+    el.animate(
+      [
+        { transform:`translate(0,0) rotate(0) scale(1)`, opacity:1 },
+        { transform:`translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${0.9 + Math.random()*0.6})`, opacity:0 }
+      ],
+      { duration: 1300 + Math.random()*900, easing:'cubic-bezier(.15,.8,.2,1)', fill:'forwards' }
+    ).onfinish = () => el.remove();
+  }
+}
+</script>
+
+
+  <script>
   // gold glitter (upgraded)
   const HUES = [48, 50, 52, 200, 280];
   const COUNT = 180;
