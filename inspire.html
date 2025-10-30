@@ -10,183 +10,84 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <style>
-    :root {
-      --bg: #f2f2f2;
-      --text: #0b0b0b;
-      --accent: #ff6ea8;
-      --grid-color: rgba(0, 170, 255, 0.25);
+    :root { --bg:#f2f2f2; --text:#0b0b0b; --accent:#ff6ea8; --grid-color:rgba(0,170,255,.25); }
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{ margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-family:'Garet',sans-serif; overflow:hidden; }
+
+    .container{ min-height:100dvh; display:grid; grid-template-rows:auto 1fr; }
+
+    header{ display:flex; align-items:center; justify-content:space-between; padding:clamp(14px,2vw,28px); max-width:1280px; margin-inline:auto; width:100%; font-family:'Helios',sans-serif; z-index:10; position:relative; }
+    .brand{ display:inline-flex; flex-direction:column; gap:2px; line-height:1.1; text-transform:uppercase; font-weight:600; letter-spacing:.06em; font-size:clamp(11px,1.2vw,14px); }
+    .brand a,.brand small a{ color:var(--text); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:2px; }
+
+    .contact-btn{ background:transparent; color:var(--text); border:2px solid var(--text); padding:.55rem 1.1rem; border-radius:6px; font-family:'Helios',sans-serif; font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:clamp(11px,1.2vw,13px); text-decoration:none; transition:transform 120ms ease,background-color 120ms ease,color 120ms ease; }
+    .contact-btn:hover{ transform:translateY(-1px); }
+
+    .hero{ position:relative; display:grid; place-items:center; padding:clamp(28px,6vw,64px); overflow:hidden; }
+    .hero-inner{ position:relative; z-index:2; text-align:center; max-width:1100px; margin-inline:auto; display:grid; place-items:center; animation:fadeOut 1s ease 2s forwards; }
+
+    .glow{ position:absolute; left:50%; top:52%; transform:translate(-50%,-50%); width:min(140vmin,1100px); height:min(140vmin,1100px); border-radius:50%; background:radial-gradient(circle,rgba(255,154,196,.60) 0%,rgba(255,154,196,.35) 34%,rgba(255,154,196,.16) 62%,rgba(255,154,196,.06) 78%,rgba(255,154,196,0) 100%); filter:blur(10px); z-index:1; animation:floatGlow 28s ease-in-out infinite alternate; pointer-events:none; }
+    @keyframes floatGlow{ 0%{ transform:translate(-2%,-4%) scale(1); opacity:.9; } 50%{ transform:translate(2%,3%) scale(1.03); opacity:1; } 100%{ transform:translate(-2%,-4%) scale(1); opacity:.9; } }
+
+    .kicker{ font-family:'Helios',sans-serif; font-size:clamp(18px,2.2vw,34px); letter-spacing:.07em; text-transform:uppercase; font-weight:500; margin-bottom:clamp(18px,3vw,24px); }
+    .headline{ margin:0; font-weight:700; line-height:.96; font-size:clamp(40px,8.4vw,128px); font-family:'Garet',sans-serif; }
+    .headline .line{ display:block; } .headline .tight{ margin-top:clamp(8px,1vw,10px); }
+
+    .grid-fade{ position:absolute; inset:0; z-index:0; background-color:#fff;
+      background-image: linear-gradient(to right,var(--grid-color) 1px,transparent 1px),
+                        linear-gradient(to bottom,var(--grid-color) 1px,transparent 1px);
+      background-size:40px 40px; opacity:0; animation:fadeIn 2s ease 2.5s forwards; }
+
+    @keyframes fadeOut{ to{ opacity:0; transform:translateY(-20px); pointer-events:none; } }
+    @keyframes fadeIn{ to{ opacity:1; } }
+
+    /* Blobs */
+    .blob-wrap{ position:absolute; width:clamp(480px,66vmin,960px); aspect-ratio:1/1; z-index:3; transform:translate(-50%,-50%); cursor:grab; transition:filter 160ms ease; }
+    .blob-wrap:active{ cursor:grabbing; }
+    .blob{ width:100%; height:100%; display:block; user-select:none; pointer-events:none; filter:drop-shadow(0 8px 16px rgba(0,0,0,.15)); }
+    .controls{ position:absolute; top:-10px; right:-10px; display:flex; gap:6px; background:rgba(255,255,255,.85); padding:6px; border-radius:10px; box-shadow:0 6px 14px rgba(0,0,0,.14), 0 1px 0 rgba(0,0,0,.06) inset; opacity:0; pointer-events:none; transform:translateY(-6px); transition:opacity 160ms ease,transform 160ms ease; }
+    .blob-wrap:hover .controls{ opacity:1; pointer-events:auto; transform:none; }
+    .btn-icon{ width:28px; height:28px; border:none; border-radius:6px; display:grid; place-items:center; background:#fff; color:#000; cursor:pointer; font-size:18px; box-shadow:0 1px 0 rgba(0,0,0,.06) inset; transition:transform 100ms ease, background 120ms ease; }
+    .btn-pin.active{ background:#ffe88c; }
+    #blobLayer{ position:absolute; inset:0; z-index:3; pointer-events:none; }
+    #blobLayer .blob-wrap, #blobLayer .controls, #blobLayer .btn-icon{ pointer-events:auto; }
+    @keyframes slowSpin{ from{ rotate:0deg; } to{ rotate:360deg; } }
+    .blob-wrap.entering{ animation:blobIn 600ms cubic-bezier(.2,.8,.2,1); }
+    @keyframes blobIn{ from{ transform:translate(-50%,-50%) scale(.85); opacity:0; } to{ transform:translate(-50%,-50%) scale(1); opacity:1; } }
+
+    @media (max-width:600px){
+      header{ justify-content:space-between; align-items:center; }
+      .brand{ align-items:flex-start; }
+      .contact-btn{ border-width:1.5px; padding:.5rem .9rem; }
+      .hero{ min-height:100dvh; place-items:start center; padding-top:0; }
+      .hero-inner{ margin-top:clamp(56px,12vh,120px); }
+      .glow{ width:120vmin; height:120vmin; top:52%; }
+      .headline{ font-size:clamp(36px,10vw,56px); line-height:1; }
+      .blob-wrap{ width:clamp(240px,33vmin,480px); }
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
+    @media (prefers-reduced-motion:reduce){ .glow{ animation:none; } .hero-inner,.grid-fade{ animation:none; opacity:1; } }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      font-family: 'Garet', sans-serif;
-      overflow: hidden;
-    }
+    /* Share bar (floating) */
+    .share-bar{ position:fixed; left:0; right:0; bottom:32px; display:flex; justify-content:center; z-index:2147483645; transform:translateY(16px); opacity:0; transition:transform 420ms ease, opacity 420ms ease; pointer-events:none; }
+    .share-bar.show{ transform:translateY(0); opacity:1; pointer-events:auto; }
+    .share-btn{ font-family:'Garet',sans-serif; font-weight:700; letter-spacing:.02em; color:#fff; background:#0b0b0b; border:0; border-radius:18px; padding:16px 24px; box-shadow:0 12px 28px rgba(0,0,0,.22); cursor:pointer; }
+    @media (max-width:600px){ .share-bar{ bottom:20px; } .share-btn{ padding:12px 18px; border-radius:16px; } }
 
-    .container { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr; }
-
-    header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: clamp(14px, 2vw, 28px); max-width: 1280px; margin-inline: auto; width: 100%;
-      font-family: 'Helios', sans-serif; z-index: 10; position: relative;
-    }
-    .brand { display: inline-flex; flex-direction: column; gap: 2px; line-height: 1.1; text-transform: uppercase; font-weight: 600; letter-spacing: .06em; font-size: clamp(11px, 1.2vw, 14px); }
-    .brand a, .brand small a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-
-    .contact-btn {
-      background: transparent; color: var(--text); border: 2px solid var(--text);
-      padding: .55rem 1.1rem; border-radius: 6px; font-family: 'Helios', sans-serif; font-weight: 700;
-      letter-spacing: .05em; text-transform: uppercase; font-size: clamp(11px, 1.2vw, 13px);
-      text-decoration: none; transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
-    }
-    .contact-btn:hover { transform: translateY(-1px); }
-
-    .hero { position: relative; display: grid; place-items: center; padding: clamp(28px, 6vw, 64px); overflow: hidden; }
-    .hero-inner {
-      position: relative; z-index: 2; text-align: center; max-width: 1100px; margin-inline: auto; display: grid; place-items: center;
-      animation: fadeOut 1s ease 2s forwards;
-    }
-
-    .glow {
-      position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%);
-      width: min(140vmin, 1100px); height: min(140vmin, 1100px); border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,154,196,.60) 0%, rgba(255,154,196,.35) 34%, rgba(255,154,196,.16) 62%, rgba(255,154,196,.06) 78%, rgba(255,154,196,0) 100%);
-      filter: blur(10px); z-index: 1; animation: floatGlow 28s ease-in-out infinite alternate; pointer-events: none;
-    }
-    @keyframes floatGlow {
-      0% { transform: translate(-2%, -4%) scale(1); opacity:.9; }
-      50%{ transform: translate(2%, 3%) scale(1.03); opacity:1; }
-      100%{ transform: translate(-2%, -4%) scale(1); opacity:.9; }
-    }
-
-    .kicker { font-family: 'Helios', sans-serif; font-size: clamp(18px, 2.2vw, 34px); letter-spacing: .07em; text-transform: uppercase; font-weight: 500; margin-bottom: clamp(18px, 3vw, 24px); }
-    .headline { margin: 0; font-weight: 700; line-height: .96; font-size: clamp(40px, 8.4vw, 128px); font-family: 'Garet', sans-serif; }
-    .headline .line { display:block; } .headline .tight{ margin-top: clamp(8px,1vw,10px); }
-
-    /* Vector grid background that fades in */
-    .grid-fade {
-      position: absolute; inset: 0; z-index: 0; background-color: #fff;
-      background-image:
-        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0; animation: fadeIn 2s ease 2.5s forwards;
-    }
-
-    @keyframes fadeOut { to { opacity: 0; transform: translateY(-20px); pointer-events: none; } }
-    @keyframes fadeIn  { to { opacity: 1; } }
-
-    /* ===== Blob styles (shared) ===== */
-    .blob-wrap {
-      position: absolute;
-      width: clamp(480px, 66vmin, 960px);
-      aspect-ratio: 1 / 1;
-      z-index: 3;
-      transform: translate(-50%, -50%);
-      cursor: grab;
-      transition: filter 160ms ease;
-    }
-    .blob-wrap:active { cursor: grabbing; }
-    .blob { width: 100%; height: 100%; display: block; user-select: none; pointer-events: none; filter: drop-shadow(0 8px 16px rgba(0,0,0,.15)); }
-
-    .controls {
-      position: absolute; top: -10px; right: -10px; display: flex; gap: 6px;
-      background: rgba(255,255,255,.85); padding: 6px; border-radius: 10px;
-      box-shadow: 0 6px 14px rgba(0,0,0,.14), 0 1px 0 rgba(0,0,0,.06) inset;
-      opacity: 0; pointer-events: none; transform: translateY(-6px);
-      transition: opacity 160ms ease, transform 160ms ease;
-    }
-    .blob-wrap:hover .controls { opacity: 1; pointer-events: auto; transform: none; }
-
-    .btn-icon {
-      width: 28px; height: 28px; border: none; border-radius: 6px; display: grid; place-items: center;
-      background: #fff; color: #000; cursor: pointer; font-size: 18px;
-      box-shadow: 0 1px 0 rgba(0,0,0,.06) inset;
-      transition: transform 100ms ease, background 120ms ease;
-    }
-    .btn-icon:hover { transform: translateY(-1px); }
-    .btn-icon:active { transform: translateY(0); }
-    .btn-pin.active { background:#ffe88c; }
-    .btn-x { color:#000; }
-    .btn-check { color:#0dbb5f; }
-
-    .particle, .confetti { position: fixed; pointer-events: none; z-index: 4; will-change: transform, opacity; }
-
-    /* Multi-blob layer + rotation + entrance */
-    #blobLayer { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-    /* let blobs and their controls receive events */
-    #blobLayer .blob-wrap,
-    #blobLayer .controls,
-    #blobLayer .btn-icon { pointer-events: auto; }
-
-    @keyframes slowSpin { from { rotate: 0deg; } to { rotate: 360deg; } }
-    .blob-wrap.entering { animation: blobIn 600ms cubic-bezier(.2,.8,.2,1); }
-    @keyframes blobIn { from { transform: translate(-50%,-50%) scale(.85); opacity: 0; } to { transform: translate(-50%,-50%) scale(1); opacity: 1; } }
-
-    @media (max-width: 600px) {
-      header { justify-content: space-between; align-items: center; }
-      .brand { align-items: flex-start; }
-      .contact-btn { border-width: 1.5px; padding: .5rem .9rem; }
-      .hero { min-height: 100dvh; place-items: start center; padding-top: 0; }
-      .hero-inner { margin-top: clamp(56px, 12vh, 120px); }
-      .glow { width: 120vmin; height: 120vmin; top: 52%; }
-      .headline { font-size: clamp(36px, 10vw, 56px); line-height: 1; }
-      .blob-wrap { width: clamp(240px, 33vmin, 480px); } /* 1.5× bigger on mobile */
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .glow { animation: none; }
-      .hero-inner, .grid-fade { animation: none; opacity: 1; }
-    }
-    
-/* --- Share bar (floating) --- */
-.share-bar {
-  position: fixed;
-  left: 0; right: 0;
-  bottom: 32px;
-  display: flex; justify-content: center;
-  z-index: 9999;
-  transform: translateY(16px);
-  opacity: 0;
-  transition: transform 420ms ease, opacity 420ms ease;
-  pointer-events: none;          /* hidden = non-interactive */
-}
-.share-bar.show {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;          /* visible = clickable ✅ */
-}
-
-.share-btn {
-  font-family: 'Garet', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #fff; background: #0b0b0b;
-  border: 0; border-radius: 18px;
-  padding: 16px 24px;
-  box-shadow: 0 12px 28px rgba(0,0,0,.22);
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .share-bar { bottom: 20px; }
-  .share-btn { padding: 12px 18px; border-radius: 16px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .share-bar { transition: none; transform: none; opacity: 1; }
-}
-
-/* Make sure the Fillout overlay sits on top */
-.fillout-embed, .fillout-embed * { z-index: 2147483647 !important; }
+    /* Custom modal */
+    .modal{ position:fixed; inset:0; z-index:2147483646; display:none; }
+    .modal.open{ display:block; }
+    .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); opacity:0; transition:opacity 220ms ease; }
+    .modal.open .modal-backdrop{ opacity:1; }
+    .modal-panel{ position:absolute; left:50%; top:50%; transform:translate(-50%,-46%) scale(.96); width:min(900px,92vw); height:min(80vh,760px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35); opacity:0; transition:transform 220ms ease, opacity 220ms ease; display:flex; flex-direction:column; }
+    .modal.open .modal-panel{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+    .modal-header{ display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:#0b0b0b; color:#fff; font-family:'Garet',sans-serif; font-weight:700; }
+    .modal-close{ background:transparent; border:0; color:#fff; font-size:24px; cursor:pointer; line-height:1; }
+    .modal-body{ flex:1; }
+    .modal-body iframe{ width:100%; height:100%; border:0; display:block; }
   </style>
-  
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -208,338 +109,117 @@
       </div>
 
       <div class="grid-fade"></div>
-
-      <!-- Multi-blob layer (spawner renders here) -->
       <div id="blobLayer" aria-hidden="true"></div>
     </main>
   </div>
 
+  <!-- Floating CTA -->
+  <div class="share-bar" id="shareBar" aria-live="polite">
+    <button class="share-btn" id="shareOpenBtn" type="button">
+      Share your creation with us
+    </button>
+  </div>
+
+  <!-- Modal with Fillout form in iframe -->
+  <div class="modal" id="shareModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="document">
+      <div class="modal-header">
+        <span>Share your creation</span>
+        <button class="modal-close" title="Close" aria-label="Close" data-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe src="https://form.fillout.com/t/wSoN83phHnus" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
   <script>
-  (() => {
-    const LAYER = document.getElementById('blobLayer');
-
-    // Your 30 SVGs
-    const SOURCES = Array.from({length: 30}, (_, i) => `blob${i+1}.svg`);
-
-    // Config
-    const MAX_ON_SCREEN = 7;
-    const BASE_SPEED = 35;
-    const BOOST_MULT = 2.2;
-    const LIFETIME_MS = [20000, 35000];
-    const EDGE_PAD = 24;
-
-    const queue = [...SOURCES];
-    const sprites = new Set();
-
-    const rand = (a,b) => a + Math.random()*(b-a);
-    const choice = arr => arr[Math.floor(Math.random()*arr.length)];
-
-    function tickSpawner() {
-      while (sprites.size < MAX_ON_SCREEN) spawnOne(nextSrc());
-    }
-    function nextSrc() {
-      return SOURCES[Math.floor(Math.random() * SOURCES.length)];
-    }
-
-    let lastT = 0;
-    function raf(t) {
-      if (!lastT) lastT = t;
-      const dt = Math.min(64, t - lastT) / 1000;
-      lastT = t;
-      const W = window.innerWidth, H = window.innerHeight;
-      sprites.forEach(s => s.update(dt, W, H));
-      requestAnimationFrame(raf);
-    }
-
-    class Sprite {
-      constructor(src) {
-        this.el = document.createElement('div');
-        this.el.className = 'blob-wrap entering';
-        this.el.style.width = 'clamp(160px, 22vmin, 320px)';
-        this.el.innerHTML = `
-          <img class="blob" src="${src}" alt="" draggable="false"/>
-          <div class="controls">
-            <button class="btn-icon btn-pin"   title="Pin"><i class="bi bi-pin-angle-fill"></i></button>
-            <button class="btn-icon btn-x"     title="Explode"><i class="bi bi-x-circle"></i></button>
-            <button class="btn-icon btn-check" title="Celebrate"><i class="bi bi-check-circle-fill"></i></button>
-          </div>
-        `;
-        LAYER.appendChild(this.el);
-
-        // viewport sizes for spawn math
-        const W = window.innerWidth;
-        const H = window.innerHeight;
-
-        // spawn just off-screen
-        const side = choice(['left','right','top','bottom']);
-        const w = this.el.offsetWidth, h = this.el.offsetHeight;
-        if (side === 'left')   { this.x = -w;                         this.y = rand(EDGE_PAD, H-EDGE_PAD); }
-        if (side === 'right')  { this.x = W + w;                      this.y = rand(EDGE_PAD, H-EDGE_PAD); }
-        if (side === 'top')    { this.x = rand(EDGE_PAD, W-EDGE_PAD); this.y = -h; }
-        if (side === 'bottom') { this.x = rand(EDGE_PAD, W-EDGE_PAD); this.y = H + h; }
-
-        const cx = W/2, cy = H/2;
-        const angle = Math.atan2(cy - this.y, cx - this.x) + rand(-0.6, 0.6);
-        this.vx = Math.cos(angle) * BASE_SPEED;
-        this.vy = Math.sin(angle) * BASE_SPEED;
-
-        this.boostUntil = 0;
-        this.pinned = false;
-        this.alive = true;
-        this.nextNudge = performance.now() + rand(1000, 2500);
-
-        // spin each blob differently (store img and control play state)
-        this.img = this.el.querySelector('.blob');
-        const spinSec = rand(16, 32).toFixed(1);
-        this.img.style.animation = `slowSpin ${spinSec}s linear infinite`;
-        this.img.style.animationPlayState = 'running';
-
-        this.applyTransform();
-        this.killAt = performance.now() + rand(...LIFETIME_MS);
-
-        const pinBtn   = this.el.querySelector('.btn-pin');
-        const xBtn     = this.el.querySelector('.btn-x');
-        const checkBtn = this.el.querySelector('.btn-check');
-
-        [pinBtn, xBtn, checkBtn].forEach(btn => btn.addEventListener('click', e => e.stopPropagation()));
-
-        pinBtn.addEventListener('click', () => {
-          this.pinned = !this.pinned;
-          pinBtn.classList.toggle('active', this.pinned);
-          this.killAt = this.pinned ? Infinity : performance.now() + rand(...LIFETIME_MS);
-          this.setSpin(this.pinned); // pause if pinned, resume if unpinned
-        });
-
-        xBtn.addEventListener('click', () => this.explode());
-
-        checkBtn.addEventListener('click', () => {
-          createConfetti(this.center());
-          if (!this.pinned) this.boostUntil = performance.now() + 2200;
-        });
-
-        // drag to reposition (pins & pauses spin while dragging)
-        let dragging = false, dx = 0, dy = 0;
-        this.el.addEventListener('pointerdown', (e) => {
-          if (e.target.closest('.controls')) return;
-          dragging = true; this.el.setPointerCapture(e.pointerId);
-          const r = this.el.getBoundingClientRect();
-          dx = e.clientX - (r.left + r.width/2);
-          dy = e.clientY - (r.top  + r.height/2);
-
-          // make it pinned during drag and pause spin
-          this.pinned = true;
-          pinBtn.classList.add('active');
-          this.setSpin(true);
-        });
-        window.addEventListener('pointermove', (e) => {
-          if (!dragging) return;
-          this.x = e.clientX - dx; this.y = e.clientY - dy;
-          this.applyTransform();
-        });
-        window.addEventListener('pointerup', () => {
-          dragging = false;
-          // remains pinned after drop; user can click pin to unpin (which resumes spin)
-        });
-
-        setTimeout(() => this.el.classList.remove('entering'), 650);
-      }
-
-      setSpin(paused) {
-        this.img.style.animationPlayState = paused ? 'paused' : 'running';
-      }
-
-      applyTransform() {
-        this.el.style.left = `${this.x}px`;
-        this.el.style.top  = `${this.y}px`;
-        this.el.style.transform = 'translate(-50%,-50%)';
-      }
-
-      update(dt, W, H) {
-        if (!this.alive) return;
-
-        if (!this.pinned && performance.now() > this.killAt) { this.fadeOut(); return; }
-
-        if (!this.pinned) {
-          const now = performance.now();
-          const speed = now < this.boostUntil ? BASE_SPEED * BOOST_MULT : BASE_SPEED;
-
-          const len = Math.hypot(this.vx, this.vy) || 1;
-          this.vx = (this.vx / len) * speed;
-          this.vy = (this.vy / len) * speed;
-
-          this.x += this.vx * dt;
-          this.y += this.vy * dt;
-
-          const minX = EDGE_PAD, maxX = W - EDGE_PAD;
-          const minY = EDGE_PAD, maxY = H - EDGE_PAD;
-          if (this.x < minX) { this.x = minX; this.vx = Math.abs(this.vx); }
-          if (this.x > maxX) { this.x = maxX; this.vx = -Math.abs(this.vx); }
-          if (this.y < minY) { this.y = minY; this.vy = Math.abs(this.vy); }
-          if (this.y > maxY) { this.y = maxY; this.vy = -Math.abs(this.vy); }
-
-          if (now > this.nextNudge) {
-            const a = (Math.random() - 0.5) * Math.PI / 2;
-            const c = Math.cos(a), s = Math.sin(a);
-            const nx = this.vx * c - this.vy * s;
-            const ny = this.vx * s + this.vy * c;
-            this.vx = nx; this.vy = ny;
-            this.nextNudge = now + rand(1000, 2500);
-          }
-
-          this.applyTransform();
+    // --- Blobs (unchanged from your version) ---
+    (() => {
+      const LAYER = document.getElementById('blobLayer');
+      const SOURCES = Array.from({length: 30}, (_, i) => `blob${i+1}.svg`);
+      const MAX_ON_SCREEN = 7, BASE_SPEED = 35, BOOST_MULT = 2.2, LIFETIME_MS = [20000, 35000], EDGE_PAD = 24;
+      const sprites = new Set();
+      const rand=(a,b)=>a+Math.random()*(b-a), choice=a=>a[Math.floor(Math.random()*a.length)];
+      function tickSpawner(){ while(sprites.size<MAX_ON_SCREEN) spawnOne(nextSrc()); }
+      function nextSrc(){ return SOURCES[Math.floor(Math.random()*SOURCES.length)]; }
+      let lastT=0; function raf(t){ if(!lastT) lastT=t; const dt=Math.min(64,t-lastT)/1000; lastT=t; const W=innerWidth,H=innerHeight; sprites.forEach(s=>s.update(dt,W,H)); requestAnimationFrame(raf); }
+      class Sprite{
+        constructor(src){
+          this.el=document.createElement('div'); this.el.className='blob-wrap entering'; this.el.style.width='clamp(160px, 22vmin, 320px)';
+          this.el.innerHTML=`<img class="blob" src="${src}" alt="" draggable="false"/><div class="controls"><button class="btn-icon btn-pin" title="Pin"><i class="bi bi-pin-angle-fill"></i></button><button class="btn-icon btn-x" title="Explode"><i class="bi bi-x-circle"></i></button><button class="btn-icon btn-check" title="Celebrate"><i class="bi bi-check-circle-fill"></i></button></div>`;
+          LAYER.appendChild(this.el);
+          const W=innerWidth,H=innerHeight, side=choice(['left','right','top','bottom']), w=this.el.offsetWidth, h=this.el.offsetHeight;
+          if(side==='left'){this.x=-w; this.y=rand(EDGE_PAD,H-EDGE_PAD);}
+          if(side==='right'){this.x=W+w; this.y=rand(EDGE_PAD,H-EDGE_PAD);}
+          if(side==='top'){this.x=rand(EDGE_PAD,W-EDGE_PAD); this.y=-h;}
+          if(side==='bottom'){this.x=rand(EDGE_PAD,W-EDGE_PAD); this.y=H+h;}
+          const cx=W/2, cy=H/2, angle=Math.atan2(cy-this.y,cx-this.x)+rand(-0.6,0.6);
+          this.vx=Math.cos(angle)*BASE_SPEED; this.vy=Math.sin(angle)*BASE_SPEED;
+          this.boostUntil=0; this.pinned=false; this.alive=true; this.nextNudge=performance.now()+rand(1000,2500);
+          this.img=this.el.querySelector('.blob'); const spinSec=rand(16,32).toFixed(1); this.img.style.animation=`slowSpin ${spinSec}s linear infinite`; this.img.style.animationPlayState='running';
+          this.applyTransform(); this.killAt=performance.now()+rand(...LIFETIME_MS);
+          const pinBtn=this.el.querySelector('.btn-pin'), xBtn=this.el.querySelector('.btn-x'), checkBtn=this.el.querySelector('.btn-check');
+          [pinBtn,xBtn,checkBtn].forEach(b=>b.addEventListener('click',e=>e.stopPropagation()));
+          pinBtn.addEventListener('click',()=>{ this.pinned=!this.pinned; pinBtn.classList.toggle('active',this.pinned); this.killAt=this.pinned?Infinity:performance.now()+rand(...LIFETIME_MS); this.setSpin(this.pinned); });
+          xBtn.addEventListener('click',()=>this.explode());
+          checkBtn.addEventListener('click',()=>{ createConfetti(this.center()); if(!this.pinned) this.boostUntil=performance.now()+2200; });
+          let dragging=false,dx=0,dy=0;
+          this.el.addEventListener('pointerdown',e=>{ if(e.target.closest('.controls')) return; dragging=true; this.el.setPointerCapture(e.pointerId); const r=this.el.getBoundingClientRect(); dx=e.clientX-(r.left+r.width/2); dy=e.clientY-(r.top+r.height/2); this.pinned=true; pinBtn.classList.add('active'); this.setSpin(true); });
+          addEventListener('pointermove',e=>{ if(!dragging) return; this.x=e.clientX-dx; this.y=e.clientY-dy; this.applyTransform(); });
+          addEventListener('pointerup',()=>{ dragging=false; });
+          setTimeout(()=>this.el.classList.remove('entering'),650);
         }
+        setSpin(paused){ this.img.style.animationPlayState = paused?'paused':'running'; }
+        applyTransform(){ this.el.style.left=`${this.x}px`; this.el.style.top=`${this.y}px`; this.el.style.transform='translate(-50%,-50%)'; }
+        update(dt,W,H){ if(!this.alive) return; if(!this.pinned && performance.now()>this.killAt){ this.fadeOut(); return; }
+          if(!this.pinned){ const now=performance.now(); const speed = now<this.boostUntil ? 35*2.2 : 35;
+            const len=Math.hypot(this.vx,this.vy)||1; this.vx=(this.vx/len)*speed; this.vy=(this.vy/len)*speed;
+            this.x+=this.vx*dt; this.y+=this.vy*dt;
+            const minX=24,maxX=W-24,minY=24,maxY=H-24;
+            if(this.x<minX){this.x=minX; this.vx=Math.abs(this.vx);} if(this.x>maxX){this.x=maxX; this.vx=-Math.abs(this.vx);}
+            if(this.y<minY){this.y=minY; this.vy=Math.abs(this.vy);} if(this.y>maxY){this.y=maxY; this.vy=-Math.abs(this.vy);}
+            if(now>this.nextNudge){ const a=(Math.random()-0.5)*Math.PI/2, c=Math.cos(a), s=Math.sin(a); const nx=this.vx*c-this.vy*s, ny=this.vx*s+this.vy*c; this.vx=nx; this.vy=ny; this.nextNudge=now+rand(1000,2500); }
+            this.applyTransform();
+          } }
+        center(){ const r=this.el.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2}; }
+        explode(){ if(!this.alive) return; this.alive=false; createExplosion(this.center()); this.el.style.transition='transform 260ms ease, opacity 260ms ease, filter 260ms ease'; this.el.style.opacity='0'; this.el.style.transform='translate(-50%,-50%) scale(0.6) rotate(8deg)'; this.el.style.filter='blur(2px)'; setTimeout(()=>this.destroy(),280); }
+        fadeOut(){ if(!this.alive) return; this.alive=false; this.el.style.transition='opacity 220ms ease'; this.el.style.opacity='0'; setTimeout(()=>this.destroy(),230); }
+        destroy(){ sprites.delete(this); this.el.remove(); setTimeout(tickSpawner,50); }
+      }
+      function spawnOne(src){ sprites.add(new Sprite(src)); }
+      function createExplosion({x,y}){ const pieces=18; for(let i=0;i<pieces;i++){ const el=document.createElement('div'); el.className='particle'; const size=6+Math.random()*10; el.style.width=`${size}px`; el.style.height=`${size}px`; el.style.borderRadius='50%'; el.style.background=`hsl(${Math.floor(Math.random()*40)+330} 90% 60%)`; el.style.left=`${x - size/2}px`; el.style.top=`${y - size/2}px`; document.body.appendChild(el); const ang=Math.random()*Math.PI*2, dist=80+Math.random()*140, tx=Math.cos(ang)*dist, ty=Math.sin(ang)*dist; el.animate([{transform:`translate(0,0) scale(1)`,opacity:1},{transform:`translate(${tx}px,${ty}px) scale(${0.6+Math.random()*0.6})`,opacity:0}],{duration:600+Math.random()*300,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}).onfinish=()=>el.remove(); } }
+      function createConfetti({x,y}){ const count=60; for(let i=0;i<count;i++){ const el=document.createElement('div'); el.className='confetti'; const w=6+Math.random()*6, h=10+Math.random()*10; el.style.width=`${w}px`; el.style.height=`${h}px`; el.style.background=`hsl(${Math.floor(Math.random()*360)} 90% 55%)`; el.style.left=`${x-w/2}px`; el.style.top=`${y-h/2}px`; el.style.transform=`rotate(${Math.random()*360}deg)`; el.style.borderRadius=`${Math.random()<0.5?2:0}px`; document.body.appendChild(el); const dx=(Math.random()*2-1)*160, dy=220+Math.random()*220, rot=(Math.random()*720-360); el.animate([{transform:`translate(0,0) rotate(0deg)`,opacity:1},{transform:`translate(${dx}px, ${dy}px) rotate(${rot}deg)`,opacity:0}],{duration:1300+Math.random()*700,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}).onfinish=()=>el.remove(); } }
+      tickSpawner(); requestAnimationFrame(raf); addEventListener('resize',()=>setTimeout(()=>sprites.forEach(s=>s.applyTransform()),50));
+    })();
+
+    // --- Share bar + Modal ---
+    (function(){
+      const bar = document.getElementById('shareBar');
+      const btn = document.getElementById('shareOpenBtn');
+      const modal = document.getElementById('shareModal');
+
+      // Show bar after 3s
+      setTimeout(()=>bar?.classList.add('show'), 3000);
+
+      function openModal(){
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.documentElement.style.overflow='hidden';
+        document.body.style.overflow='hidden';
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.documentElement.style.overflow='';
+        document.body.style.overflow='';
       }
 
-      center() {
-        const r = this.el.getBoundingClientRect();
-        return { x: r.left + r.width/2, y: r.top + r.height/2 };
-      }
-
-      explode() {
-        if (!this.alive) return;
-        this.alive = false;
-        createExplosion(this.center());
-        this.el.style.transition = 'transform 260ms ease, opacity 260ms ease, filter 260ms ease';
-        this.el.style.opacity = '0';
-        this.el.style.transform = 'translate(-50%,-50%) scale(0.6) rotate(8deg)';
-        this.el.style.filter = 'blur(2px)';
-        setTimeout(() => this.destroy(), 280);
-      }
-
-      fadeOut() {
-        if (!this.alive) return;
-        this.alive = false;
-        this.el.style.transition = 'opacity 220ms ease';
-        this.el.style.opacity = '0';
-        setTimeout(() => this.destroy(), 230);
-      }
-
-      destroy() {
-        sprites.delete(this);
-        this.el.remove();
-        setTimeout(tickSpawner, 50);
-      }
-    }
-
-    function spawnOne(src) { sprites.add(new Sprite(src)); }
-
-    // Effects
-    function createExplosion({x, y}) {
-      const pieces = 18;
-      for (let i=0;i<pieces;i++){
-        const el = document.createElement('div');
-        el.className = 'particle';
-        const size = 6 + Math.random()*10;
-        el.style.width = `${size}px`;
-        el.style.height = `${size}px`;
-        el.style.borderRadius = '50%';
-        el.style.background = `hsl(${Math.floor(Math.random()*40)+330} 90% 60%)`;
-        el.style.left = `${x - size/2}px`;
-        el.style.top  = `${y - size/2}px`;
-        document.body.appendChild(el);
-
-        const ang = Math.random()*Math.PI*2;
-        const dist = 80 + Math.random()*140;
-        const tx = Math.cos(ang)*dist;
-        const ty = Math.sin(ang)*dist;
-        el.animate(
-          [
-            { transform:`translate(0,0) scale(1)`, opacity:1 },
-            { transform:`translate(${tx}px,${ty}px) scale(${0.6 + Math.random()*0.6})`, opacity:0 }
-          ],
-          { duration: 600 + Math.random()*300, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
-        ).onfinish = () => el.remove();
-      }
-    }
-
-    function createConfetti({x, y}) {
-      const count = 60;
-      for (let i=0;i<count;i++){
-        const el = document.createElement('div');
-        el.className = 'confetti';
-        const w = 6 + Math.random()*6, h = 10 + Math.random()*10;
-        el.style.width = `${w}px`; el.style.height = `${h}px`;
-        el.style.background = `hsl(${Math.floor(Math.random()*360)} 90% 55%)`;
-        el.style.left = `${x - w/2}px`; el.style.top = `${y - h/2}px`;
-        el.style.transform = `rotate(${Math.random()*360}deg)`;
-        el.style.borderRadius = `${Math.random()<0.5 ? 2 : 0}px`;
-        document.body.appendChild(el);
-
-        const dx = (Math.random()*2 - 1) * 160;
-        const dy = 220 + Math.random()*220;
-        const rot = (Math.random()*720 - 360);
-
-        el.animate(
-          [
-            { transform:`translate(0,0) rotate(0deg)`, opacity:1 },
-            { transform:`translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity:0 }
-          ],
-          { duration: 1300 + Math.random()*700, easing:'cubic-bezier(.2,.8,.2,1)', fill:'forwards' }
-        ).onfinish = () => el.remove();
-      }
-    }
-
-    // Start
-    tickSpawner();
-    requestAnimationFrame(raf);
-    window.addEventListener('resize', () => setTimeout(() => sprites.forEach(s => s.applyTransform()), 50));
-  })();
+      btn.addEventListener('click', openModal);
+      modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
+      addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    })();
   </script>
-
-  <!-- ====== BODY: slide-up bar + Fillout embed ====== -->
-<!-- Slide-up call-to-action -->
-<div class="share-bar" id="shareBar" aria-live="polite">
-  <button class="share-btn" id="shareOpenBtn" type="button">
-    Share your creation with us
-  </button>
-</div>
-
-<!-- Your existing Fillout popup embed (use exactly as given) -->
-<div data-fillout-id="wSoN83phHnus"
-     data-fillout-embed-type="popup"
-     data-fillout-dynamic-resize
-     data-fillout-inherit-parameters
-     data-fillout-popup-size="medium"></div>
-<script src="https://server.fillout.com/embed/v1/"></script>
-
-<script>
-  (function () {
-    const bar = document.getElementById('shareBar');
-    const btn = document.getElementById('shareOpenBtn');
-
-    // Reveal after 15s
-    setTimeout(() => bar?.classList.add('show'), 3000);
-
-    // Robust opener: wait until Fillout is ready, then open
-    function openFilloutPopup() {
-      // Try both signatures (object and string), some versions differ
-      try { window.Fillout.open({ formId: 'wSoN83phHnus', type: 'popup' }); return; } catch (e) {}
-      try { window.Fillout.open('wSoN83phHnus'); return; } catch (e) {}
-
-      // Fallback: click the embed div (works on many builds)
-      const trigger = document.querySelector('[data-fillout-id="wSoN83phHnus"][data-fillout-embed-type="popup"]');
-      if (trigger) {
-        trigger.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-      }
-    }
-
-    // Poll until the Fillout API is ready, then open
-    function openWhenReady(maxTries = 40) {
-      let tries = 0;
-      const t = setInterval(() => {
-        if (window.Fillout && typeof window.Fillout.open === 'function') {
-          clearInterval(t);
-          openFilloutPopup();
-        } else if (++tries >= maxTries) {
-          clearInterval(t);
-          openFilloutPopup(); // last-ditch fallback
-        }
-      }, 100);
-    }
-
-    btn.addEventListener('click', openWhenReady);
-  })();
-</script>
-  
 </body>
 </html>
