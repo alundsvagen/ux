@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Take Away Studio — Mock</title>
+
+<!-- Favicon: stacked circles -->
+<link rel="icon"
+      href='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="32" fill="%23D28137"/>
+  <circle cx="32" cy="32" r="24" fill="%23D35224"/>
+  <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
+</svg>'>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
+
+<style>
+/* ------------------------------------
+   Take Away Studio — Full Stylesheet
+   (nav + hero + sections, mobile-first)
+------------------------------------- */
+
+/* ========== VARIABLES & BASE ========== */
+:root{
+  --bg:#F7F3ED;
+  --text:#000;
+  --muted:#8D8D8F;
+  --blue:#3C75F6;
+  --brand:#D28137;
+  --menuIcon:#8C8D91;
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:400 16px/1.04 "Helvetica", Arial, sans-serif;
+}
+a{ color:inherit; text-decoration:none }
+.wrap{ width:min(1728px,100%); margin-inline:auto; position:relative; padding-inline:16px }
+
+/* =====================================
+   HEADER / NAV (scoped, responsive)
+===================================== */
+header{
+  position:relative; z-index:200; background:var(--bg);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 14px; gap:12px;
+}
+
+/* Logo */
+header .logo{
+  font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
+  letter-spacing:-.04em;
+}
+header .logo a:hover{ color:var(--brand) }
+
+/* Contact button */
+header .btn-contact{
+  height:47px; min-width:151px; padding:0 18px;
+  border:1px solid #000; border-radius:10px; background:#000; color:#fff;
+  display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
+}
+header .btn-contact:hover{ background:var(--blue); border-color:var(--blue) }
+
+/* Desktop nav (hidden on mobile) */
+header .nav-bar{
+  display:none; /* mobile first */
+  list-style:none; margin:0; padding:0;
+}
+
+/* Hamburger (mobile) */
+header .hamburger{
+  display:flex; width:46px; height:45px; border-radius:22px; background:#E1E4E6;
+  align-items:center; justify-content:center;
+}
+header .hamburger span{
+  display:block; width:24px; height:16px; position:relative;
+  border-top:3px solid #000; border-bottom:3px solid #000;
+}
+header .hamburger span:after{
+  content:""; position:absolute; inset:0; height:3px; top:50%;
+  transform:translateY(-50%); background:#000;
+}
+
+/* Desktop layout */
+@media (min-width:981px){
+  header{
+    display:grid;
+    grid-template-columns:auto 1fr auto; /* logo | nav | contact */
+    align-items:center; column-gap:32px; padding:28px 24px;
+  }
+  header .logo{ margin-left:16px; }
+  header .nav-bar{
+    display:flex; align-items:center; gap:72px;
+    justify-self:center;
+    font:400 20px/1.04 "Helvetica", Arial, sans-serif;
+    letter-spacing:-.03em;
+  }
+  header .hamburger{ display:none !important; }
+  header .btn-contact{ justify-self:end; }
+}
+
+/* Top-level nav links */
+header .nav-bar > li{ position:relative }
+header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
+header .nav-link .caret{
+  width:0; height:0; display:inline-block;
+  border-left:6px solid transparent;
+  border-right:6px solid transparent;
+  border-top:8px solid var(--text);
+  transform:translateY(2px);
+}
+
+/* Dropdown card */
+header .menu{
+  position:absolute; left:50%; top:calc(100% + 14px);
+  transform:translateX(-50%);
+  display:none; min-width:320px; background:#fff;
+  border:2px solid #000; border-radius:24px; padding:14px;
+  box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
+  z-index:1000;
+}
+header .menu.open{ display:block; }
+header .menu::before{
+  content:""; position:absolute; inset:-30px -40px -40px -40px;
+  background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
+  border-radius:36px; z-index:-1;
+}
+
+header .menu a{
+  display:flex; align-items:center; gap:12px;
+  padding:14px; border-radius:14px; font-size:20px; letter-spacing:-.03em;
+}
+header .menu a:hover{ background:#F3F3F3; }
+header .menu a.is-heading{ background:#F3F3F3; font-weight:700; border-radius:16px; }
+
+/* Icons in dropdown */
+header .menu svg,
+header .menu img.bi{
+  width:20px; height:20px; color:#888; filter:grayscale(1) brightness(.55);
+  flex:0 0 20px;
+}
+header .menu .icon-chip{
+  display:inline-grid; place-items:center;
+  width:28px; height:28px; border-radius:8px;
+  border:2px solid #CFCFCF; background:#fff; color:#888; flex:0 0 28px;
+}
+
+/* Mobile sheet */
+.panel{
+  display:none; position:fixed; inset:0; background:#fff; z-index:300;
+  padding:18px 18px 32px; overflow:auto;
+}
+.panel.open{ display:block }
+.panel .close{ position:absolute; right:16px; top:12px; font-size:26px; color:#000; }
+.panel h4{ margin:18px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:#666; }
+.panel a{ display:flex; align-items:center; gap:10px; padding:12px 10px; border-radius:10px; font-size:18px; }
+.panel a:hover{ background:#F3F3F3; }
+.panel .panel-logo{
+  margin:4px 0 14px 2px;
+  font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em;
+}
+.panel .panel-logo a:hover{ color:var(--brand) }
+
+/* Force mobile behavior */
+@media (max-width:980px){
+  header .nav-bar{ display:none !important; }
+  header .hamburger{ display:flex !important; }
+}
+
+/* Optional: sticky header on desktop */
+@media (min-width:981px){
+  header{ position:sticky; top:0; }
+}
+
+/* =====================================
+   HERO
+===================================== */
+.hero{ position:relative; padding:24px 0 60px }
+.hero h1{
+  margin:22px auto 0; max-width:1061px;
+  font-weight:700; font-size:clamp(38px, 7vw, 100px); line-height:1.04;
+  text-align:center; letter-spacing:-.03em; color:#000; transition:all .25s ease;
+}
+.hero h1:hover{
+  background:linear-gradient(90deg, #3C75F6 0%, #D35224 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+.hero p{
+  max-width:1020px; margin:24px auto 0; text-align:center; color:var(--muted);
+  font-size:clamp(15px, 2.1vw, 30px); letter-spacing:-.03em;
+}
+.ctas{ display:flex; gap:12px; justify-content:center; margin:28px auto 40px }
+.btn{ height:47px; display:grid; place-items:center; border-radius:10px; letter-spacing:-.03em; }
+.btn-primary{ width:128px; background:#000; color:#fff; font-weight:400 }
+.btn-primary:hover{
+  background:linear-gradient(91.89deg, #3C75F6 1.56%, #D35224 103.34%);
+  filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25)); color:#fff; font-weight:700;
+}
+.btn-outline{ width:151px; border:1px solid #000; background:transparent; color:#000; font-weight:400 }
+.btn-outline:hover{ border-color:transparent; font-weight:700; filter:drop-shadow(0px 2px 2px rgba(0,0,0,0.10)); }
+
+.media-wrap{ display:flex; justify-content:center; padding:16px 0 40px }
+.media{
+  width:min(1284px,92vw); aspect-ratio:1284/837;
+  background:linear-gradient(90deg,#3C75F6 0%, #D35224 100%); border-radius:8px;
+}
+
+/* =====================================
+   WHY BUY A READY-MADE DESIGN
+===================================== */
+.why-section{ background:#fff; padding:120px 0; display:flex; justify-content:center; }
+.why-section .wrap{ width:min(1728px,100%); margin-inline:auto; padding:0 5%; }
+
+.why-stat-group{ text-align:center; margin-bottom:100px; }
+.why-stat{
+  font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
+  font-size:clamp(32px,5.6vw,80px); line-height:1; letter-spacing:-.04em; color:#000; margin:0 0 40px;
+}
+.why-proof img{ width:100%; max-width:1436px; height:auto; display:block; margin-inline:auto; }
+
+.why-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
+  align-items:start; gap:60px;
+}
+.why-text h3{
+  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 40px;
+}
+.why-text p{
+  font-weight:400; font-size:clamp(16px,2vw,30px); line-height:1.4; letter-spacing:-.03em; color:#8D8D8F; max-width:500px;
+}
+.why-media{ width:100%; aspect-ratio:909/716; background:#000; border-radius:12px; }
+@media(max-width:800px){
+  .why-grid{ grid-template-columns:1fr; }
+  .why-text h3{ text-align:center; } .why-text p{ text-align:center; margin-inline:auto; }
+}
+
+/* =====================================
+   BRAND KITS (renamed section)
+===================================== */
+.brandkits-section{ background:#fff; padding:120px 5% 160px; text-align:center; overflow:hidden; }
+.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
+
+/* animated concentric logo */
+.brandkits-logo-frame .logo{
+  position:relative; width:clamp(200px,40vw,440px); aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+}
+.brandkits-logo-frame .ring{ position:absolute; border-radius:50%; animation:pulse 6s ease-in-out infinite; }
+.brandkits-logo-frame .ring.outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
+.brandkits-logo-frame .ring.middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
+.brandkits-logo-frame .ring.inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
+@keyframes pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
+.brandkits-logo-frame .logo-text{
+  position:relative; z-index:2; color:#fff;
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
+}
+
+.brandkits-header h2{
+  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin-bottom:20px;
+}
+.brandkits-header p{ font-weight:400; font-size:clamp(18px,2vw,30px); color:#8D8D8F; margin-bottom:80px; }
+
+.brandkits-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:36px; justify-items:center;
+}
+.brandkits-card{
+  box-sizing:border-box; width:100%; max-width:460px; padding:40px 36px 42px;
+  border:2px solid #E1E4E6; border-radius:45px; background:#fff; color:#000;
+  transition:all .25s ease;
+}
+.brandkits-card:hover{
+  background:#F7F3ED; border-color:#E1E4E6; box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
+}
+.brandkits-card:hover p{ color:#000; }
+
+.pill{
+  display:inline-grid; place-items:center; min-width:172px; height:61px; padding:0 18px;
+  background:#DBF5FC; border-radius:30.5px; font-size:clamp(18px,2vw,30px); color:#000;
+}
+.pill-wide{ min-width:246px; }
+
+.brandkits-card h3{
+  margin:48px 0 10px; font-weight:700; font-size:clamp(28px,3vw,50px); line-height:1.04; letter-spacing:-.03em;
+}
+.brandkits-card p{
+  margin:10px auto 0; max-width:366px; font-weight:400; font-size:clamp(16px,1.7vw,30px); color:#8D8D8F; letter-spacing:-.03em;
+}
+
+/* mobile padding tweak */
+@media(max-width:600px){
+  .brandkits-section{ padding:80px 5% 100px; }
+  .brandkits-header p{ margin-bottom:50px; }
+}
+/* --- Animated concentric logo (scoped) --- */
+.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
+
+.bk-logo{
+  position:relative;
+  width:clamp(200px,40vw,440px);
+  aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+}
+
+.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
+.bk-outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
+.bk-middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
+.bk-inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
+
+@keyframes bk-pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
+
+.bk-text{
+  position:relative; z-index:2; color:#fff;
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
+}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <a href="https://google.com" target="_blank" rel="noopener">take away<br/>studio</a>
+      </div>
+
+      <!-- top-level nav (no icons here) -->
+      <ul class="nav-bar" aria-label="Main">
+        <li>
+          <a href="https://google.com" class="nav-link" data-dd="product">
+            Product <span class="caret" aria-hidden="true"></span>
+          </a>
+          <div class="menu" id="dd-product" role="menu" aria-label="Product submenu">
+            <a href="https://google.com">
+              <img class="bi" src="https://icons.getbootstrap.com/assets/icons/cart3.svg" alt="">
+              Brands
+            </a>
+            <a href="https://google.com">
+              <img class="bi" src="https://icons.getbootstrap.com/assets/icons/box-seam.svg" alt="">
+              UX packs
+            </a>
+          </div>          
+        </li>
+
+        <li>
+          <a href="https://google.com" class="nav-link" data-dd="philosophy">
+            Philosophy <span class="caret" aria-hidden="true"></span>
+          </a>
+          <div class="menu" id="dd-philosophy" role="menu" aria-label="Philosophy submenu">
+            <a href="https://google.com" class="is-heading">
+              <span class="icon-chip">
+                <!-- arrow-down-left-square -->
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
+                  <path d="M10.5 5.5L6 10h3v1H5v-4h1v3l4.5-4.5z"/>
+                </svg>
+              </span>
+              Philosophy
+            </a>
+            <a href="https://google.com">
+              <!-- asterisk -->
+              <img class="bi" src="https://icons.getbootstrap.com/assets/icons/asterisk.svg" alt="">
+              About
+            </a>
+            <a href="https://google.com">
+              <!-- back -->
+              <img class="bi" src="https://icons.getbootstrap.com/assets/icons/back.svg" alt="">
+              Services
+            </a>
+            <a href="https://google.com">
+              <!-- brilliance -->
+              <img class="bi" src="https://icons.getbootstrap.com/assets/icons/brilliance.svg" alt="">
+              Mediate
+            </a>
+          </div>          
+        </li>
+
+        <li><a class="nav-link" href="https://google.com">Custom</a></li>
+        <li><a class="nav-link" href="https://google.com">Pricing</a></li>
+      </ul>
+
+      <a class="btn-contact" href="https://google.com">Contact</a>
+      <button class="hamburger" id="openPanel" aria-label="Open menu"><span></span></button>
+    </header>
+
+    <!-- MOBILE PANEL -->
+    <nav class="panel" id="panel" aria-label="Mobile">
+      <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
+      <div class="panel-logo"><a href="https://google.com">take away<br/>studio</a></div>
+
+      <h4>Product</h4>
+      <a href="https://google.com">Product</a>
+      <a href="https://google.com">Brands</a>
+      <a href="https://google.com">UX packs</a>
+
+      <h4>Philosophy</h4>
+      <a href="https://google.com">Philosophy</a>
+      <a href="https://google.com">About</a>
+      <a href="https://google.com">Services</a>
+      <a href="https://google.com">Mediate</a>
+
+      <h4>Other</h4>
+      <a href="https://google.com">Custom</a>
+      <a href="https://google.com">Pricing</a>
+      <a href="https://google.com">Contact</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1><a href="https://google.com">Ready made branding for implementation, today.</a></h1>
+      <p>
+        <a href="https://google.com">
+          Finally, there is an easier way to just implement a fresh brand.
+          Yeah customising it would be great, but also you can do a bigger project later.
+          You just need a clean brand for a fresh start.
+        </a>
+      </p>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="https://google.com">Brands</a>
+        <a class="btn btn-outline" href="https://google.com">UX packs</a>
+      </div>
+
+      <div class="media-wrap">
+        <!-- Replace with <img src="your.gif" alt="Demo" class="media"> when ready -->
+        <div class="media" role="img" aria-label="Placeholder GIF"></div>
+      </div>
+    </section>
+  </div>
+
+<!-- WHY BUY A READY-MADE DESIGN SECTION -->
+<section class="why-section">
+  <div class="wrap">
+
+    <div class="why-stat-group">
+      <h2 class="why-stat">+14 design consulting clients</h2>
+      <div class="why-proof">
+        <img src="Proof.png" alt="Client logos" />
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-text">
+        <h3>Why buy a ready-made design?</h3>
+        <p>
+          Design is a skill and it takes time to build it. Rather than hire
+          someone to spend time and money to create a brand you might not like...
+          Now you can buy it, as a standard package. We just got started so we
+          don’t offer a lot of packages yet but we are so excited you are here.
+        </p>
+      </div>
+
+      <!-- GIF placeholder -->
+      <div class="why-media" aria-label="Placeholder for GIF"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ----- WHY SECTION ----- */
+.why-section{
+  background:#fff;
+  padding:120px 0;
+  display:flex;
+  justify-content:center;
+}
+.why-section .wrap{
+  width:min(1728px, 100%);
+  margin-inline:auto;
+  padding:0 5%;
+}
+
+/* Stat header & logos */
+.why-stat-group{
+  text-align:center;
+  margin-bottom:100px;
+}
+.why-stat{
+  font-family:'Bricolage Grotesque', sans-serif;
+  font-weight:700;
+  font-size:clamp(32px,5.6vw,80px); /* reduced to ~80% */
+  line-height:1;
+  letter-spacing:-0.04em;
+  color:#000;
+  margin:0 0 40px;
+}
+.why-proof img{
+  width:100%;
+  max-width:1436px;
+  height:auto;
+  display:block;
+  margin-inline:auto;
+}
+
+/* Content grid */
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
+  align-items:start;
+  gap:60px;
+}
+.why-text h3{
+  font-family:'Helvetica', sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,5vw,100px);
+  line-height:1.04;
+  letter-spacing:-0.03em;
+  color:#000;
+  margin:0 0 40px;
+}
+.why-text p{
+  font-family:'Helvetica', sans-serif;
+  font-weight:400;
+  font-size:clamp(16px,2vw,30px);
+  line-height:1.4;
+  letter-spacing:-0.03em;
+  color:#8D8D8F;
+  max-width:500px;
+}
+.why-media{
+  width:100%;
+  aspect-ratio: 909/716;
+  background:#000;
+  border-radius:12px;
+}
+@media(max-width:800px){
+  .why-grid{grid-template-columns:1fr;}
+  .why-text h3{text-align:center;}
+  .why-text p{text-align:center; margin-inline:auto;}
+}
+</style>
+
+<!-- ================== PHILOSOPHY / ABOUT & MORE ================== -->
+<section class="philo-section">
+  <div class="philo-wrap">
+
+    <!-- Top row: outline chip + heading -->
+    <div class="philo-top">
+      <span class="philo-chip-outline">Background</span>
+      <h2 class="philo-title">Philosophy &amp; About and more</h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="philo-grid">
+
+      <a class="philo-card" href="https://google.com">
+        <img src="dark1.png" alt="Fast Implementation" class="philo-img" />
+        <span class="philo-chip philo-chip--small">Easy</span>
+        <div class="philo-caption"><h3>Fast Implementation</h3></div>
+      </a>
+
+      <a class="philo-card" href="https://google.com">
+        <img src="dark2.png" alt="Quality Design Work" class="philo-img" />
+        <span class="philo-chip philo-chip--small">Standard</span>
+        <div class="philo-caption"><h3>Quality Design Work</h3></div>
+      </a>
+
+      <a class="philo-card" href="https://google.com">
+        <img src="dark3.png" alt="Customization if you need it." class="philo-img" />
+        <span class="philo-chip philo-chip--wide philo-chip--small">Consulting</span>
+        <div class="philo-caption"><h3>Customization if you need it.</h3></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCANDINAVIAN DESIGN / KITS ===================== -->
+<section class="brandkits-section">
+  <div class="brandkits-container">
+
+    <!-- Top row: logo left, heading right -->
+    <div class="brandkits-top">
+      <!-- Animated logo (scoped classes) -->
+      <div class="brandkits-logo-frame">
+        <div class="bk-logo">
+          <div class="bk-ring bk-outer"></div>
+          <div class="bk-ring bk-middle"></div>
+          <div class="bk-ring bk-inner"></div>
+          <div class="bk-text">take away<br>studio</div>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <div class="brandkits-header">
+        <h2>Scandinavian design at our core.</h2>
+        <p>Browse our kits: branding, ux &amp; ui at your fingertips.</p>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="brandkits-grid">
+      <a href="https://google.com" class="brandkits-card">
+        <span class="pill">Simple</span>
+        <h3>Branding<br>Design</h3>
+        <p>Right now we offer just 2 standardised brand packs but you can sign up for the waitlist for our others. See them here.</p>
+      </a>
+
+      <a href="https://google.com" class="brandkits-card">
+        <span class="pill">Robust</span>
+        <h3>User<br>Experience</h3>
+        <p>Right now we have a check out standard experience and an analytical dashboard but more to come soon.</p>
+      </a>
+
+      <a href="https://google.com" class="brandkits-card">
+        <span class="pill pill-wide">Consistent</span>
+        <h3>UI<br>Components</h3>
+        <p>Our designs come with HTML &amp; instructions for you to easily implement them yourself.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* =============================================================================
+   SHARED BRAND TOKENS (scoped within sections below via colors/spacing)
+   ========================================================================== */
+
+/* ===================== KITS SECTION (white bg) ===================== */
+.brandkits-section{
+  background:#fff;
+  padding:120px 5% 160px;
+  overflow:hidden;
+}
+.brandkits-top{
+  display:grid;
+  grid-template-columns: minmax(220px, 440px) 1fr; /* logo | text */
+  align-items:center;
+  gap:48px;
+  max-width:1400px;
+  margin:0 auto 48px;
+}
+.brandkits-header h2{
+  font-family:'Helvetica',sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,5vw,100px);
+  line-height:1.04;
+  letter-spacing:-.03em;
+  color:#000;
+  margin:0 0 14px;
+}
+.brandkits-header p{
+  font-family:'Helvetica',sans-serif;
+  font-weight:400;
+  font-size:clamp(16px,1.8vw,30px);
+  color:#8D8D8F;
+  margin:0;
+}
+
+/* Animated logo (scoped) */
+.brandkits-logo-frame{ display:flex; justify-content:flex-start; }
+.bk-logo{
+  position:relative;
+  width:clamp(200px, 26vw, 440px);
+  aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+}
+.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
+.bk-outer{ width:100%; height:100%; background:#DBF5FC; animation-delay:0s; }
+.bk-middle{ width:77%; height:77%; background:#3CA2F6; animation-delay:1s; }
+.bk-inner{ width:49%; height:49%; background:#3C75F6; animation-delay:2s; }
+@keyframes bk-pulse{ 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.04);opacity:.9} }
+.bk-text{
+  position:relative; z-index:2; color:#fff;
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:clamp(28px,4vw,70px); line-height:1; letter-spacing:-.04em;
+  text-align:center;
+}
+
+/* Cards (white) */
+.brandkits-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(260px, 1fr));
+  gap:36px;
+  max-width:1400px;
+  margin:24px auto 0;
+}
+.brandkits-card{
+  box-sizing:border-box;
+  width:100%;
+  border:2px solid #E1E4E6;
+  border-radius:45px;
+  padding:32px 28px 38px;
+  background:#fff; color:#000; text-decoration:none;
+  transition:all .25s ease;
+}
+.brandkits-card:hover{
+  background:#F7F3ED;
+  border-color:#E1E4E6;
+  box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
+}
+.brandkits-card:hover p{ color:#000; }
+
+/* Pill/tag (smaller, shared spec) */
+.pill,
+.philo-chip{
+  display:inline-grid; place-items:center;
+  min-width:118px; height:40px; padding:0 12px;
+  background:#DBF5FC; border-radius:20px;
+  font-family:'Helvetica',sans-serif;
+  font-size:clamp(14px,1.4vw,20px);
+  color:#000;
+}
+.pill-wide,
+.philo-chip--wide{ min-width:150px; }
+
+/* Card headings/body */
+.brandkits-card h3{
+  margin:40px 0 10px;
+  font-family:'Helvetica',sans-serif;
+  font-weight:700;
+  font-size:clamp(26px,2.8vw,50px);
+  line-height:1.04; letter-spacing:-.03em;
+}
+.brandkits-card p{
+  font-family:'Helvetica',sans-serif;
+  font-weight:400;
+  font-size:clamp(15px,1.5vw,22px);
+  color:#8D8D8F;
+  max-width:520px; margin:8px 0 0;
+}
+
+/* Responsive (kits) */
+@media(max-width:1100px){
+  .brandkits-top{ grid-template-columns:1fr; gap:28px; text-align:center; }
+  .brandkits-logo-frame{ justify-content:center; }
+  .brandkits-grid{ grid-template-columns:repeat(2, minmax(240px, 1fr)); }
+}
+@media(max-width:700px){
+  .brandkits-grid{ grid-template-columns:1fr; }
+  .brandkits-section{ padding:80px 5% 100px; }
+}
+
+/* ===================== PHILOSOPHY SECTION (light grey bg) ===================== */
+.philo-section{
+  background:#EBEEF5;
+  padding:120px 5% 120px;
+}
+.philo-wrap{
+  width:min(1728px,100%);
+  margin:0 auto;
+}
+
+/* Top row */
+.philo-top{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  flex-wrap:wrap;
+  margin:0 auto 36px;
+  max-width:1400px;
+}
+.philo-title{
+  margin:0;
+  font-family:'Helvetica',sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,5vw,100px);
+  line-height:1.04;
+  letter-spacing:-.03em;
+  color:#000;
+}
+.philo-chip-outline{
+  display:inline-grid; place-items:center;
+  min-width:180px; height:44px; padding:0 18px;
+  border:1px solid #000; border-radius:30.5px;
+  font-family:'Helvetica',sans-serif; color:#000;
+  font-size:clamp(16px,1.7vw,30px);
+  background:transparent;
+}
+
+/* Grid */
+.philo-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(260px,1fr));
+  gap:36px;
+  max-width:1400px;
+  margin:36px auto 0;
+}
+
+/* Card (image + dark caption on desktop for contrast) */
+.philo-card{
+  position:relative;
+  display:block;
+  border:2px solid #E1E4E6;
+  border-radius:45px;
+  overflow:hidden;
+  background:#fff;
+  isolation:isolate;
+  transition:transform .25s ease, box-shadow .25s ease;
+  text-decoration:none;
+  color:inherit;
+}
+.philo-img{
+  display:block;
+  width:100%; height:100%;
+  aspect-ratio: 463 / 672;
+  object-fit:cover;
+}
+
+/* darken-on-hover overlay */
+.philo-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:transparent;
+  transition:background .25s ease;
+  border-radius:45px;
+  z-index:1;
+}
+.philo-card:hover::after{ background:#000; }
+
+/* small chips (same spec as pill, but white per design) */
+.philo-chip{
+  position:absolute; left:28px; top:28px;
+  background:#fff;
+  z-index:2;
+}
+.philo-chip--small{ min-width:118px; height:40px; }
+
+/* dark caption */
+.philo-caption{
+  position:absolute; left:24px; right:24px; bottom:24px;
+  background:rgba(0,0,0,.85);
+  border-radius:20px; padding:18px 18px;
+  z-index:2;
+}
+.philo-caption h3{
+  margin:0; color:#fff;
+  font-family:'Helvetica',sans-serif;
+  font-weight:700;
+  font-size:clamp(22px,3vw,50px);
+  line-height:1.04; letter-spacing:-.03em;
+}
+
+/* hover lift */
+.philo-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.10);
+}
+
+/* ---------- Mobile: make Philosophy cards match kits cards (white) ---------- */
+@media (max-width:700px){
+  .philo-grid{ grid-template-columns:1fr; }
+  .philo-section{ padding:80px 5% 90px; }
+
+  .philo-card{
+    border:2px solid #E1E4E6;
+    border-radius:45px;
+    background:#FFFFFF;
+    overflow:hidden;
+    box-shadow:none;
+    transform:none;
+  }
+  .philo-card::after{ background:transparent !important; }
+
+  .philo-img{
+    width:100%;
+    aspect-ratio: 463 / 380;
+    object-fit:cover;
+    border-radius:45px 45px 0 0;
+  }
+
+  .philo-chip{
+    left:20px; top:20px;
+    min-width:118px; height:40px;
+    border-radius:20px;
+    background:#DBF5FC; /* match kits tag color on mobile */
+  }
+  .philo-chip--wide{ min-width:150px; }
+
+  .philo-caption{
+    position:static;
+    background:transparent;
+    border-radius:0;
+    padding:20px 22px 28px;
+  }
+  .philo-caption h3{
+    color:#000;
+    font-size:26px;
+  }
+
+  .philo-card:hover{
+    background:#F7F3ED;
+    border-color:#E1E4E6;
+    box-shadow:0 8px 18px rgba(0,0,0,0.05);
+    transform:translateY(0);
+  }
+}
+
+/* Tablet layout harmony */
+@media (max-width:1100px) and (min-width:701px){
+  .philo-grid{ grid-template-columns:repeat(2, minmax(240px,1fr)); }
+}
+</style>
+
+
+<script>
+  // --- Desktop dropdowns: open on click, close on outside click ---
+  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
+  const menus = new Map();
+
+  triggerLinks.forEach(link=>{
+    const id = link.dataset.dd;
+    const menu = document.getElementById(`dd-${id}`);
+    if(menu){ menus.set(link, menu); }
+
+    link.addEventListener('click', (e)=>{
+      e.preventDefault();
+      // toggle this one, close others
+      menus.forEach((m, l)=>{
+        if(l===link){ m.classList.toggle('open'); }
+        else{ m.classList.remove('open'); }
+      });
+    });
+  });
+
+  document.addEventListener('click', (e)=>{
+    // close if clicking away from any open menu/trigger
+    let inside = false;
+    menus.forEach((menu, link)=>{
+      if(menu.contains(e.target) || link.contains(e.target)) inside = true;
+    });
+    if(!inside){ menus.forEach(m=>m.classList.remove('open')); }
+  });
+
+  // --- Mobile panel ---
+  const open = document.getElementById('openPanel');
+  const close = document.getElementById('closePanel');
+  const panel = document.getElementById('panel');
+  open?.addEventListener('click', ()=> panel.classList.add('open'));
+  close?.addEventListener('click', (e)=> { e.preventDefault(); panel.classList.remove('open'); });
+</script>
+
+<!-- ===== FOOTER — Minimal Black ===== -->
+<footer class="tas-footer--black">
+  <div class="tas-fwrap">
+    <!-- Wordmark (scroll to top) -->
+    <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
+      take away<br/>studio
+    </button>
+
+    <!-- Nav -->
+    <nav class="tas-fnav" aria-label="Footer">
+      <a href="https://google.com">Custom</a>
+      <a href="https://google.com">Pricing</a>
+      <a href="https://google.com">About</a>
+      <a href="https://google.com">Services</a>
+    </nav>
+
+    <!-- Contact / Social -->
+    <div class="tas-fmeta">
+      <div class="tas-fsocial">
+        <a href="https://google.com">LinkedIn</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://google.com">Instagram</a>
+      </div>
+      <a class="tas-femail" href="mailto:alexandrapgrisanti.com">alexandrapgrisanti.com</a>
+      <a class="tas-ffeedback" href="https://google.com">Leave Feedback</a>
+    </div>
+
+    <p class="tas-fcopy">© Take Away Studio — 2025</p>
+  </div>
+</footer>
+
+<style>
+/* ===== Minimal Black Footer ===== */
+.tas-footer--black{
+  background:#000;
+  color:#fff;
+  padding:56px 5% 36px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.tas-fwrap{
+  max-width:1400px; margin:0 auto;
+  display:grid; gap:24px;
+}
+
+/* Brand wordmark (text only) */
+.tas-fbrand{
+  margin:0; padding:0; border:0; background:transparent; cursor:pointer;
+  text-align:left;
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight:700; line-height:0.95;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing:-0.04em;
+  color:#fff;
+}
+
+/* Nav links */
+.tas-fnav{
+  display:flex; flex-wrap:wrap; gap:14px 28px;
+}
+.tas-fnav a{
+  color:#bbb; text-decoration:none; font-size:18px; letter-spacing:-.01em;
+  transition:color .18s ease;
+}
+.tas-fnav a:hover{ color:#fff; }
+
+/* Meta block */
+.tas-fmeta{
+  display:flex; flex-direction:column; gap:10px;
+}
+.tas-fsocial{
+  display:flex; gap:10px; align-items:center; color:#666; font-size:16px;
+}
+.tas-fsocial a{
+  color:#bbb; text-decoration:none; transition:color .18s ease;
+}
+.tas-fsocial a:hover{ color:#fff; }
+
+.tas-femail,
+.tas-ffeedback{
+  color:#bbb; text-decoration:none; font-size:16px;
+  transition:color .18s ease;
+}
+.tas-femail:hover,
+.tas-ffeedback:hover{ color:#fff; }
+
+/* Copyright */
+.tas-fcopy{
+  margin:8px 0 0; color:#777; font-size:14px;
+}
+
+/* Layout: stack on mobile, align on desktop */
+@media (min-width: 900px){
+  .tas-fwrap{
+    grid-template-columns: 1fr auto auto;
+    align-items:start;
+  }
+  .tas-fbrand{ grid-column:1 / 2; }
+  .tas-fnav{ grid-column:2 / 3; justify-self:center; }
+  .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
+  .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
+}
+</style>
+
+<script>
+  // Scroll to top on wordmark click
+  document.getElementById('tasScrollTop')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+
+<script>
+  // Smooth scroll to top via footer logo
+  document.getElementById('footerScrollTop')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<script>
+  // Force all <a> links to open in the same tab
+  document.querySelectorAll('a').forEach(a => {
+    a.removeAttribute('target');
+    a.removeAttribute('rel');
+  });
+</script>
+
+</body>
+</html>
