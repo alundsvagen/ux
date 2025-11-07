@@ -657,8 +657,8 @@ header .menu .icon-chip{
   </script>  
 
 <!-- ===== FOOTER — Minimal Black ===== -->
-<footer class="tas-footer--black">
-  <div class="tas-fwrap">
+<footer class="tas-footer--black full-bleed">
+  <div class="tas-fwrap full-bleed-inner">
     <!-- Wordmark (scroll to top) -->
     <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
       take away<br/>studio
@@ -692,13 +692,30 @@ header .menu .icon-chip{
 .tas-footer--black{
   background:#000;
   color:#fff;
-  padding:56px 5% 36px;
   font-family: Helvetica, Arial, sans-serif;
 }
 .tas-fwrap{
   max-width:1400px; margin:0 auto;
   display:grid; gap:24px;
 }
+
+/* ==== FULL BLEED HELPER ==== */
+/* Makes a section background stretch edge-to-edge, even inside .wrap */
+
+.full-bleed {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Inner content stays aligned with the rest of the site */
+.full-bleed-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 5%;
+}
+
 
 /* Brand wordmark (text only) */
 .tas-fbrand{
