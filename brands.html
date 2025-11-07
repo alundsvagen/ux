@@ -443,7 +443,7 @@ header .menu .icon-chip{
       <!-- top-level nav (no icons here) -->
       <ul class="nav-bar" aria-label="Main">
         <li>
-          <a href="https://alundsvagen.github.io/ux/brands.html" class="nav-link" data-dd="product">
+          <a href="https://alundsvagen.github.io/ux/ux.html">
             Product <span class="caret" aria-hidden="true"></span>
           </a>
           <div class="menu" id="dd-product" role="menu" aria-label="Product submenu">
@@ -558,7 +558,8 @@ header .menu .icon-chip{
     </div>
 
     <div class="project-image">
-      <img src="building2.png" alt="Diagnose project building" />
+      <img src="building2.png" alt="Diagnose project building" class="img-default" />
+      <img src="man2.png" alt="Alternate image hover" class="img-hover" />
     </div>
   </div>
 </a>
@@ -587,6 +588,39 @@ header .menu .icon-chip{
   gap:clamp(28px,5vw,72px);
   align-items:center;
 }
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px; /* optional, matches your style */
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* stack images */
+.project-image .img-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* on hover, fade to the second image */
+.project-card:hover .project-image .img-hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.project-card:hover .project-image .img-default {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
 
 /* === TEXT === */
 .project-text{
@@ -670,7 +704,8 @@ header .menu .icon-chip{
     </div>
 
     <div class="project-image">
-      <img src="building2.png" alt="Diagnose project building" />
+      <img src="building2.png" alt="Diagnose project building" class="img-default" />
+      <img src="man2.png" alt="Alternate image hover" class="img-hover" />
     </div>
   </div>
 </a>
@@ -737,6 +772,39 @@ header .menu .icon-chip{
   background:#000;
   color:#fff;
 }
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px; /* optional, matches your style */
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* stack images */
+.project-image .img-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* on hover, fade to the second image */
+.project-card:hover .project-image .img-hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.project-card:hover .project-image .img-default {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
 
 /* === IMAGE === */
 .project-image{
@@ -782,7 +850,8 @@ header .menu .icon-chip{
     </div>
 
     <div class="project-image">
-      <img src="building2.png" alt="Diagnose project building" />
+      <img src="building2.png" alt="Diagnose project building" class="img-default" />
+      <img src="man2.png" alt="Alternate image hover" class="img-hover" />
     </div>
   </div>
 </a>
@@ -849,6 +918,39 @@ header .menu .icon-chip{
   background:#000;
   color:#fff;
 }
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px; /* optional, matches your style */
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* stack images */
+.project-image .img-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* on hover, fade to the second image */
+.project-card:hover .project-image .img-hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.project-card:hover .project-image .img-default {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
 
 /* === IMAGE === */
 .project-image{
