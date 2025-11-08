@@ -600,7 +600,7 @@ header .menu .icon-chip{
         <span aria-hidden="true">·</span>
         <a href="https://google.com">Instagram</a>
       </div>
-      <a class="tas-femail" href="mailto:alexandrapgrisanti.com">alexandrapgrisanti.com</a>
+      <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
       <a class="tas-ffeedback" href="https://google.com">Leave Feedback</a>
     </div>
 
@@ -700,6 +700,51 @@ header .menu .icon-chip{
   document.querySelectorAll('a').forEach(a => {
     a.removeAttribute('target');
     a.removeAttribute('rel');
+  });
+</script>
+
+<script>
+  // --- Desktop dropdowns: open on click, close on outside click ---
+  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
+  const menus = new Map();
+
+  triggerLinks.forEach(link => {
+    const id = link.dataset.dd;
+    const menu = document.getElementById(`dd-${id}`);
+    if (menu) menus.set(link, menu);
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      menus.forEach((m, l) => {
+        if (l === link) {
+          m.classList.toggle('open');
+        } else {
+          m.classList.remove('open');
+        }
+      });
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    let inside = false;
+    menus.forEach((menu, link) => {
+      if (menu.contains(e.target) || link.contains(e.target)) inside = true;
+    });
+    if (!inside) menus.forEach(m => m.classList.remove('open'));
+  });
+
+  // --- Mobile panel ---
+  const openPanelBtn = document.getElementById('openPanel');
+  const closePanelBtn = document.getElementById('closePanel');
+  const panel = document.getElementById('panel');
+
+  openPanelBtn?.addEventListener('click', () => {
+    panel?.classList.add('open');
+  });
+
+  closePanelBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    panel?.classList.remove('open');
   });
 </script>
 
