@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shop Brands</title>
+<title>Brand Packs</title>
 
 <!-- Favicon: stacked circles -->
 <link rel="icon"
@@ -524,8 +524,10 @@ header .menu .icon-chip{
 <!-- ===== PHILOSOPHY HERO — minimal, tasteful hover ===== -->
 <section class="hero-philo" id="heroPhilo" aria-label="Design philosophy">
   <div class="hp-wrap">
-    <h1 class="hp-title" id="hpTitle">Shop Brands</h1>
-    <p class="hp-sub">Find your flavor, get the pack & implement- in one day.</p>
+    <h1 class="hp-title" id="hpTitle">
+      <a href="https://alundsvagen.github.io/ux/ux.html" class="hp-link">Brand Packs</a>
+    </h1>
+    <p class="hp-sub">Find your flavor, get the pack & implement — in one day.</p>
     <span class="hp-underline" aria-hidden="true"></span>
   </div>
 </section>
@@ -1117,7 +1119,7 @@ header .menu .icon-chip{
         <span aria-hidden="true">·</span>
         <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
       </div>
-      <a class="tas-femail" href="mailto:alexandrapgrisanti.com">alexandrapgrisanti.com</a>
+      <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
       <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
     </div>
 
@@ -1217,6 +1219,51 @@ header .menu .icon-chip{
   document.querySelectorAll('a').forEach(a => {
     a.removeAttribute('target');
     a.removeAttribute('rel');
+  });
+</script>
+
+<script>
+  // --- Desktop dropdowns: open on click, close on outside click ---
+  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
+  const menus = new Map();
+
+  triggerLinks.forEach(link => {
+    const id = link.dataset.dd;
+    const menu = document.getElementById(`dd-${id}`);
+    if (menu) menus.set(link, menu);
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      menus.forEach((m, l) => {
+        if (l === link) {
+          m.classList.toggle('open');
+        } else {
+          m.classList.remove('open');
+        }
+      });
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    let inside = false;
+    menus.forEach((menu, link) => {
+      if (menu.contains(e.target) || link.contains(e.target)) inside = true;
+    });
+    if (!inside) menus.forEach(m => m.classList.remove('open'));
+  });
+
+  // --- Mobile panel ---
+  const openPanelBtn = document.getElementById('openPanel');
+  const closePanelBtn = document.getElementById('closePanel');
+  const panel = document.getElementById('panel');
+
+  openPanelBtn?.addEventListener('click', () => {
+    panel?.classList.add('open');
+  });
+
+  closePanelBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    panel?.classList.remove('open');
   });
 </script>
 
