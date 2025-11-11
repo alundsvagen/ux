@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brand Packs — Dark Gradient Tech</title>
+
+  <!-- Favicon -->
+  <link rel="icon"
+        href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="32" fill="%23D28137"/>
+    <circle cx="32" cy="32" r="24" fill="%23D35224"/>
+    <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
+  </svg>'>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#FFFFFF;
+      --text:#000;
+      --muted:#8D8D8F;
+      --blue:#3C75F6;
+      --brand:#D28137;
+
+      --bp-bg:#FFFFFF;
+      --bp-text:#111111;
+      --bp-muted:#8D8D8F;
+      --bp-brand:#D28137;
+      --bp-blue:#3C75F6;
+
+      --bp-radius-xl:24px;
+      --bp-radius-lg:18px;
+      --bp-radius-pill:999px;
+      --bp-shadow-soft:0 24px 80px rgba(15,23,42,0.06);
+      --bp-trans:0.22s cubic-bezier(.22,.61,.36,1);
+
+      --bp-font-heading:"Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+      --bp-font-body:-apple-system, system-ui, sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; height:100%; }
+    body{
+      background:#FFFFFF;
+      color:var(--text);
+      font:400 16px/1.4 "Helvetica", Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{ max-width:100%; height:auto; display:block; }
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{
+      width:100%;
+      max-width:1440px;
+      margin:0 auto;
+      padding:0 16px;
+      position:relative;
+    }
+    @media (min-width:981px){
+      .wrap{ padding:0 32px; }
+    }
+
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 0 10px;
+      background:#FFFFFF;
+      position:sticky;
+      top:0;
+      z-index:40;
+    }
+    .logo{
+      font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif;
+      letter-spacing:-.04em;
+    }
+    .logo a:hover{ color:var(--brand); }
+
+    .btn-contact{
+      height:40px;
+      padding:0 16px;
+      border-radius:10px;
+      border:1px solid #000;
+      background:#000;
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      letter-spacing:-.03em;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .btn-contact:hover{
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
+    .nav-bar{
+      display:none;
+      list-style:none;
+      margin:0;
+      padding:0;
+      gap:32px;
+    }
+    .nav-link{
+      font-size:15px;
+      letter-spacing:-.02em;
+    }
+
+    .hamburger{
+      display:flex;
+      width:36px;
+      height:32px;
+      border-radius:16px;
+      background:#E1E4E6;
+      align-items:center;
+      justify-content:center;
+      border:none;
+      cursor:pointer;
+    }
+    .hamburger span{
+      display:block;
+      width:20px;
+      height:14px;
+      position:relative;
+      border-top:2px solid #000;
+      border-bottom:2px solid #000;
+    }
+    .hamburger span:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      height:2px;
+      top:50%;
+      transform:translateY(-50%);
+      background:#000;
+    }
+
+    @media (min-width:981px){
+      header{
+        padding:22px 0 14px;
+        display:grid;
+        grid-template-columns:auto 1fr auto;
+        column-gap:32px;
+        border-bottom:1px solid rgba(229,231,235,0.8);
+        backdrop-filter:blur(14px);
+      }
+      .logo{ font-size:30px; }
+      .nav-bar{
+        display:flex;
+        justify-self:center;
+      }
+      .hamburger{ display:none; }
+      .btn-contact{ justify-self:end; }
+    }
+
+    /* MOBILE NAV PANEL */
+    .panel{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:#fff;
+      z-index:300;
+      padding:18px 18px 32px;
+      overflow:auto;
+    }
+    .panel.open{ display:block; }
+    .panel .close{
+      position:absolute;
+      right:16px;
+      top:12px;
+      font-size:26px;
+      text-decoration:none;
+      color:#000;
+    }
+    .panel .panel-logo{
+      margin:4px 0 14px 2px;
+      font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif;
+      letter-spacing:-.04em;
+    }
+    .panel h4{
+      margin:18px 0 6px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#888;
+    }
+    .panel a{
+      display:block;
+      padding:8px 2px;
+      font-size:16px;
+    }
+    @media (min-width:981px){
+      .panel{ display:none !important; }
+    }
+
+    /* PRODUCT LAYOUT */
+    .bp-page{
+      padding:14px 0 56px;
+      background:var(--bp-bg);
+      font-family:var(--bp-font-body);
+      color:var(--bp-text);
+    }
+
+    .bp-hero{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    @media (min-width:800px){
+      .bp-hero{
+        display:grid;
+        grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);
+        gap:32px;
+        align-items:flex-start;
+      }
+    }
+
+    .bp-media{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .bp-hero-text{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .bp-hero-text h1{
+      margin:0;
+      font-family:var(--bp-font-heading);
+      font-weight:700;
+      font-size:clamp(28px,4.4vw,40px);
+      letter-spacing:-0.04em;
+    }
+    .bp-sub{
+      margin:0;
+      font-size:14px;
+      line-height:1.7;
+      color:#444;
+      max-width:30rem;
+    }
+    .bp-price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+    }
+    .bp-price{
+      font-family:var(--bp-font-heading);
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:-0.04em;
+    }
+    .bp-price-note{
+      font-size:9px;
+      color:var(--bp-muted);
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+    }
+
+    /* CTAs — match homepage style */
+    .bp-cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:4px;
+    }
+    .bp-btn{
+      height:47px;
+      padding:0 18px;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:400;
+      letter-spacing:-.03em;
+      border:none;
+      background:transparent;
+      transition:all .22s ease;
+      white-space:nowrap;
+    }
+    .bp-btn-primary{
+      background:#000;
+      color:#fff;
+      box-shadow:none;
+    }
+    .bp-btn-primary:hover{
+      background:linear-gradient(91.89deg,#3C75F6 1.56%,#D35224 103.34%);
+      filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+      font-weight:700;
+      color:#fff;
+    }
+    .bp-btn-ghost{
+      border:1px solid #000;
+      color:#000;
+      background:transparent;
+    }
+    .bp-btn-ghost:hover{
+      border-color:transparent;
+      font-weight:700;
+      filter:drop-shadow(0px 2px 2px rgba(0,0,0,0.10));
+      background:#fff;
+      color:#000;
+    }
+
+    /* Summary card */
+    .bp-summary{
+      padding:14px;
+      border-radius:var(--bp-radius-xl);
+      background:#f9fafb;
+      border:1px solid #e5e7eb;
+      box-shadow:var(--bp-shadow-soft);
+      font-size:11px;
+      color:var(--bp-muted);
+    }
+    .bp-summary h3{
+      margin:0 0 6px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      color:var(--bp-muted);
+    }
+    .bp-summary ul{
+      margin:0;
+      padding-left:16px;
+      font-size:11px;
+      line-height:1.7;
+      color:#444;
+    }
+
+    /* HERO CAROUSEL (bigger imagery) */
+    .hero-gallery{
+      position:relative;
+      border-radius:var(--bp-radius-xl);
+      background:#f9fafb;
+      border:1px solid #e5e7eb;
+      box-shadow:var(--bp-shadow-soft);
+      overflow:hidden;
+      padding:10px 10px 40px;            /* more vertical space for big image */
+    }
+
+    .hero-slides{
+      display:flex;
+      transition:transform var(--bp-trans);
+      will-change:transform;
+    }
+
+    .hero-slide{
+      min-width:100%;
+      padding:12px 6px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hero-slide img{
+      width:100%;
+      max-width:720px;                   /* bigger max width */
+      max-height:520px;                  /* taller hero on desktop */
+      object-fit:contain;
+    }
+
+    .hero-controls{
+      position:absolute;
+      left:14px;
+      right:14px;
+      bottom:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      pointer-events:none;
+    }
+
+    .hero-arrow{
+      width:32px;
+      height:32px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,253,0.25);
+      background:#ffffff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      cursor:pointer;
+      pointer-events:auto;
+      transition:var(--bp-trans);
+      box-shadow:0 8px 24px rgba(15,23,42,0.14);
+    }
+    .hero-arrow:hover{
+      transform:translateY(-1px);
+      background:#111827;
+      color:#ffffff;
+      box-shadow:0 14px 32px rgba(15,23,42,0.24);
+    }
+
+    .hero-index{
+      padding:4px 11px;
+      border-radius:999px;
+      font-size:10px;
+      color:var(--bp-muted);
+      background:rgba(255,255,255,0.98);
+      border:1px solid #e5e7eb;
+      pointer-events:auto;
+    }
+
+    .hero-hint{
+      position:absolute;
+      top:8px;
+      right:8px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:8px;
+      color:var(--bp-muted);
+      background:rgba(255,255,255,0.98);
+      border:1px solid #e5e7eb;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .hero-hint .key{
+      padding:1px 6px;
+      border-radius:999px;
+      border:1px solid #e5e7eb;
+      font-size:8px;
+      color:#111827;
+      background:#f9fafb;
+    }
+
+    /* Thumbnails */
+    .thumb-row{
+      display:flex;
+      gap:6px;
+      overflow-x:auto;
+      padding:6px 2px 2px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .thumb-row::-webkit-scrollbar{
+      height:3px;
+    }
+    .thumb-row::-webkit-scrollbar-thumb{
+      background:#d1d5db;
+      border-radius:99px;
+    }
+    .thumb{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background:#f9fafb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      cursor:pointer;
+      opacity:.35;
+      transition:var(--bp-trans);
+      box-shadow:0 4px 10px rgba(15,23,42,0.04);
+    }
+    .thumb img{
+      max-width:80%;
+      max-height:80%;
+      object-fit:contain;
+    }
+    .thumb.active{
+      opacity:1;
+      border-color:#111827;
+      background:#ffffff;
+      box-shadow:0 10px 24px rgba(15,23,42,0.14);
+      transform:translateY(-1px);
+    }
+
+    /* MOBILE TWEAKS: keep image big but proportional */
+    @media (max-width:799px){
+      .bp-hero-text{
+        align-items:center;
+        text-align:center;
+      }
+      .bp-sub{ max-width:90%; }
+      .bp-price-row{ justify-content:center; }
+      .bp-cta-row{ justify-content:center; }
+      .bp-summary{
+        width:100%;
+        max-width:480px;
+        text-align:left;
+      }
+      .hero-gallery{
+        padding:10px 10px 36px;
+      }
+      .hero-slide img{
+        max-width:100%;
+        max-height:360px;    /* fills nicely on mobile */
+      }
+    }
+
+    /* FOOTER */
+    .tas-footer--black{
+      width:100%;
+      background:#000;
+      color:#fff;
+      padding:40px 16px 28px;
+      font-family:Helvetica, Arial, sans-serif;
+    }
+    .tas-fwrap{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      gap:20px;
+    }
+    .tas-fbrand{
+      margin:0;
+      padding:0;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      text-align:left;
+      font-family:"Bricolage Grotesque", system-ui, sans-serif;
+      font-weight:700;
+      line-height:.95;
+      font-size:clamp(28px,4.4vw,46px);
+      letter-spacing:-.04em;
+      color:#fff;
+    }
+    .tas-fnav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 24px;
+    }
+    .tas-fnav a{
+      color:#bbb;
+      font-size:15px;
+      letter-spacing:-.01em;
+      transition:color .18s ease;
+    }
+    .tas-fnav a:hover{ color:#fff; }
+    .tas-fmeta{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .tas-fsocial{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:#666;
+      font-size:14px;
+    }
+    .tas-fsocial a{
+      color:#bbb;
+      transition:color .18s ease;
+    }
+    .tas-fsocial a:hover{ color:#fff; }
+    .tas-femail,
+    .tas-ffeedback{
+      color:#bbb;
+      font-size:14px;
+      transition:color .18s ease;
+    }
+    .tas-femail:hover,
+    .tas-ffeedback:hover{ color:#fff; }
+    .tas-fcopy{
+      margin:4px 0 0;
+      color:#777;
+      font-size:12px;
+    }
+    @media (min-width:900px){
+      .tas-footer--black{
+        padding:48px 32px 32px;
+      }
+      .tas-fwrap{
+        grid-template-columns:1fr auto auto;
+        align-items:flex-start;
+      }
+      .tas-fnav{ justify-self:center; }
+      .tas-fmeta{ align-items:flex-end; text-align:right; }
+      .tas-fcopy{
+        grid-column:1 / 4;
+        justify-self:end;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <a href="https://alundsvagen.github.io/ux/index.html">take away<br/>studio</a>
+    </div>
+
+    <ul class="nav-bar" aria-label="Main">
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/brands.html">Brands</a></li>
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/ux.html">UX packs</a></li>
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/philosophy.html">Philosophy</a></li>
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a></li>
+    </ul>
+
+    <a class="btn-contact" href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
+    <button class="hamburger" id="openPanel" aria-label="Open menu"><span></span></button>
+  </header>
+
+  <!-- MOBILE PANEL -->
+  <nav class="panel" id="panel" aria-label="Mobile">
+    <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
+    <div class="panel-logo">
+      <a href="https://alundsvagen.github.io/ux/index.html">take away<br/>studio</a>
+    </div>
+    <h4>Product</h4>
+    <a href="https://alundsvagen.github.io/ux/brands.html">Brands</a>
+    <a href="https://alundsvagen.github.io/ux/ux.html">UX packs</a>
+    <h4>About</h4>
+    <a href="https://alundsvagen.github.io/ux/philosophy.html">Philosophy</a>
+    <a href="https://alundsvagen.github.io/ux/About.html">About</a>
+    <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
+    <a href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="bp-page">
+    <section class="bp-hero" aria-labelledby="bp-title">
+      <!-- LEFT: CAROUSEL -->
+      <div class="bp-media" aria-label="Dark Gradient Tech gallery">
+        <div class="hero-gallery">
+          <div class="hero-slides" id="hero-slides">
+            <!-- Replace with your real images -->
+            <div class="hero-slide" data-slide="0"><img src="clean2.png" alt="Pack overview layout"></div>
+            <div class="hero-slide" data-slide="1"><img src="clean1.png" alt="Homepage hero concept"></div>
+            <div class="hero-slide" data-slide="2"><img src="darktech-ui.png" alt="Product UI modules"></div>
+            <div class="hero-slide" data-slide="3"><img src="darktech-deck.png" alt="Pitch deck slides"></div>
+            <div class="hero-slide" data-slide="4"><img src="darktech-metrics.png" alt="Metrics & data visuals"></div>
+            <div class="hero-slide" data-slide="5"><img src="darktech-mobile.png" alt="Mobile views"></div>
+            <div class="hero-slide" data-slide="6"><img src="darktech-social-1.png" alt="Social assets"></div>
+            <div class="hero-slide" data-slide="7"><img src="darktech-social-2.png" alt="Campaign visuals"></div>
+            <div class="hero-slide" data-slide="8"><img src="darktech-alt-1.png" alt="Alternate hero"></div>
+            <div class="hero-slide" data-slide="9"><img src="darktech-alt-2.png" alt="Detail crop"></div>
+            <div class="hero-slide" data-slide="10"><img src="darktech-dashboard.png" alt="Dashboard style"></div>
+            <div class="hero-slide" data-slide="11"><img src="darktech-cards.png" alt="Cards & components"></div>
+            <div class="hero-slide" data-slide="12"><img src="darktech-logos.png" alt="Logo & favicon set"></div>
+            <div class="hero-slide" data-slide="13"><img src="darktech-print.png" alt="Print & collateral"></div>
+            <div class="hero-slide" data-slide="14"><img src="darktech-grid.png" alt="Grid & spacing system"></div>
+          </div>
+
+          <div class="hero-hint">
+            <span>Arrow keys</span>
+            <span class="key">←</span>
+            <span class="key">→</span>
+            <span>to browse</span>
+          </div>
+
+          <div class="hero-controls">
+            <button class="hero-arrow" id="prev-slide" aria-label="Previous image">‹</button>
+            <div class="hero-index" id="hero-index">1 / 15</div>
+            <button class="hero-arrow" id="next-slide" aria-label="Next image">›</button>
+          </div>
+        </div>
+
+        <!-- THUMBS -->
+        <div class="thumb-row" aria-label="Gallery thumbnails">
+          <div class="thumb active" data-thumb="0"><img src="clean2.png" alt=""></div>
+          <div class="thumb" data-thumb="1"><img src="clean1.png" alt=""></div>
+          <div class="thumb" data-thumb="2"><img src="darktech-ui.png" alt=""></div>
+          <div class="thumb" data-thumb="3"><img src="darktech-deck.png" alt=""></div>
+          <div class="thumb" data-thumb="4"><img src="darktech-metrics.png" alt=""></div>
+          <div class="thumb" data-thumb="5"><img src="darktech-mobile.png" alt=""></div>
+          <div class="thumb" data-thumb="6"><img src="darktech-social-1.png" alt=""></div>
+          <div class="thumb" data-thumb="7"><img src="darktech-social-2.png" alt=""></div>
+          <div class="thumb" data-thumb="8"><img src="darktech-alt-1.png" alt=""></div>
+          <div class="thumb" data-thumb="9"><img src="darktech-alt-2.png" alt=""></div>
+          <div class="thumb" data-thumb="10"><img src="darktech-dashboard.png" alt=""></div>
+          <div class="thumb" data-thumb="11"><img src="darktech-cards.png" alt=""></div>
+          <div class="thumb" data-thumb="12"><img src="darktech-logos.png" alt=""></div>
+          <div class="thumb" data-thumb="13"><img src="darktech-print.png" alt=""></div>
+          <div class="thumb" data-thumb="14"><img src="darktech-grid.png" alt=""></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INFO -->
+      <aside class="bp-hero-text" aria-label="Dark Gradient Tech details">
+        <h1 id="bp-title">Youth, Playful, Unique Brand Pack</h1>
+
+        <p class="bp-sub">
+          A precise, trustworthy design system for SaaS, AI &amp; med–tech teams who need a launch-ready,
+          investor-proof brand — without a long branding project.
+        </p>
+
+        <div class="bp-price-row">
+          <div>
+            <div class="bp-price">24 900 SEK</div>
+            <div class="bp-price-note">One-time · includes VAT · Single brand license</div>
+          </div>
+        </div>
+
+        <div class="bp-cta-row">
+            <a href="https://google.com" class="bp-btn bp-btn-primary">
+              Buy Now — Send over Brand Pack
+            </a>
+            <a href="https://google.com" class="bp-btn bp-btn-ghost">
+              Customize it, Talk with Us
+            </a>
+          </div>
+          
+
+        <div class="bp-summary">
+          <h3>What’s included</h3>
+          <ul>
+            <li>Homepage HTML &amp; feature layouts in the Unique style.</li>
+            <li>Logo template, favicon &amp; brand icon set.</li>
+            <li>Color &amp; type system tuned for product &amp; marketing.</li>
+            <li>10+ core pitch / sales deck slides.</li>
+            <li>Social &amp; Marketing templates.</li>
+            <li>Component kit for badges, metrics, cards &amp; CTAs.</li>
+            <li>Simple rollout guide for implementation.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="tas-footer--black">
+  <div class="tas-fwrap">
+    <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
+      take away<br/>studio
+    </button>
+
+    <nav class="tas-fnav" aria-label="Footer">
+      <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
+      <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
+      <a href="https://alundsvagen.github.io/ux/About.html">About</a>
+      <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
+    </nav>
+
+    <div class="tas-fmeta">
+      <div class="tas-fsocial">
+        <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
+      </div>
+      <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
+      <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
+    </div>
+
+    <p class="tas-fcopy">© Take Away Studio — 2025</p>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const openPanel = document.getElementById('openPanel');
+  const closePanel = document.getElementById('closePanel');
+  const panel = document.getElementById('panel');
+  openPanel?.addEventListener('click', ()=> panel?.classList.add('open'));
+  closePanel?.addEventListener('click', (e)=>{
+    e.preventDefault();
+    panel?.classList.remove('open');
+  });
+
+  // footer scroll-top
+  document.getElementById('tasScrollTop')?.addEventListener('click', () => {
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  // HERO CAROUSEL
+  (function () {
+    const slidesContainer = document.getElementById('hero-slides');
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const thumbs = Array.from(document.querySelectorAll('.thumb'));
+    const indexLabel = document.getElementById('hero-index');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+
+    const total = slides.length;
+    let current = 0;
+
+    function updateCarousel(newIndex) {
+      if (!slidesContainer || !total) return;
+
+      if (newIndex < 0) newIndex = total - 1;
+      if (newIndex >= total) newIndex = 0;
+      current = newIndex;
+
+      const offset = -current * 100;
+      slidesContainer.style.transform = 'translateX(' + offset + '%)';
+
+      if (indexLabel) indexLabel.textContent = (current + 1) + ' / ' + total;
+
+      thumbs.forEach(t => t.classList.remove('active'));
+      const active = thumbs.find(t => Number(t.dataset.thumb) === current);
+      if (active) {
+        active.classList.add('active');
+        const row = active.parentElement;
+        if (row) {
+          const scrollLeft = active.offsetLeft - (row.clientWidth / 2 - active.clientWidth / 2);
+          row.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+      }
+    }
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const i = Number(thumb.dataset.thumb);
+        if (!Number.isNaN(i)) updateCarousel(i);
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => updateCarousel(current - 1));
+    nextBtn?.addEventListener('click', () => updateCarousel(current + 1));
+
+    // keyboard navigation
+    window.addEventListener('keydown', (event) => {
+      const tag = (event.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || event.target.isContentEditable) return;
+
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        updateCarousel(current - 1);
+      } else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        event.preventDefault();
+        updateCarousel(current + 1);
+      }
+    });
+
+    updateCarousel(0);
+  })();
+</script>
+
+<style>
+    /* Prevent drag & text/image selection */
+    body, img {
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  
+    /* Optional: disable context menu globally */
+    body {
+      -webkit-touch-callout: none;
+    }
+  </style>
+  
+  <script>
+    // Disable right-click menu
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  
+    // Disable common copy shortcuts
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && ['c','u','s','p'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    });
+  </script>  
+
+</body>
+</html>
