@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Shop UX</title>
+<title>Ready-Made UX Packs & Flow Templates | Take Away Studio</title>
+<meta name="description" content="Browse ready-made UX packs with research-backed user flows, Figma prototypes, HTML and UI libraries. Perfect for SaaS and product teams who want to launch faster without hiring a full UX team." />
 
 <!-- Favicon: stacked circles -->
 <link rel="icon"
@@ -522,12 +523,12 @@ header .menu .icon-chip{
     </nav>
 
 <!-- ===== PHILOSOPHY HERO — minimal, tasteful hover ===== -->
-<section class="hero-philo" id="heroPhilo" aria-label="Design philosophy">
+<section class="hero-philo" id="heroPhilo" aria-label="Ready-made UX packs and flow templates">
   <div class="hp-wrap">
-    <h1 class="hp-title" id="hpTitle">
-      <a href="https://alundsvagen.github.io/ux/brands.html" class="hp-link">UX Packs</a>
-    </h1>
-    <p class="hp-sub">Research proven User Flows with HTML & UI libraries.</p>
+    <h1 class="hp-title" id="hpTitle">Ready-made UX packs for SaaS products</h1>
+    <p class="hp-sub">
+      Research-backed user flows, Figma prototypes, HTML and UI libraries you can plug into your product and ship faster.
+    </p>
     <span class="hp-underline" aria-hidden="true"></span>
   </div>
 </section>
@@ -545,13 +546,124 @@ header .menu .icon-chip{
 </script>
 
 <!-- ===== FEATURED PROJECT (clickable) ===== -->
-<a href="https://google.com" class="project-card" aria-label="View project on Google">
+<a href="https://form.fillout.com/t/pdDH1iNnjLus" class="project-card" aria-label="Checkout flow UX pack with Figma and HTML">
   <div class="project-wrap">
     <div class="project-text">
-      <h2 class="project-title">Checkout Flow</h2>
+      <h2 class="project-title">Checkout Flow UX Pack</h2>
       <p class="project-blurb">
-        Website for med–tech startup Diagnose to build trust with partners.
-        Team secured $3M grant post–launch.
+        A ready-made checkout flow for SaaS and e-commerce — including full UX, UI, and microcopy, plus a Figma prototype and production-ready HTML. Price of this package is 12 000 kr.
+      </p>
+      <div class="project-tags">
+        <span class="tag">+ Figma Prototype</span>
+        <span class="tag">+ HTML</span>
+        <span class="tag">+ Components</span>
+      </div>
+    </div>
+
+    <div class="project-image">
+      <img src="building2.png" alt="Preview of checkout flow UX pack" />
+    </div>
+  </div>
+</a>
+
+
+<style>
+/* ===== Featured Project Card ===== */
+.project-card{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  background:#fff;
+  padding:clamp(56px,8vw,120px) 5%;
+  transition:transform .3s ease, box-shadow .3s ease;
+  border-radius:24px;
+}
+.project-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+}
+
+.project-wrap{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: minmax(280px,1fr) minmax(480px,1.6fr);
+  gap:clamp(28px,5vw,72px);
+  align-items:center;
+}
+
+/* === TEXT === */
+.project-text{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.project-title{
+  margin:0;
+  font:700 clamp(44px,6vw,84px)/0.96 "Bricolage Grotesque", system-ui, sans-serif;
+  letter-spacing:-.03em;
+}
+
+.project-blurb{
+  margin:0;
+  max-width:42ch;
+  font:400 clamp(16px,2vw,22px)/1.35 Helvetica, Arial, sans-serif;
+  color:#7a7a7a;
+}
+
+.project-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:500;
+  text-transform:uppercase;
+  background:#000;
+  color:#fff;
+}
+
+/* === IMAGE === */
+.project-image{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.project-image img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  border-radius:inherit;
+  transition:transform .4s ease;
+}
+.project-card:hover .project-image img{
+  transform:scale(1.02);
+}
+
+/* === Responsive === */
+@media (max-width:900px){
+  .project-wrap{ grid-template-columns:1fr; gap:28px; }
+  .project-text{ text-align:left; }
+  .project-blurb{ max-width:52ch; }
+}
+</style>
+
+<!-- ===== FEATURED PROJECT (clickable) ===== -->
+<a href="https://form.fillout.com/t/pgLV1RfU1cus" class="project-card" aria-label="View project on Google">
+  <div class="project-wrap">
+    <div class="project-text">
+      <h2 class="project-title">Analytics Dashboard UX Pack</h2>
+      <p class="project-blurb">
+        A ready-made analytics dashboard UX pack with key SaaS metrics, charts and filters, including a Figma file, UI components and responsive HTML. The price for this dashboard is 9000 SEK including VAT.
       </p>
       <div class="project-tags">
         <span class="tag">+ Figma Prototype</span>
@@ -657,125 +769,12 @@ header .menu .icon-chip{
 </style>
 
 <!-- ===== FEATURED PROJECT (clickable) ===== -->
-<a href="https://google.com" class="project-card" aria-label="View project on Google">
+<a href="https://form.fillout.com/t/1Wi8sAoNtkus" class="project-card" aria-label="View project on Google">
   <div class="project-wrap">
     <div class="project-text">
-      <h2 class="project-title">Analytics Dashboard</h2>
+      <h2 class="project-title">Mobile Onboarding Wireframe UX Library</h2>
       <p class="project-blurb">
-        Website for med–tech startup Diagnose to build trust with partners.
-        Team secured $3M grant post–launch.
-      </p>
-      <div class="project-tags">
-        <span class="tag">+ Figma Prototype</span>
-        <span class="tag">+ HTML</span>
-        <span class="tag">+ Components</span>
-      </div>
-    </div>
-
-    <div class="project-image">
-      <img src="building2.png" alt="Diagnose project building" />
-    </div>
-  </div>
-</a>
-
-<style>
-/* ===== Featured Project Card ===== */
-.project-card{
-  display:block;
-  text-decoration:none;
-  color:inherit;
-  background:#fff;
-  padding:clamp(56px,8vw,120px) 5%;
-  transition:transform .3s ease, box-shadow .3s ease;
-  border-radius:24px;
-}
-.project-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(0,0,0,.12);
-}
-
-.project-wrap{
-  max-width:1400px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns: minmax(280px,1fr) minmax(480px,1.6fr);
-  gap:clamp(28px,5vw,72px);
-  align-items:center;
-}
-
-/* === TEXT === */
-.project-text{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-
-.project-title{
-  margin:0;
-  font:700 clamp(44px,6vw,84px)/0.96 "Bricolage Grotesque", system-ui, sans-serif;
-  letter-spacing:-.03em;
-}
-
-.project-blurb{
-  margin:0;
-  max-width:42ch;
-  font:400 clamp(16px,2vw,22px)/1.35 Helvetica, Arial, sans-serif;
-  color:#7a7a7a;
-}
-
-.project-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.tag{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:7px 14px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:500;
-  text-transform:uppercase;
-  background:#000;
-  color:#fff;
-}
-
-/* === IMAGE === */
-.project-image{
-  position:relative;
-  border-radius:20px;
-  overflow:hidden;
-  transition:transform .3s ease, box-shadow .3s ease;
-}
-.project-image img{
-  width:100%;
-  height:auto;
-  display:block;
-  object-fit:cover;
-  border-radius:inherit;
-  transition:transform .4s ease;
-}
-.project-card:hover .project-image img{
-  transform:scale(1.02);
-}
-
-/* === Responsive === */
-@media (max-width:900px){
-  .project-wrap{ grid-template-columns:1fr; gap:28px; }
-  .project-text{ text-align:left; }
-  .project-blurb{ max-width:52ch; }
-}
-</style>
-
-<!-- ===== FEATURED PROJECT (clickable) ===== -->
-<a href="https://google.com" class="project-card" aria-label="View project on Google">
-  <div class="project-wrap">
-    <div class="project-text">
-      <h2 class="project-title">Wireframe Mobile UX</h2>
-      <p class="project-blurb">
-        Website for med–tech startup Diagnose to build trust with partners.
-        Team secured $3M grant post–launch.
+        A low-fidelity mobile UX library with reusable wireframe screens, flows and components in Figma to speed up product discovery and testing. Price of this package is 12 000 kr.
       </p>
       <div class="project-tags">
         <span class="tag">+ Figma Library</span>
@@ -884,9 +883,9 @@ header .menu .icon-chip{
 <a href="https://google.com" class="project-card" aria-label="View project on Google">
   <div class="project-wrap">
     <div class="project-text">
-      <h2 class="project-title">Need something else?</h2>
+      <h2 class="project-title">Need a different UX pack?</h2>
       <p class="project-blurb">
-        Tell us what you would like to see, we would be happy to get your feedback.
+        Tell us which user flows, UX templates or libraries you’d like next — mobile onboarding, pricing pages, CRM dashboards and more. 
       </p>
       <div class="project-tags">
         <span class="tag">UX</span>
