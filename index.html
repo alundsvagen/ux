@@ -1,5 +1,18 @@
 <!doctype html>
 <html lang="en">
+      <script>
+  (function () {
+    // If you're already on mobile version, do nothing
+    if (window.location.pathname.includes('mobile.html')) return;
+
+    // Treat ≤768px as "phone"
+    var isPhone = window.innerWidth <= 768;
+
+    if (isPhone) {
+      window.location.replace('mobile.html');
+    }
+  })();
+</script>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
