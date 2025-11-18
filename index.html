@@ -1,18 +1,5 @@
 <!doctype html>
 <html lang="en">
-      <script>
-  (function () {
-    // If you're already on mobile version, do nothing
-    if (window.location.pathname.includes('mobile.html')) return;
-
-    // Treat ≤768px as "phone"
-    var isPhone = window.innerWidth <= 768;
-
-    if (isPhone) {
-      window.location.replace('mobile.html');
-    }
-  })();
-</script>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,6 +25,20 @@
 </svg>'>
 
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      // Avoid loop if someone manually visits mobile.html
+      if (window.location.pathname.includes('mobile.html')) return;
+
+      // <=768px = phone
+      var isPhone = window.innerWidth <= 768;
+
+      if (isPhone) {
+        window.location.replace('mobile.html');
+      }
+    })();
+  </script>
+</head>      
 
 <style>
 /* ------------------------------------
