@@ -9,20 +9,17 @@
 
 <link rel="canonical" href="https://alundsvagen.github.io/ux/contact.html" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Contact Take Away Studio – SaaS Branding Packages & UX Consulting" />
 <meta property="og:description" content="Reach Take Away Studio in Stockholm to discuss ready-made SaaS branding packages, UX and UI consulting, or custom brand work for your startup." />
 <meta property="og:url" content="https://alundsvagen.github.io/ux/contact.html" />
 <meta property="og:image" content="https://alundsvagen.github.io/ux/building2.png" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Contact Take Away Studio – SaaS Branding & UX" />
 <meta name="twitter:description" content="Book a SaaS branding call, email us or connect on LinkedIn. Take Away Studio helps 10–50 person SaaS startups with ready-made brand packs and UX consulting." />
 <meta name="twitter:image" content="https://alundsvagen.github.io/ux/building2.png" />
 
-<!-- Favicon: stacked circles -->
 <link rel="icon"
       href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -344,13 +341,11 @@ header .menu .icon-chip{
 <body>
 
   <div class="wrap">
-    <!-- HEADER -->
     <header>
       <div class="logo">
         <a href="https://alundsvagen.github.io/ux/brands.html" target="_blank" rel="noopener">take away<br/>studio</a>
       </div>
 
-      <!-- top-level nav (no icons here) -->
       <ul class="nav-bar" aria-label="Main">
         <li>
           <a href="https://alundsvagen.github.io/ux/brands.html" class="nav-link" data-dd="product">
@@ -375,7 +370,6 @@ header .menu .icon-chip{
           <div class="menu" id="dd-philosophy" role="menu" aria-label="Philosophy submenu">
             <a href="https://alundsvagen.github.io/ux/philosophy.html" class="is-heading">
               <span class="icon-chip">
-                <!-- arrow-down-left-square -->
                 <svg viewBox="0 0 16 16" fill="currentColor">
                   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
                   <path d="M10.5 5.5L6 10h3v1H5v-4h1v3l4.5-4.5z"/>
@@ -384,17 +378,14 @@ header .menu .icon-chip{
               Philosophy
             </a>
             <a href="https://alundsvagen.github.io/ux/About.html">
-              <!-- asterisk -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/asterisk.svg" alt="">
               About
             </a>
             <a href="https://alundsvagen.github.io/ux/services.html">
-              <!-- back -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/back.svg" alt="">
               Services
             </a>
             <a href="https://alundsvagen.github.io/ux/meditate.html">
-              <!-- brilliance -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/brilliance.svg" alt="">
               Mediate
             </a>
@@ -405,11 +396,15 @@ header .menu .icon-chip{
         <li><a class="nav-link" href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a></li>
       </ul>
 
-      <a class="btn-contact" href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
+      <a class="btn-contact cta-modal-trigger" 
+         href="#" 
+         data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+         data-title="Contact Us">
+        Contact
+      </a>
       <button class="hamburger" id="openPanel" aria-label="Open menu"><span></span></button>
     </header>
 
-    <!-- MOBILE PANEL -->
     <nav class="panel" id="panel" aria-label="Mobile">
       <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
       <div class="panel-logo"><a href="https://alundsvagen.github.io/ux/brands.html">take away<br/>studio</a></div>
@@ -428,12 +423,16 @@ header .menu .icon-chip{
       <h4>Other</h4>
       <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
       <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
-      <a href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
+      <a href="#" 
+         class="cta-modal-trigger"
+         data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+         data-title="Contact Us">
+        Contact
+      </a>
     </nav>
 
 
     
-<!-- ============ CUSTOM / CONSULTING PAGE SECTIONS ============ -->
 <section class="custom-hero">
     <div class="custom-hero__wrap">
       <div class="custom-hero__text">
@@ -447,8 +446,16 @@ header .menu .icon-chip{
         </p>
           
         <div class="custom-hero__cta">
-          <a class="btn btn-primary" href="https://calendly.com/alexandrapgrisanti/hello?month=2025-11">Meet</a>
-          <a class="btn btn-outline" href="https://www.linkedin.com/company/takeawaystudio">Linkedin</a>
+          <a class="btn btn-outline" 
+          href="https://www.linkedin.com/company/takeawaystudio">
+         Linkedin
+       </a>
+          <a class="btn btn-primary cta-modal-trigger" 
+             href="#" 
+             data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+             data-title="Nice to meet you 👋">
+            Talk to Us
+          </a>
         </div>
       </div>
   
@@ -458,7 +465,6 @@ header .menu .icon-chip{
     </div>
   </section>
   
-  <!-- ============ STYLES (scoped to sections) ============ -->
   <style>
   :root{
     --bg:#f8f8f8;
@@ -676,15 +682,12 @@ header .menu .icon-chip{
       .forEach(a => { a.removeAttribute('target'); a.removeAttribute('rel'); });
   </script>  
 
-<!-- ===== FOOTER — Minimal Black ===== -->
 <footer class="tas-footer--black full-bleed">
   <div class="tas-fwrap full-bleed-inner">
-    <!-- Wordmark (scroll to top) -->
     <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
       take away<br/>studio
     </button>
 
-    <!-- Nav -->
     <nav class="tas-fnav" aria-label="Footer">
       <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
       <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
@@ -692,7 +695,6 @@ header .menu .icon-chip{
       <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
     </nav>
 
-    <!-- Contact / Social -->
     <div class="tas-fmeta">
       <div class="tas-fsocial">
         <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
@@ -861,6 +863,147 @@ header .menu .icon-chip{
   closePanelBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     panel?.classList.remove('open');
+  });
+</script>
+
+<div id="cta-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title">Contact Us</h3>
+      <button class="modal-close" id="close-modal" aria-label="Close modal">×</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="modal-iframe" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Modal CSS */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+}
+
+.modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 5px;
+  color: #8D8D8F;
+}
+
+.modal-body {
+  flex-grow: 1;
+  padding: 0;
+}
+
+#modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  min-height: 400px; /* Adjust as needed */
+}
+</style>
+
+<script>
+  const modal = document.getElementById('cta-modal');
+  const closeButton = document.getElementById('close-modal');
+  const iframe = document.getElementById('modal-iframe');
+  const modalTitle = document.getElementById('modal-title');
+  const triggers = document.querySelectorAll('.cta-modal-trigger');
+
+  function openModal(url, title) {
+    iframe.src = url;
+    modalTitle.textContent = title;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    // Give time for the modal transition before clearing the iframe
+    setTimeout(() => {
+      iframe.src = '';
+      modalTitle.textContent = 'Contact Us';
+    }, 300); 
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = trigger.dataset.formUrl;
+      const title = trigger.dataset.title || 'Contact Form';
+      if (url) {
+        openModal(url, title);
+      }
+      // If mobile panel is open, close it
+      panel?.classList.remove('open');
+    });
+  });
+
+  closeButton.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside (on the overlay)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal when pressing the Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
   });
 </script>
 
