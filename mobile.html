@@ -27,10 +27,10 @@
 
 <script>
   (function () {
-    // If you're already on the main index, do nothing
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') return;
+    // Avoid loop if already on index
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === "/") return;
 
-    // Anything wider than 768px = desktop/tablet
+    // >768px = desktop/tablet → bounce back
     var isDesktopOrTablet = window.innerWidth > 768;
 
     if (isDesktopOrTablet) {
