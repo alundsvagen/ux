@@ -15,7 +15,7 @@
 <meta name="twitter:description" content="Ready-made SaaS brand and UX packs so your 10–50 person startup can launch a fresh, consistent brand without hiring an agency." />
 <meta name="twitter:image" content="https://alundsvagen.github.io/ux/landing2.gif" />
 
-<!-- Favicon: stacked circles -->
+<!-- Favicon -->
 <link rel="icon"
       href='data:image/svg+xml;utf8,
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -24,21 +24,22 @@
   <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
 </svg>'>
 
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />   
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
 
 <style>
 /* ------------------------------------
-   Take Away Studio — Full Stylesheet
-   (nav + hero + sections, mobile-first)
+   Take Away Studio — Unified Stylesheet
+   Mobile-first + desktop overrides
 ------------------------------------- */
 
 /* ========== VARIABLES & BASE ========== */
 :root{
-  --bg:#F7F3ED;
+  --bg: #F9F9F9;
   --text:#000;
-  --muted:#8D8D8F;
+  --muted:#6A6B70;
   --blue:#3C75F6;
   --brand:#D28137;
+  --gradient: linear-gradient(90deg, #3C75F6 0%, #D35224 100%);
   --menuIcon:#8C8D91;
 }
 
@@ -48,45 +49,30 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font:400 16px/1.04 "Helvetica", Arial, sans-serif;
+  font:400 17px/1.4 "Helvetica", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 70px; /* for sticky footer CTA on mobile */
 }
 a{ color:inherit; text-decoration:none }
-.wrap{ width:min(1728px,100%); margin-inline:auto; position:relative; padding-inline:16px }
+.wrap{ width:100%; margin-inline:auto; position:relative; padding-inline:16px }
 
 /* =====================================
-   HEADER / NAV (scoped, responsive)
+   HEADER / NAV (Mobile-first)
 ===================================== */
 header{
   position:relative; z-index:200; background:var(--bg);
   display:flex; align-items:center; justify-content:space-between;
-  padding:16px 14px; gap:12px;
+  padding:14px 0; gap:12px;
 }
-
-/* Logo */
 header .logo{
-  font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
+  font:700 28px/1 "Bricolage Grotesque", system-ui, sans-serif;
   letter-spacing:-.04em;
 }
-header .logo a:hover{ color:var(--brand) }
+header .nav-bar, header .btn-contact{ display:none; } /* hidden on mobile */
 
-/* Contact button */
-header .btn-contact{
-  height:47px; min-width:151px; padding:0 18px;
-  border:1px solid #000; border-radius:10px; background:#000; color:#fff;
-  display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
-}
-header .btn-contact:hover{ background:var(--blue); border-color:var(--blue) }
-
-/* Desktop nav (hidden on mobile) */
-header .nav-bar{
-  display:none; /* mobile first */
-  list-style:none; margin:0; padding:0;
-}
-
-/* Hamburger (mobile) */
 header .hamburger{
-  display:flex; width:46px; height:45px; border-radius:22px; background:#E1E4E6;
-  align-items:center; justify-content:center;
+  display:flex; width:44px; height:44px; border-radius:12px; background:#E1E4E6;
+  align-items:center; justify-content:center; border:none; padding:0; cursor:pointer;
 }
 header .hamburger span{
   display:block; width:24px; height:16px; position:relative;
@@ -97,79 +83,24 @@ header .hamburger span:after{
   transform:translateY(-50%); background:#000;
 }
 
-/* Desktop layout */
-@media (min-width:981px){
-  header{
-    display:grid;
-    grid-template-columns:auto 1fr auto; /* logo | nav | contact */
-    align-items:center; column-gap:32px; padding:28px 24px;
-  }
-  header .logo{ margin-left:16px; }
-  header .nav-bar{
-    display:flex; align-items:center; gap:72px;
-    justify-self:center;
-    font:400 20px/1.04 "Helvetica", Arial, sans-serif;
-    letter-spacing:-.03em;
-  }
-  header .hamburger{ display:none !important; }
-  header .btn-contact{ justify-self:end; }
-}
-
-/* Top-level nav links */
-header .nav-bar > li{ position:relative }
-header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
-header .nav-link .caret{
-  width:0; height:0; display:inline-block;
-  border-left:6px solid transparent;
-  border-right:6px solid transparent;
-  border-top:8px solid var(--text);
-  transform:translateY(2px);
-}
-
-/* Dropdown card */
-header .menu{
-  position:absolute; left:50%; top:calc(100% + 14px);
-  transform:translateX(-50%);
-  display:none; min-width:320px; background:#fff;
-  border:2px solid #000; border-radius:24px; padding:14px;
-  box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
-  z-index:1000;
-}
-header .menu.open{ display:block; }
-header .menu::before{
-  content:""; position:absolute; inset:-30px -40px -40px -40px;
-  background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
-  border-radius:36px; z-index:-1;
-}
-
-header .menu a{
-  display:flex; align-items:center; gap:12px;
-  padding:14px; border-radius:14px; font-size:20px; letter-spacing:-.03em;
-}
-header .menu a:hover{ background:#F3F3F3; }
-header .menu a.is-heading{ background:#F3F3F3; font-weight:700; border-radius:16px; }
-
-/* Icons in dropdown */
-header .menu svg,
-header .menu img.bi{
-  width:20px; height:20px; color:#888; filter:grayscale(1) brightness(.55);
-  flex:0 0 20px;
-}
-header .menu .icon-chip{
-  display:inline-grid; place-items:center;
-  width:28px; height:28px; border-radius:8px;
-  border:2px solid #CFCFCF; background:#fff; color:#888; flex:0 0 28px;
-}
-
-/* Mobile sheet */
+/* Mobile Menu Panel */
 .panel{
   display:none; position:fixed; inset:0; background:#fff; z-index:300;
   padding:18px 18px 32px; overflow:auto;
 }
 .panel.open{ display:block }
-.panel .close{ position:absolute; right:16px; top:12px; font-size:26px; color:#000; }
-.panel h4{ margin:18px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:#666; }
-.panel a{ display:flex; align-items:center; gap:10px; padding:12px 10px; border-radius:10px; font-size:18px; }
+.panel .close{
+  position:absolute; right:16px; top:12px;
+  font-size:26px; color:#000; background:none; border:none; cursor:pointer;
+}
+.panel h4{
+  margin:18px 0 8px; font-size:14px;
+  text-transform:uppercase; letter-spacing:.08em; color:#666;
+}
+.panel a{
+  display:flex; align-items:center; gap:10px;
+  padding:12px 10px; border-radius:10px; font-size:18px;
+}
 .panel a:hover{ background:#F3F3F3; }
 .panel .panel-logo{
   margin:4px 0 14px 2px;
@@ -177,467 +108,915 @@ header .menu .icon-chip{
 }
 .panel .panel-logo a:hover{ color:var(--brand) }
 
-/* Force mobile behavior */
-@media (max-width:980px){
-  header .nav-bar{ display:none !important; }
-  header .hamburger{ display:flex !important; }
-}
-
-/* Optional: sticky header on desktop */
-@media (min-width:981px){
-  header{ position:sticky; top:0; }
-}
-
 /* =====================================
-   HERO
+   HERO (Mobile)
 ===================================== */
-.hero{ position:relative; padding:24px 0 60px }
+.hero{ position:relative; padding:16px 0 40px }
 .hero h1{
-  margin:22px auto 0; max-width:1061px;
-  font-weight:700; font-size:clamp(38px, 7vw, 100px); line-height:1.04;
-  text-align:center; letter-spacing:-.03em; color:#000; transition:all .25s ease;
-}
-.hero h1:hover{
-  background:linear-gradient(90deg, #3C75F6 0%, #D35224 100%);
+  margin:28px 0 0;
+  font-weight:700; font-size:clamp(44px, 11vw, 84px); line-height:1.05;
+  text-align:left;
+  letter-spacing:-.03em;
+  background: var(--gradient);
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent; color:transparent;
+  opacity:0;
+  transform:translateY(18px);
+  animation: heroFadeUp 0.7s ease-out forwards;
+  animation-delay: 0.05s;
 }
 .hero p{
-  max-width:1020px; margin:24px auto 0; text-align:center; color:var(--muted);
-  font-size:clamp(15px, 2.1vw, 30px); letter-spacing:-.03em;
+  max-width:100%; margin:16px 0 0; text-align:left; color:var(--muted);
+  font-size:clamp(18px, 4vw, 24px); line-height:1.4; letter-spacing:-.03em;
+  opacity:0;
+  transform:translateY(14px);
+  animation: heroFadeUp 0.7s ease-out forwards;
+  animation-delay: 0.25s;
 }
-.ctas{ display:flex; gap:12px; justify-content:center; margin:28px auto 40px }
-.btn{ height:47px; display:grid; place-items:center; border-radius:10px; letter-spacing:-.03em; }
-.btn-primary{ width:128px; background:#000; color:#fff; font-weight:400 }
-.btn-primary:hover{
-  background:linear-gradient(91.89deg, #3C75F6 1.56%, #D35224 103.34%);
-  filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25)); color:#fff; font-weight:700;
+.ctas{
+  display:flex; flex-direction:column; gap:16px;
+  justify-content:flex-start; margin:32px 0 40px;
 }
-.btn-outline{ width:151px; border:1px solid #000; background:transparent; color:#000; font-weight:400 }
-.btn-outline:hover{ border-color:transparent; font-weight:700; filter:drop-shadow(0px 2px 2px rgba(0,0,0,0.10)); }
-
+.btn{
+  height:56px; display:grid; place-items:center; border-radius:12px;
+  letter-spacing:-.03em; font-size:18px; font-weight:700;
+  width:100%; max-width:350px;
+  cursor:pointer; transition:background .2s, border .2s, transform .15s;
+}
+.btn-primary{
+  background:var(--blue); color:#fff; border:none;
+  box-shadow: 0 4px 12px rgba(60, 117, 246, 0.4);
+}
+.btn-outline{
+  border:2px solid var(--brand);
+  background:transparent; color:var(--brand);
+}
+.btn-outline:hover{
+  border-color:var(--brand); background:rgba(210,129,55,0.1);
+}
+.btn:active{
+  transform:scale(0.97);
+}
 .media-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 16px 0 40px;
+  display: flex; justify-content: center; padding: 16px 0 40px;
 }
-
 .media {
-  width: min(1284px, 92vw);
-  border-radius: 8px;
-  display: block;
-  height: auto;
-  object-fit: cover;
+  width: 100%; border-radius: 12px; display: block; height: auto; object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* Hero fade-up */
+@keyframes heroFadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 
 /* =====================================
    WHY BUY A READY-MADE DESIGN
 ===================================== */
-.why-section{ background:#fff; padding:120px 0; display:flex; justify-content:center; }
-.why-section .wrap{ width:min(1728px,100%); margin-inline:auto; padding:0 5%; }
-
-.why-stat-group{ text-align:center; margin-bottom:100px; }
+.why-section{
+  background:#fff; padding:60px 0;
+  display:flex; justify-content:center;
+}
+.why-section .wrap{
+  width:100%; margin-inline:auto; padding-inline:16px;
+}
+.why-stat-group{
+  text-align:left; margin-bottom:40px;
+}
 .why-stat{
   font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
-  font-size:clamp(32px,5.6vw,80px); line-height:1; letter-spacing:-.04em; color:#000; margin:0 0 40px;
+  font-size:clamp(28px, 7vw, 50px); line-height:1.2;
+  letter-spacing:-.04em; color:#000;
+  margin:0 0 8px;
+  opacity:0; transform:translateY(20px);
+  animation: riseUp 0.8s ease-out forwards;
+  animation-delay:0.2s;
 }
-.why-proof img{ width:100%; max-width:1436px; height:auto; display:block; margin-inline:auto; }
+@keyframes riseUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.why-proof{
+  background:none; border-radius:0; padding:0; box-shadow:none;
+  text-align:left;
+  display:flex; flex-wrap:wrap; gap:15px; margin-top:15px;
+}
+.why-proof img{
+  height:40px; width:auto; margin:0;
+  display:inline-block; opacity:0.7; max-width:150px;
+  transition:opacity 0.3s ease;
+}
+.why-proof img:hover{ opacity:1; }
 
 .why-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
-  align-items:start; gap:60px;
+  display:grid; grid-template-columns:1fr;
+  align-items:start; gap:40px; padding-top:40px;
 }
 .why-text h3{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 40px;
+  font-weight:700; font-size:clamp(36px,5vw,100px);
+  line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 20px;
 }
 .why-text p{
-  font-weight:400; font-size:clamp(16px,2vw,30px); line-height:1.4; letter-spacing:-.03em; color:#8D8D8F; max-width:500px;
+  font-weight:400; font-size:clamp(16px,2vw,30px);
+  line-height:1.4; letter-spacing:-.03em; color:var(--muted);
+  max-width:500px;
 }
-.why-media{ width:100%; aspect-ratio:909/716; background:#000; border-radius:12px; }
-@media(max-width:800px){
-  .why-grid{ grid-template-columns:1fr; }
-  .why-text h3{ text-align:center; } .why-text p{ text-align:center; margin-inline:auto; }
+.why-media img{
+  width:100%; height:auto; display:block; object-fit:cover; border-radius:12px;
+}
+
+/* Hide client logos on mobile */
+@media (max-width: 980px) {
+  .why-proof img {
+    display: none;
+  }
+  .why-proof {
+    margin-top: 0;   /* remove extra gap under the +14 stat */
+  }
 }
 
 /* =====================================
-   BRAND KITS (renamed section)
+   HORIZONTAL SCROLL NAV
 ===================================== */
-.brandkits-section{ background:#fff; padding:120px 5% 160px; text-align:center; overflow:hidden; }
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
+.scroll-nav-section{
+  background:var(--bg);
+  padding:0 0 40px;
+}
+.scroll-nav-list{
+  display:flex; gap:12px;
+  overflow-x:auto;
+  padding:8px 16px 12px;
+  margin:0;
+  list-style:none;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:16px;
+}
+.scroll-nav-list::-webkit-scrollbar{ display:none; }
 
-/* animated concentric logo */
-.brandkits-logo-frame .logo{
-  position:relative; width:clamp(200px,40vw,440px); aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
+.scroll-nav-item a{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:110px; min-width:200px; height:310px;
+  background:#fff; border:1px solid #E1E4E6; border-radius:18px;
+  text-align:center; font-size:14px; font-weight:700;
+  letter-spacing:-.02em; color:var(--text);
+  transition:all .2s ease;
+  scroll-snap-align:start;
+  box-shadow:0 4px 10px rgba(0,0,0,0.03);
+  animation: floatCard 5s ease-in-out infinite;
 }
-.brandkits-logo-frame .ring{ position:absolute; border-radius:50%; animation:pulse 6s ease-in-out infinite; }
-.brandkits-logo-frame .ring.outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.brandkits-logo-frame .ring.middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.brandkits-logo-frame .ring.inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-@keyframes pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
-.brandkits-logo-frame .logo-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
+.scroll-nav-item:nth-child(2) a{ animation-delay:0.4s; }
+.scroll-nav-item:nth-child(3) a{ animation-delay:0.8s; }
+.scroll-nav-item:nth-child(4) a{ animation-delay:1.2s; }
+
+.scroll-nav-item a:hover,
+.scroll-nav-item a:focus-visible,
+.scroll-nav-item a.is-active{
+  border-color:var(--blue); background:var(--blue); color:#fff;
+  box-shadow:0 8px 20px rgba(60,117,246,0.35);
+}
+.scroll-nav-item img.bi,
+.scroll-nav-item svg{
+  width:24px; height:24px; margin-bottom:6px;
+  color:var(--menuIcon);
+  filter:grayscale(1) brightness(.55);
+  transition:inherit;
+}
+.scroll-nav-item a:hover img.bi,
+.scroll-nav-item a:hover svg,
+.scroll-nav-item a.is-active img.bi,
+.scroll-nav-item a.is-active svg{
+  filter:none; color:#fff;
 }
 
-.brandkits-header h2{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin-bottom:20px;
-}
-.brandkits-header p{ font-weight:400; font-size:clamp(18px,2vw,30px); color:#8D8D8F; margin-bottom:80px; }
-
-.brandkits-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:36px; justify-items:center;
-}
-.brandkits-card{
-  box-sizing:border-box; width:100%; max-width:460px; padding:40px 36px 42px;
-  border:2px solid #E1E4E6; border-radius:45px; background:#fff; color:#000;
-  transition:all .25s ease;
-}
-.brandkits-card:hover{
-  background:#F7F3ED; border-color:#E1E4E6; box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
-}
-.brandkits-card:hover p{ color:#000; }
-
-.pill{
-  display:inline-grid; place-items:center; min-width:172px; height:61px; padding:0 18px;
-  background:#DBF5FC; border-radius:30.5px; font-size:clamp(18px,2vw,30px); color:#000;
-}
-.pill-wide{ min-width:246px; }
-
-.brandkits-card h3{
-  margin:48px 0 10px; font-weight:700; font-size:clamp(28px,3vw,50px); line-height:1.04; letter-spacing:-.03em;
-}
-.brandkits-card p{
-  margin:10px auto 0; max-width:366px; font-weight:400; font-size:clamp(16px,1.7vw,30px); color:#8D8D8F; letter-spacing:-.03em;
+@keyframes floatCard{
+  0%,100% { transform:translateY(0); }
+  50%     { transform:translateY(-6px); }
 }
 
-/* mobile padding tweak */
-@media(max-width:600px){
-  .brandkits-section{ padding:80px 5% 100px; }
-  .brandkits-header p{ margin-bottom:50px; }
+/* =====================================
+   PHILOSOPHY SECTION
+===================================== */
+.philo-section{
+  background:#F3F3F3;
+  padding:60px 0;
 }
-/* --- Animated concentric logo (scoped) --- */
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
+.philo-section .wrap{
+  width:100%; margin-inline:auto; padding-inline:16px;
+}
+.philo-top{
+  margin-bottom:40px; text-align:left;
+}
+.philo-chip-outline{
+  display:inline-block; border:1px solid var(--text); padding:4px 12px;
+  border-radius:20px; font-size:14px; font-weight:700;
+  letter-spacing:.05em; text-transform:uppercase;
+  margin-bottom:12px;
+}
+.philo-title{
+  font-weight:700; font-size:clamp(32px, 8vw, 60px);
+  line-height:1.1; letter-spacing:-.04em; margin:0;
+}
+.philo-grid{
+  display:grid; grid-template-columns:1fr; gap:24px;
+}
+.philo-card{
+  display:block; border-radius:16px; overflow:hidden; position:relative;
+  min-height:280px; background:#000;
+  text-decoration:none; color:inherit;
+}
+.philo-img{
+  width:100%; height:100%; object-fit:cover;
+  display:block; opacity:.8; transition:opacity .3s ease;
+}
+.philo-card:hover .philo-img{ opacity:.5; }
+.philo-caption{
+  position:absolute; bottom:0; left:0; right:0; padding:16px;
+  color:#fff;
+  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+.philo-caption h3{
+  font-weight:700; font-size:clamp(24px, 5vw, 40px);
+  line-height:1.1; letter-spacing:-.03em; margin:0;
+}
+.philo-chip{
+  position:absolute; top:16px; right:16px;
+  display:inline-block; padding:6px 14px; border-radius:20px;
+  background:rgba(255,255,255,0.9); color:var(--text);
+  font-weight:700; font-size:14px;
+}
 
+/* =====================================
+   BRAND KITS SECTION
+===================================== */
+.brandkits-section{
+  background:#fff;
+  padding:60px 0 100px;
+  overflow:hidden;
+}
+.brandkits-section .wrap{
+  width:100%; margin-inline:auto; padding-inline:16px;
+}
+.brandkits-top{
+  display:block; text-align:center;
+  margin:0 auto 40px;
+}
+.brandkits-logo-frame{
+  display:flex; justify-content:center; margin-bottom:20px;
+}
+
+/* Animated logo */
 .bk-logo{
   position:relative;
-  width:clamp(200px,40vw,440px);
+  width:clamp(150px, 30vw, 440px);
   aspect-ratio:1/1;
   display:flex; align-items:center; justify-content:center;
 }
+.bk-ring{
+  position:absolute; border-radius:50%;
+  animation:bk-pulse 6s ease-in-out infinite;
+}
+.bk-outer{ width:100%; height:100%; background:#DBF5FC; animation-delay:0s; }
+.bk-middle{ width:77%; height:77%; background:#3CA2F6; animation-delay:1s; }
+.bk-inner{ width:49%; height:49%; background:#3C75F6; animation-delay:2s; }
 
-.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
-.bk-outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.bk-middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.bk-inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-
-@keyframes bk-pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
+@keyframes bk-pulse{
+  0%,100% { transform:scale(1); opacity:1; }
+  50%     { transform:scale(1.04); opacity:.9; }
+}
 
 .bk-text{
   position:relative; z-index:2; color:#fff;
   font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
+  font-size:clamp(20px, 4vw, 70px); line-height:1; letter-spacing:-.04em;
+  text-align:center;
+}
+
+.brandkits-header h2{
+  font-weight:700;
+  font-size:clamp(36px,9vw,60px);
+  line-height:1.04;
+  letter-spacing:-.03em;
+  color:#000;
+  margin:0 0 10px;
+}
+.brandkits-header p{
+  font-weight:400;
+  font-size:clamp(16px,4vw,24px);
+  color:var(--muted);
+  margin:0;
+}
+
+.brandkits-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:24px;
+  margin:24px auto 0;
+}
+.brandkits-card{
+  box-sizing:border-box;
+  width:100%;
+  border:2px solid #E1E4E6;
+  border-radius:30px;
+  padding:32px;
+  transition:all .25s ease;
+  text-align:left;
+  text-decoration:none; color:inherit;
+}
+.brandkits-card:hover{
+  background:#F7F3ED;
+  border-color:#E1E4E6;
+  box-shadow:5px 5px 2px 5px rgba(0,0,0,0.05);
+}
+.pill{
+  display:inline-grid; place-items:center;
+  min-width:120px; height:40px; padding:0 14px;
+  background:#DBF5FC; border-radius:20px;
+  font-size:16px; color:#000; font-weight:700;
+}
+.pill-wide{ min-width:160px; }
+.brandkits-card h3{
+  margin:20px 0 8px;
+  font-weight:700; font-size:clamp(24px,5vw,50px);
+  line-height:1.04; letter-spacing:-.03em;
+}
+.brandkits-card p{
+  margin:0;
+  font-weight:400; font-size:clamp(15px,3vw,30px);
+  color:var(--muted); letter-spacing:-.03em;
+}
+
+/* =====================================
+   STICKY FOOTER CTA (Mobile)
+===================================== */
+@media (max-width: 980px) {
+  .sticky-cta-footer{
+    position:fixed; bottom:0; left:0; right:0; z-index:250;
+    padding:12px 16px;
+    background:#fff;
+    border-top:1px solid #eee;
+    box-shadow:0 -4px 10px rgba(0,0,0,0.05);
+  }
+  .sticky-cta-footer .btn{
+    width:100%; margin:0;
+  }
+}
+
+/* =====================================
+   MODAL STYLES
+===================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 24px;
+  max-width: 90vw;
+  width: 700px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.is-open .modal-content { transform: translateY(0); }
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: 300;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 100vw;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .modal-body { padding: 16px; }
+}
+
+/* =====================================
+   DESKTOP & TABLET OVERRIDES (≥981px)
+===================================== */
+@media (min-width:981px){
+  body{ padding-bottom:0; }
+
+  .wrap{
+    max-width:1728px;
+    padding-inline:24px;
+  }
+
+  header{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center; column-gap:32px;
+    padding:28px 0;
+    position:sticky; top:0; background:var(--bg);
+  }
+  header .logo{ margin-left:16px; }
+  header .nav-bar{
+    display:flex !important; align-items:center; gap:72px;
+    justify-self:center;
+    font:400 20px/1.04 "Helvetica", Arial, sans-serif;
+    letter-spacing:-.03em;
+    list-style:none; margin:0; padding:0;
+  }
+  header .hamburger{ display:none !important; }
+  header .btn-contact{
+    display:grid !important;
+    height:47px; min-width:151px; padding:0 18px;
+    border:1px solid #000; border-radius:10px;
+    background:#000; color:#fff;
+    place-items:center; font-weight:700; letter-spacing:-.03em;
+    justify-self:end;
+  }
+  header .btn-contact:hover{ background:var(--blue); border-color:var(--blue); }
+  .sticky-cta-footer{ display:none !important; }
+
+  /* Desktop dropdown nav */
+  header .nav-bar > li{ position:relative; }
+  header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
+  header .nav-link .caret{
+    width:0; height:0; display:inline-block;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:8px solid var(--text);
+    transform:translateY(2px);
+  }
+  header .menu{
+    position:absolute; left:50%; top:calc(100% + 14px);
+    transform:translateX(-50%);
+    display:none; min-width:320px; background:#fff;
+    border:2px solid #000; border-radius:24px; padding:14px;
+    box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
+    z-index:1000;
+  }
+  header .menu.open{ display:block; }
+  header .menu::before{
+    content:""; position:absolute; inset:-30px -40px -40px -40px;
+    background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
+    border-radius:36px; z-index:-1;
+  }
+  header .menu a{
+    display:flex; align-items:center; gap:12px;
+    padding:14px; border-radius:14px;
+    font-size:20px; letter-spacing:-.03em;
+  }
+  header .menu a:hover{ background:#F3F3F3; }
+  header .menu a.is-heading{
+    background:#F3F3F3; font-weight:700; border-radius:16px;
+  }
+  header .menu svg,
+  header .menu img.bi{
+    width:20px; height:20px; color:#888;
+    filter:grayscale(1) brightness(.55);
+    flex:0 0 20px;
+  }
+  header .menu .icon-chip{
+    display:inline-grid; place-items:center;
+    width:28px; height:28px; border-radius:8px;
+    border:2px solid #CFCFCF; background:#fff; color:#888;
+    flex:0 0 28px;
+  }
+
+  /* Hero Desktop */
+  .hero{ padding:120px 0 80px; }
+  .hero .wrap{ padding-inline:0; max-width:1728px; }
+  .hero h1{
+    text-align:center;
+    max-width:1061px;
+    margin-inline:auto;
+    font-size:100px;
+  }
+  .hero p{
+    text-align:center;
+    max-width:1020px;
+    margin-inline:auto;
+    font-size:30px;
+  }
+  .ctas{
+    flex-direction:row;
+    justify-content:center;
+    max-width:none;
+  }
+  .btn{
+    width:151px; max-width:none; height:47px;
+  }
+  .btn-primary{ width:128px; }
+
+  /* Scroll nav desktop: centered, no overflow */
+  .scroll-nav-section{ padding-bottom:60px; }
+  .scroll-nav-list{
+    max-width:1200px;
+    margin-inline:auto;
+    padding-inline:0;
+    justify-content:center;
+    overflow-x:hidden;
+  }
+  .scroll-nav-item a{
+    width:110px; min-width:110px; height:110px;
+  }
+
+  /* Why Section Desktop */
+  .why-section{ padding:120px 0; }
+  .why-section .wrap{ max-width:1728px; padding-inline:5%; }
+  .why-stat-group{ text-align:center; margin-bottom:100px; }
+  .why-stat{ font-size:80px; }
+  .why-proof{
+    justify-content:center; flex-wrap:nowrap;
+  }
+  .why-proof img{
+    height:auto; max-width:1436px;
+    display:block; opacity:1;
+  }
+  .why-grid{
+    grid-template-columns:repeat(2, minmax(400px,1fr));
+    gap:60px;
+  }
+  .why-text h3{ text-align:left; }
+  .why-text p{ text-align:left; margin-inline:0; }
+
+  /* Philosophy Desktop */
+  .philo-section{ padding:120px 0; }
+  .philo-section .wrap{ max-width:1728px; padding-inline:5%; }
+  .philo-top{
+    text-align:center;
+  }
+  .philo-title{
+    font-size:80px; max-width:1000px; margin-inline:auto;
+  }
+  .philo-grid{
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px;
+  }
+
+  /* Kits Desktop */
+  .brandkits-section{ padding:120px 0 160px; }
+  .brandkits-section .wrap{ max-width:1728px; padding-inline:5%; }
+  .brandkits-top{
+    display:grid;
+    grid-template-columns: minmax(220px, 440px) 1fr;
+    gap:48px; max-width:1400px;
+    text-align:left; margin-bottom:48px;
+  }
+  .brandkits-logo-frame{ justify-content:flex-start; margin-bottom:0; }
+  .brandkits-header h2{
+    font-size:100px; margin:0 0 14px;
+  }
+  .brandkits-header p{ font-size:30px; }
+  .bk-logo{
+    width:clamp(200px, 26vw, 440px);
+  }
+  .bk-text{
+    font-size:clamp(28px, 4vw, 70px);
+  }
+  .brandkits-grid{
+    max-width:1400px;
+  }
+  .brandkits-card{
+    padding:40px 36px 42px;
+    border-radius:45px;
+    text-align:center;
+  }
+  .brandkits-card p{
+    max-width:366px;
+    margin-inline:auto;
+  }
+  .pill{
+    font-size:30px; min-width:172px; height:61px;
+    border-radius:30.5px;
+  }
+}
+
+/* =====================================
+   CTA & Misc Animations
+===================================== */
+.btn-shine{
+  position:relative; overflow:hidden;
+}
+.btn-shine::before{
+  content:"";
+  position:absolute; inset:-50%;
+  background:linear-gradient(120deg,
+    transparent 0%,
+    rgba(255,255,255,0.75) 35%,
+    transparent 70%);
+  transform:translateX(-130%);
+  animation: btnShineSweep 4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes btnShineSweep{
+  to{ transform:translateX(130%); }
+}
+.btn-rise{
+  opacity:0; transform:translateY(14px);
+  animation: heroFadeUp 0.7s ease-out forwards;
+  animation-delay:0.45s;
+}
+.footer-gradient-cta{
+  background: var(--gradient);
+  background-size:220% 220%;
+  border:none; color:#fff;
+  box-shadow:0 10px 28px rgba(0,0,0,0.25);
+  animation: gradientShift 5s ease-in-out infinite;
+}
+@keyframes gradientShift{
+  0%   { background-position:0% 50%; }
+  50%  { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* =====================================
+   FOOTER (Minimal Black)
+===================================== */
+.tas-footer--black{
+  background:#000;
+  color:#fff;
+  padding:56px 5% 36px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.tas-fwrap{
+  max-width:1400px; margin:0 auto;
+  display:grid; gap:24px;
+}
+.tas-fbrand{
+  margin:0; padding:0; border:0; background:transparent; cursor:pointer;
+  text-align:left;
+  font-family:"Bricolage Grotesque", system-ui, sans-serif;
+  font-weight:700; line-height:0.95;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing:-0.04em;
+  color:#fff;
+}
+.tas-fnav{
+  display:flex; flex-wrap:wrap; gap:14px 28px;
+}
+.tas-fnav a{
+  color:#bbb; text-decoration:none; font-size:18px;
+  letter-spacing:-.01em;
+  transition:color .18s ease;
+}
+.tas-fnav a:hover{ color:#fff; }
+
+.tas-fmeta{
+  display:flex; flex-direction:column; gap:10px;
+}
+.tas-fsocial{
+  display:flex; gap:10px; align-items:center;
+  color:#666; font-size:16px;
+}
+.tas-fsocial a{
+  color:#bbb; text-decoration:none; transition:color .18s ease;
+}
+.tas-fsocial a:hover{ color:#fff; }
+
+.tas-femail,
+.tas-ffeedback{
+  color:#bbb; text-decoration:none; font-size:16px;
+  transition:color .18s ease;
+}
+.tas-femail:hover,
+.tas-ffeedback:hover{ color:#fff; }
+
+.tas-fcopy{
+  margin:8px 0 0; color:#777; font-size:14px;
+}
+
+@media (min-width: 900px){
+  .tas-fwrap{
+    grid-template-columns: 1fr auto auto;
+    align-items:start;
+  }
+  .tas-fbrand{ grid-column:1 / 2; }
+  .tas-fnav{ grid-column:2 / 3; justify-self:center; }
+  .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
+  .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
 }
 </style>
 </head>
 <body>
 
-  <div class="modal-overlay" id="cta-modal-overlay" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" aria-label="Close dialog" id="modal-close-btn">×</button>
-      <div class="modal-body">
-        <h2 id="modal-title" style="margin-top: 0;">Loading Form...</h2>
-        <iframe id="modal-iframe" src="" frameborder="0" style="width: 100%; height: 600px; border: none;" allow="clipboard-write"></iframe>
-      </div>
+<!-- MODAL -->
+<div class="modal-overlay" id="cta-modal-overlay" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Close dialog" id="modal-close-btn">×</button>
+    <div class="modal-body">
+      <h2 id="modal-title" style="margin-top: 0;">Loading Form...</h2>
+      <iframe id="modal-iframe" src="" frameborder="0"
+              style="width: 100%; height: 600px; border: none;"
+              allow="clipboard-write"></iframe>
     </div>
   </div>
-  
-  <style>
-    /* MODAL STYLES (REQUIRED FOR FUNCTIONALITY) */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease;
-    }
-  
-    .modal-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-    }
-  
-    .modal-content {
-      position: relative;
-      background: #fff;
-      border-radius: 24px;
-      max-width: 90vw;
-      width: 700px;
-      max-height: 90vh;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-  
-    .is-open .modal-content {
-      transform: translateY(0);
-    }
-  
-    .modal-body {
-      padding: 24px;
-      overflow-y: auto;
-      max-height: 90vh;
-    }
-  
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 28px;
-      font-weight: 300;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: #000;
-      z-index: 10;
-    }
-  
-    /* Mobile fullscreen */
-    @media (max-width: 768px) {
-      .modal-content {
-        max-width: 100vw;
-        width: 100%;
-        height: 100%;
-        max-height: 100vh;
-        border-radius: 0;
-      }
-      .modal-body {
-        padding: 16px;
-      }
-    }
-  </style>
-  
-  <script>
-    // MODAL SCRIPT FOR CTAS
-    document.addEventListener('DOMContentLoaded', () => {
-      const modalOverlay = document.getElementById('cta-modal-overlay');
-      const iframe = document.getElementById('modal-iframe');
-      const modalTitle = document.getElementById('modal-title');
-      const closeBtn = document.getElementById('modal-close-btn');
-      const triggers = document.querySelectorAll('.cta-modal-trigger');
-  
-      if (!modalOverlay || !iframe || !modalTitle || !closeBtn || triggers.length === 0) return;
-  
-      function openModal(url, title) {
-        modalTitle.textContent = title;
-        iframe.src = url;
-        modalOverlay.classList.add('is-open');
-        modalOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        // Optional: focus the modal for accessibility
-        modalOverlay.focus();
-      }
-  
-      function closeModal() {
-        modalOverlay.classList.remove('is-open');
-        modalOverlay.setAttribute('aria-hidden', 'true');
-        iframe.src = ''; // Clear iframe content
-        document.body.style.overflow = ''; // Re-enable body scrolling
-      }
-  
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          const url = trigger.getAttribute('data-form-url');
-          const title = trigger.getAttribute('data-title') || 'Form';
-          if (url) openModal(url, title);
-        });
-      });
-  
-      closeBtn.addEventListener('click', closeModal);
-      modalOverlay.addEventListener('click', (e) => {
-        // Close when clicking the backdrop, but not the content
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
-  
-      // Close on Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('is-open')) {
-          closeModal();
-        }
-      });
-    });
-  
-    // Mobile nav script (re-inserted for completeness)
-    const openPanel = document.getElementById('openPanel');
-    const closePanel = document.getElementById('closePanel');
-    const panel = document.getElementById('panel');
-    openPanel?.addEventListener('click', ()=> panel?.classList.add('open'));
-    closePanel?.addEventListener('click', (e)=>{
-      e.preventDefault();
-      panel?.classList.remove('open');
-    });
-  </script>
-  </body>
-  </html>
+</div>
 
-  <div class="wrap">
-    <!-- HEADER -->
-    <header>
-      <div class="logo">
-        <a href="https://alundsvagen.github.io/ux/brands.html" target="_blank" rel="noopener">take away<br/>studio</a>
-      </div>
-    
-      <ul class="nav-bar" aria-label="Main">
-        <li>
-          <a href="https://alundsvagen.github.io/ux/brands.html" class="nav-link" data-dd="product">
-            Product <span class="caret" aria-hidden="true"></span>
+<div class="wrap">
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <a href="/">take away<br/>studio</a>
+    </div>
+
+    <ul class="nav-bar" aria-label="Main">
+      <li>
+        <a href="https://alundsvagen.github.io/ux/brands.html" class="nav-link" data-dd="product">
+          Product <span class="caret" aria-hidden="true"></span>
+        </a>
+        <div class="menu" id="dd-product" role="menu" aria-label="Product submenu">
+          <a href="https://alundsvagen.github.io/ux/brands.html">
+            <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/cart3.svg" alt="">
+            Brands
           </a>
-          <div class="menu" id="dd-product" role="menu" aria-label="Product submenu">
-            <a href="https://alundsvagen.github.io/ux/brands.html">
-              <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/cart3.svg" alt="">
-              Brands
-            </a>
-            <a href="https://alundsvagen.github.io/ux/ux.html">
-              <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/box-seam.svg" alt="">
-              UX packs
-            </a>
-          </div>          
-        </li>
-    
-        <li>
-          <a href="https://alundsvagen.github.io/ux/philosophy.html" class="nav-link" data-dd="philosophy">
-            Philosophy <span class="caret" aria-hidden="true"></span>
+          <a href="https://alundsvagen.github.io/ux/ux.html">
+            <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/box-seam.svg" alt="">
+            UX packs
           </a>
-          <div class="menu" id="dd-philosophy" role="menu" aria-label="Philosophy submenu">
-            <a href="https://alundsvagen.github.io/ux/About.html" class="is-heading">
-              <span class="icon-chip">
-                <svg viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
-                  <path d="M10.5 5.5L6 10h3v1H5v-4h1v3l4.5-4.5z"/>
-                </svg>
-              </span>
-              Philosophy
-            </a>
-            <a href="https://alundsvagen.github.io/ux/About.html">
-              <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/asterisk.svg" alt="">
-              About
-            </a>
-            <a href="https://alundsvagen.github.io/ux/services.html">
-              <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/back.svg" alt="">
-              Services
-            </a>
-            <a href="https://alundsvagen.github.io/ux/meditate.html">
-              <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/brilliance.svg" alt="">
-              Mediate
-            </a>
-          </div>          
-        </li>
-    
-        <li><a class="nav-link" href="https://alundsvagen.github.io/ux/custom.html">Custom</a></li>
-        <li><a class="nav-link" href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a></li>
-      </ul>
-    
-      <a class="btn-contact cta-modal-trigger" 
-      href="#" 
-      data-form-url="https://form.fillout.com/t/wSoN83phHnus"
-      data-title="Contact Us">
+        </div>
+      </li>
+
+      <li>
+        <a href="https://alundsvagen.github.io/ux/philosophy.html" class="nav-link" data-dd="philosophy">
+          Philosophy <span class="caret" aria-hidden="true"></span>
+        </a>
+        <div class="menu" id="dd-philosophy" role="menu" aria-label="Philosophy submenu">
+          <a href="https://alundsvagen.github.io/ux/About.html" class="is-heading">
+            <span class="icon-chip">
+              <svg viewBox="0 0 16 16" fill="currentColor">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
+                <path d="M10.5 5.5L6 10h3v1H5v-4h1v3l4.5-4.5z"/>
+              </svg>
+            </span>
+            Philosophy
+          </a>
+          <a href="https://alundsvagen.github.io/ux/About.html">
+            <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/asterisk.svg" alt="">
+            About
+          </a>
+          <a href="https://alundsvagen.github.io/ux/services.html">
+            <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/back.svg" alt="">
+            Services
+          </a>
+          <a href="https://alundsvagen.github.io/ux/meditate.html">
+            <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/brilliance.svg" alt="">
+            Meditate
+          </a>
+        </div>
+      </li>
+
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/custom.html">Custom</a></li>
+      <li><a class="nav-link" href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a></li>
+    </ul>
+
+    <a class="btn-contact cta-modal-trigger"
+       href="#"
+       data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+       data-title="Contact Us">
       Contact
-      </a>      
-    <button class="hamburger" id="openPanel" aria-label="Open menu"><span></span></button>
-    </header>
-    
-    <nav class="panel" id="panel" aria-label="Mobile">
-      <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
-      <div class="panel-logo"><a href="https://alundsvagen.github.io/ux/brands.html">take away<br/>studio</a></div>
-    
-      <h4>Product</h4>
-      <a href="https://alundsvagen.github.io/ux/brands.html">Product</a>
-      <a href="https://alundsvagen.github.io/ux/brands.html">Brands</a>
-      <a href="https://alundsvagen.github.io/ux/ux.html">UX packs</a>
-    
-      <h4>Philosophy</h4>
-      <a href="https://alundsvagen.github.io/ux/philosophy.html">Philosophy</a>
-      <a href="https://alundsvagen.github.io/ux/About.html">About</a>
-      <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
-      <a href="https://alundsvagen.github.io/ux/meditate.html">Mediate</a>
-    
-      <h4>Other</h4>
-      <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
-      <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
-      <a href="#" class="cta-modal-trigger"
-      data-form-url="https://form.fillout.com/t/wSoN83phHnus"
-      data-title="Contact Us">
-     Contact
     </a>
-    </nav>
 
-    <!-- MOBILE PANEL -->
-    <nav class="panel" id="panel" aria-label="Mobile">
-      <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
-      <div class="panel-logo"><a href="https://alundsvagen.github.io/ux/brands.html">take away<br/>studio</a></div>
+    <button class="hamburger" id="openPanel" aria-label="Open menu"><span></span></button>
+  </header>
+</div>
 
-      <h4>Product</h4>
-      <a href="https://alundsvagen.github.io/ux/brands.html">Product</a>
-      <a href="https://alundsvagen.github.io/ux/brands.html">Brands</a>
-      <a href="https://alundsvagen.github.io/ux/ux.html">UX packs</a>
+<!-- MOBILE PANEL -->
+<nav class="panel" id="panel" aria-label="Mobile">
+  <button class="close" id="closePanel" aria-label="Close">×</button>
+  <div class="panel-logo"><a href="/">take away<br/>studio</a></div>
 
-      <h4>Philosophy</h4>
-      <a href="https://alundsvagen.github.io/ux/philosophy.html">Philosophy</a>
-      <a href="https://alundsvagen.github.io/ux/About.html">About</a>
-      <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
-      <a href="https://alundsvagen.github.io/ux/meditate.html">Mediate</a>
+  <h4>Product</h4>
+  <a href="https://alundsvagen.github.io/ux/brands.html">Brands</a>
+  <a href="https://alundsvagen.github.io/ux/ux.html">UX packs</a>
 
-      <h4>Other</h4>
-      <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
-      <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
-      <a href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
-    </nav>
+  <h4>Philosophy</h4>
+  <a href="https://alundsvagen.github.io/ux/philosophy.html">Philosophy</a>
+  <a href="https://alundsvagen.github.io/ux/About.html">About</a>
+  <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
+  <a href="https://alundsvagen.github.io/ux/meditate.html">Mediate</a>
 
-    <!-- HERO -->
-    <section class="hero">
-      <h1>Ready-Made SaaS Branding & UX Packs for Startups</h1>
-      <p>
-        Finally, there is an easier way for SaaS startups to implement a fresh, consistent brand and UX.
-        Instead of hiring an agency, you can launch with ready-made SaaS branding and UX packs today and
-        save the big custom project for later.
-      </p>
-      
+  <h4>Other</h4>
+  <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
+  <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
+  <a href="#"
+     class="cta-modal-trigger"
+     data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+     data-title="Contact Us"
+     style="background: var(--blue); color: white; margin-top: 15px;">
+    Contact Us
+  </a>
+</nav>
 
-      <div class="ctas">
-        <a class="btn btn-primary" href="https://alundsvagen.github.io/ux/brands.html">Brands</a>
-        <button class="btn btn-outline cta-modal-trigger" 
-                data-form-url="https://form.fillout.com/t/4ZUPhq7GzKus"
-                data-title="Test a Mini Pack">
-          Test a Mini Pack
-        </button>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Ready-Made SaaS Branding & UX Packs for Startups</h1>
+    <p>
+      Finally, there is an easier way for SaaS startups to implement a fresh, consistent brand and UX.
+      Instead of hiring an agency, you can launch with ready-made SaaS branding and UX packs today and
+      save the big custom project for later.
+    </p>
 
-      <div class="media-wrap">
-        <img src="landing2.gif" alt="Ready-made SaaS branding and UX packs landing page demo" class="media" />
-      </div>
-    </section>
+    <div class="ctas">
+      <a class="btn btn-primary btn-shine" href="https://alundsvagen.github.io/ux/brands.html">
+        Brand Packs
+      </a>
+      <button class="btn btn-outline btn-rise cta-modal-trigger"
+              data-form-url="https://form.fillout.com/t/4ZUPhq7GzKus"
+              data-title="Get in touch.">
+        Get Mini Pack
+      </button>
+    </div>
+
+    <div class="media-wrap">
+      <img src="landing2.gif"
+           alt="Ready-made SaaS branding and UX packs landing page demo"
+           class="media" />
+    </div>
   </div>
+</section>
 
-<!-- WHY BUY A READY-MADE DESIGN SECTION -->
+<!-- HORIZONTAL SCROLL NAV -->
+<section class="scroll-nav-section">
+  <ul class="scroll-nav-list">
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/brands.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/cart3.svg" alt="">
+        Brands
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/ux.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/box-seam.svg" alt="">
+        UX Packs
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/services.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/back.svg" alt="">
+        Services
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/About.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/asterisk.svg" alt="">
+        About
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/meditate.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/brilliance.svg" alt="">
+        Meditate
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/custom.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/wrench-adjustable.svg" alt="">
+        Custom
+      </a>
+    </li>
+    <li class="scroll-nav-item">
+      <a href="https://alundsvagen.github.io/ux/pricing.html">
+        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/coin.svg" alt="">
+        Pricing
+      </a>
+    </li>
+  </ul>
+</section>
+
+<!-- WHY SECTION (from desktop, styled mobile-first) -->
 <section class="why-section">
   <div class="wrap">
-
     <div class="why-stat-group">
       <h2 class="why-stat">+14 SaaS & tech design consulting clients</h2>
       <div class="why-proof">
-        <img src="proof.png" alt="Logos of SaaS and fintech clients working with Take Away Studio" />
+        <img src="proof.png"
+             alt="Logos of SaaS and fintech clients working with Take Away Studio" />
       </div>
     </div>
 
@@ -652,140 +1031,54 @@ header .menu .icon-chip{
         </p>
       </div>
 
-      <!-- GIF placeholder -->
       <div class="why-media">
-        <img src="landing.gif" alt="Demo of ready-made SaaS brand pack applied to a product UI" />
+        <img src="landing.gif"
+             alt="Demo of ready-made SaaS brand pack applied to a product UI" />
       </div>
     </div>
   </div>
 </section>
 
-<style>
-/* ----- WHY SECTION ----- */
-.why-section{
-  background:#fff;
-  padding:120px 0;
-  display:flex;
-  justify-content:center;
-}
-.why-section .wrap{
-  width:min(1728px, 100%);
-  margin-inline:auto;
-  padding:0 5%;
-}
-
-/* Stat header & logos */
-.why-stat-group{
-  text-align:center;
-  margin-bottom:100px;
-}
-.why-stat{
-  font-family:'Bricolage Grotesque', sans-serif;
-  font-weight:700;
-  font-size:clamp(32px,5.6vw,80px); /* reduced to ~80% */
-  line-height:1;
-  letter-spacing:-0.04em;
-  color:#000;
-  margin:0 0 40px;
-}
-.why-proof img{
-  width:100%;
-  max-width:1436px;
-  height:auto;
-  display:block;
-  margin-inline:auto;
-}
-
-/* Content grid */
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
-  align-items:start;
-  gap:60px;
-}
-.why-text h3{
-  font-family:'Helvetica', sans-serif;
-  font-weight:700;
-  font-size:clamp(36px,5vw,100px);
-  line-height:1.04;
-  letter-spacing:-0.03em;
-  color:#000;
-  margin:0 0 40px;
-}
-.why-text p{
-  font-family:'Helvetica', sans-serif;
-  font-weight:400;
-  font-size:clamp(16px,2vw,30px);
-  line-height:1.4;
-  letter-spacing:-0.03em;
-  color:#8D8D8F;
-  max-width:500px;
-}
-.why-media {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;          /* keeps rounded corners */
-  background: transparent;   /* no black bar */
-}
-
-.why-media img {
-  width: 100%;
-  height: auto;              /* keeps correct GIF ratio */
-  display: block;
-  object-fit: cover;         /* optional: crops nicely if needed */
-  border-radius: inherit;
-}
-
-
-@media(max-width:800px){
-  .why-grid{grid-template-columns:1fr;}
-  .why-text h3{text-align:center;}
-  .why-text p{text-align:center; margin-inline:auto;}
-}
-</style>
-
-<!-- ================== PHILOSOPHY / ABOUT & MORE ================== -->
+<!-- PHILOSOPHY / ABOUT -->
 <section class="philo-section">
-  <div class="philo-wrap">
-
-    <!-- Top row: outline chip + heading -->
+  <div class="wrap">
     <div class="philo-top">
       <span class="philo-chip-outline">Background</span>
       <h2 class="philo-title">Our SaaS branding philosophy, UX packs &amp; story</h2>
     </div>
 
-    <!-- Cards -->
     <div class="philo-grid">
-
       <a class="philo-card" href="https://alundsvagen.github.io/ux/ux.html">
-        <img src="dark1.png" alt="SaaS UX pack interface for fast implementation" class="philo-img" />
+        <img src="dark1.png"
+             alt="SaaS UX pack interface for fast implementation"
+             class="philo-img" />
         <span class="philo-chip philo-chip--small">UX Packs</span>
         <div class="philo-caption"><h3>Fast Implementation</h3></div>
       </a>
 
       <a class="philo-card" href="https://alundsvagen.github.io/ux/brands.html">
-        <img src="dark2.png" alt="SaaS brand design pack showcasing quality design work" class="philo-img" />
+        <img src="dark2.png"
+             alt="SaaS brand design pack showcasing quality design work"
+             class="philo-img" />
         <span class="philo-chip philo-chip--small">Brand Packs</span>
         <div class="philo-caption"><h3>Quality Design Work</h3></div>
       </a>
 
       <a class="philo-card" href="https://alundsvagen.github.io/ux/About.html">
-        <img src="dark3.png" alt="Custom SaaS branding and UX design option" class="philo-img" />
+        <img src="dark3.png"
+             alt="Custom SaaS branding and UX design option"
+             class="philo-img" />
         <span class="philo-chip philo-chip--wide philo-chip--small">About</span>
         <div class="philo-caption"><h3>Customization if you need it.</h3></div>
       </a>
-
     </div>
   </div>
 </section>
 
-<!-- ===================== SCANDINAVIAN DESIGN / KITS ===================== -->
+<!-- BRAND KITS -->
 <section class="brandkits-section">
-  <div class="brandkits-container">
-
-    <!-- Top row: logo left, heading right -->
+  <div class="wrap">
     <div class="brandkits-top">
-      <!-- Animated logo (scoped classes) -->
       <div class="brandkits-logo-frame">
         <div class="bk-logo">
           <div class="bk-ring bk-outer"></div>
@@ -795,14 +1088,12 @@ header .menu .icon-chip{
         </div>
       </div>
 
-      <!-- Heading -->
       <div class="brandkits-header">
         <h2>Scandinavian SaaS branding &amp; UX design at our core.</h2>
         <p>Browse our kits: branding, ux &amp; ui at your fingertips.</p>
       </div>
     </div>
 
-    <!-- Cards -->
     <div class="brandkits-grid">
       <a href="https://alundsvagen.github.io/ux/brands.html" class="brandkits-card">
         <span class="pill">Simple</span>
@@ -825,334 +1116,13 @@ header .menu .icon-chip{
   </div>
 </section>
 
-<style>
-/* =============================================================================
-   SHARED BRAND TOKENS (scoped within sections below via colors/spacing)
-   ========================================================================== */
-
-/* ===================== KITS SECTION (white bg) ===================== */
-.brandkits-section{
-  background:#fff;
-  padding:120px 5% 160px;
-  overflow:hidden;
-}
-.brandkits-top{
-  display:grid;
-  grid-template-columns: minmax(220px, 440px) 1fr; /* logo | text */
-  align-items:center;
-  gap:48px;
-  max-width:1400px;
-  margin:0 auto 48px;
-}
-.brandkits-header h2{
-  font-family:'Helvetica',sans-serif;
-  font-weight:700;
-  font-size:clamp(36px,5vw,100px);
-  line-height:1.04;
-  letter-spacing:-.03em;
-  color:#000;
-  margin:0 0 14px;
-}
-.brandkits-header p{
-  font-family:'Helvetica',sans-serif;
-  font-weight:400;
-  font-size:clamp(16px,1.8vw,30px);
-  color:#8D8D8F;
-  margin:0;
-}
-
-/* Animated logo (scoped) */
-.brandkits-logo-frame{ display:flex; justify-content:flex-start; }
-.bk-logo{
-  position:relative;
-  width:clamp(200px, 26vw, 440px);
-  aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
-.bk-outer{ width:100%; height:100%; background:#DBF5FC; animation-delay:0s; }
-.bk-middle{ width:77%; height:77%; background:#3CA2F6; animation-delay:1s; }
-.bk-inner{ width:49%; height:49%; background:#3C75F6; animation-delay:2s; }
-@keyframes bk-pulse{ 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.04);opacity:.9} }
-.bk-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(28px,4vw,70px); line-height:1; letter-spacing:-.04em;
-  text-align:center;
-}
-
-/* Cards (white) */
-.brandkits-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(260px, 1fr));
-  gap:36px;
-  max-width:1400px;
-  margin:24px auto 0;
-}
-.brandkits-card{
-  box-sizing:border-box;
-  width:100%;
-  border:2px solid #E1E4E6;
-  border-radius:45px;
-  padding:32px 28px 38px;
-  background:#fff; color:#000; text-decoration:none;
-  transition:all .25s ease;
-}
-.brandkits-card:hover{
-  background:#F7F3ED;
-  border-color:#E1E4E6;
-  box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
-}
-.brandkits-card:hover p{ color:#000; }
-
-/* Pill/tag (smaller, shared spec) */
-.pill,
-.philo-chip{
-  display:inline-grid; place-items:center;
-  min-width:118px; height:40px; padding:0 12px;
-  background:#DBF5FC; border-radius:20px;
-  font-family:'Helvetica',sans-serif;
-  font-size:clamp(14px,1.4vw,20px);
-  color:#000;
-}
-.pill-wide,
-.philo-chip--wide{ min-width:150px; }
-
-/* Card headings/body */
-.brandkits-card h3{
-  margin:40px 0 10px;
-  font-family:'Helvetica',sans-serif;
-  font-weight:700;
-  font-size:clamp(26px,2.8vw,50px);
-  line-height:1.04; letter-spacing:-.03em;
-}
-.brandkits-card p{
-  font-family:'Helvetica',sans-serif;
-  font-weight:400;
-  font-size:clamp(15px,1.5vw,22px);
-  color:#8D8D8F;
-  max-width:520px; margin:8px 0 0;
-}
-
-/* Responsive (kits) */
-@media(max-width:1100px){
-  .brandkits-top{ grid-template-columns:1fr; gap:28px; text-align:center; }
-  .brandkits-logo-frame{ justify-content:center; }
-  .brandkits-grid{ grid-template-columns:repeat(2, minmax(240px, 1fr)); }
-}
-@media(max-width:700px){
-  .brandkits-grid{ grid-template-columns:1fr; }
-  .brandkits-section{ padding:80px 5% 100px; }
-}
-
-/* ===================== PHILOSOPHY SECTION (light grey bg) ===================== */
-.philo-section{
-  background:#EBEEF5;
-  padding:120px 5% 120px;
-}
-.philo-wrap{
-  width:min(1728px,100%);
-  margin:0 auto;
-}
-
-/* Top row */
-.philo-top{
-  display:flex;
-  align-items:center;
-  gap:28px;
-  flex-wrap:wrap;
-  margin:0 auto 36px;
-  max-width:1400px;
-}
-.philo-title{
-  margin:0;
-  font-family:'Helvetica',sans-serif;
-  font-weight:700;
-  font-size:clamp(36px,5vw,100px);
-  line-height:1.04;
-  letter-spacing:-.03em;
-  color:#000;
-}
-.philo-chip-outline{
-  display:inline-grid; place-items:center;
-  min-width:180px; height:44px; padding:0 18px;
-  border:1px solid #000; border-radius:30.5px;
-  font-family:'Helvetica',sans-serif; color:#000;
-  font-size:clamp(16px,1.7vw,30px);
-  background:transparent;
-}
-
-/* Grid */
-.philo-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(260px,1fr));
-  gap:36px;
-  max-width:1400px;
-  margin:36px auto 0;
-}
-
-/* Card (image + dark caption on desktop for contrast) */
-.philo-card{
-  position:relative;
-  display:block;
-  border:2px solid #E1E4E6;
-  border-radius:45px;
-  overflow:hidden;
-  background:#fff;
-  isolation:isolate;
-  transition:transform .25s ease, box-shadow .25s ease;
-  text-decoration:none;
-  color:inherit;
-}
-.philo-img{
-  display:block;
-  width:100%; height:100%;
-  aspect-ratio: 463 / 672;
-  object-fit:cover;
-}
-
-/* darken-on-hover overlay */
-.philo-card::after{
-  content:"";
-  position:absolute; inset:0;
-  background:transparent;
-  transition:background .25s ease;
-  border-radius:45px;
-  z-index:1;
-}
-.philo-card:hover::after{ background:#000; }
-
-/* small chips (same spec as pill, but white per design) */
-.philo-chip{
-  position:absolute; left:28px; top:28px;
-  background:#fff;
-  z-index:2;
-}
-.philo-chip--small{ min-width:118px; height:40px; }
-
-/* dark caption */
-.philo-caption{
-  position:absolute; left:24px; right:24px; bottom:24px;
-  background:rgba(0,0,0,.85);
-  border-radius:20px; padding:18px 18px;
-  z-index:2;
-}
-.philo-caption h3{
-  margin:0; color:#fff;
-  font-family:'Helvetica',sans-serif;
-  font-weight:700;
-  font-size:clamp(22px,3vw,50px);
-  line-height:1.04; letter-spacing:-.03em;
-}
-
-/* hover lift */
-.philo-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 30px rgba(0,0,0,0.10);
-}
-
-/* ---------- Mobile: make Philosophy cards match kits cards (white) ---------- */
-@media (max-width:700px){
-  .philo-grid{ grid-template-columns:1fr; }
-  .philo-section{ padding:80px 5% 90px; }
-
-  .philo-card{
-    border:2px solid #E1E4E6;
-    border-radius:45px;
-    background:#FFFFFF;
-    overflow:hidden;
-    box-shadow:none;
-    transform:none;
-  }
-  .philo-card::after{ background:transparent !important; }
-
-  .philo-img{
-    width:100%;
-    aspect-ratio: 463 / 380;
-    object-fit:cover;
-    border-radius:45px 45px 0 0;
-  }
-
-  .philo-chip{
-    left:20px; top:20px;
-    min-width:118px; height:40px;
-    border-radius:20px;
-    background:#DBF5FC; /* match kits tag color on mobile */
-  }
-  .philo-chip--wide{ min-width:150px; }
-
-  .philo-caption{
-    position:static;
-    background:transparent;
-    border-radius:0;
-    padding:20px 22px 28px;
-  }
-  .philo-caption h3{
-    color:#000;
-    font-size:26px;
-  }
-
-  .philo-card:hover{
-    background:#F7F3ED;
-    border-color:#E1E4E6;
-    box-shadow:0 8px 18px rgba(0,0,0,0.05);
-    transform:translateY(0);
-  }
-}
-
-/* Tablet layout harmony */
-@media (max-width:1100px) and (min-width:701px){
-  .philo-grid{ grid-template-columns:repeat(2, minmax(240px,1fr)); }
-}
-</style>
-
-
-<script>
-  // --- Desktop dropdowns: open on click, close on outside click ---
-  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
-  const menus = new Map();
-
-  triggerLinks.forEach(link=>{
-    const id = link.dataset.dd;
-    const menu = document.getElementById(`dd-${id}`);
-    if(menu){ menus.set(link, menu); }
-
-    link.addEventListener('click', (e)=>{
-      e.preventDefault();
-      // toggle this one, close others
-      menus.forEach((m, l)=>{
-        if(l===link){ m.classList.toggle('open'); }
-        else{ m.classList.remove('open'); }
-      });
-    });
-  });
-
-  document.addEventListener('click', (e)=>{
-    // close if clicking away from any open menu/trigger
-    let inside = false;
-    menus.forEach((menu, link)=>{
-      if(menu.contains(e.target) || link.contains(e.target)) inside = true;
-    });
-    if(!inside){ menus.forEach(m=>m.classList.remove('open')); }
-  });
-
-  // --- Mobile panel ---
-  const open = document.getElementById('openPanel');
-  const close = document.getElementById('closePanel');
-  const panel = document.getElementById('panel');
-  open?.addEventListener('click', ()=> panel.classList.add('open'));
-  close?.addEventListener('click', (e)=> { e.preventDefault(); panel.classList.remove('open'); });
-</script>
-
-<!-- ===== FOOTER — Minimal Black ===== -->
+<!-- FOOTER -->
 <footer class="tas-footer--black">
   <div class="tas-fwrap">
-    <!-- Wordmark (scroll to top) -->
     <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
       take away<br/>studio
     </button>
 
-    <!-- Nav -->
     <nav class="tas-fnav" aria-label="Footer">
       <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
       <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
@@ -1160,7 +1130,6 @@ header .menu .icon-chip{
       <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
     </nav>
 
-    <!-- Contact / Social -->
     <div class="tas-fmeta">
       <div class="tas-fsocial">
         <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
@@ -1175,95 +1144,103 @@ header .menu .icon-chip{
   </div>
 </footer>
 
-<style>
-/* ===== Minimal Black Footer ===== */
-.tas-footer--black{
-  background:#000;
-  color:#fff;
-  padding:56px 5% 36px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-.tas-fwrap{
-  max-width:1400px; margin:0 auto;
-  display:grid; gap:24px;
-}
-
-/* Brand wordmark (text only) */
-.tas-fbrand{
-  margin:0; padding:0; border:0; background:transparent; cursor:pointer;
-  text-align:left;
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight:700; line-height:0.95;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing:-0.04em;
-  color:#fff;
-}
-
-/* Nav links */
-.tas-fnav{
-  display:flex; flex-wrap:wrap; gap:14px 28px;
-}
-.tas-fnav a{
-  color:#bbb; text-decoration:none; font-size:18px; letter-spacing:-.01em;
-  transition:color .18s ease;
-}
-.tas-fnav a:hover{ color:#fff; }
-
-/* Meta block */
-.tas-fmeta{
-  display:flex; flex-direction:column; gap:10px;
-}
-.tas-fsocial{
-  display:flex; gap:10px; align-items:center; color:#666; font-size:16px;
-}
-.tas-fsocial a{
-  color:#bbb; text-decoration:none; transition:color .18s ease;
-}
-.tas-fsocial a:hover{ color:#fff; }
-
-.tas-femail,
-.tas-ffeedback{
-  color:#bbb; text-decoration:none; font-size:16px;
-  transition:color .18s ease;
-}
-.tas-femail:hover,
-.tas-ffeedback:hover{ color:#fff; }
-
-/* Copyright */
-.tas-fcopy{
-  margin:8px 0 0; color:#777; font-size:14px;
-}
-
-/* Layout: stack on mobile, align on desktop */
-@media (min-width: 900px){
-  .tas-fwrap{
-    grid-template-columns: 1fr auto auto;
-    align-items:start;
-  }
-  .tas-fbrand{ grid-column:1 / 2; }
-  .tas-fnav{ grid-column:2 / 3; justify-self:center; }
-  .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
-  .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
-}
-</style>
+<!-- STICKY CTA (mobile only) -->
+<div class="sticky-cta-footer">
+  <button class="btn btn-primary footer-gradient-cta btn-shine cta-modal-trigger"
+          data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+          data-title="Branding, Design, UX.">
+    Say hello 👋
+  </button>
+</div>
 
 <script>
-  // Scroll to top on wordmark click
+  // MODAL + DROPDOWNS + CTA
+  document.addEventListener('DOMContentLoaded', () => {
+    const modalOverlay = document.getElementById('cta-modal-overlay');
+    const iframe       = document.getElementById('modal-iframe');
+    const modalTitle   = document.getElementById('modal-title');
+    const closeBtn     = document.getElementById('modal-close-btn');
+    const triggers     = document.querySelectorAll('.cta-modal-trigger');
+
+    // Desktop dropdown nav
+    const ddTriggers = document.querySelectorAll('[data-dd]');
+    ddTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        const menuId = trigger.getAttribute('data-dd');
+        const menu = document.getElementById('dd-' + menuId);
+        if (menu) {
+          document.querySelectorAll('.menu.open').forEach(openMenu => {
+            if (openMenu !== menu) openMenu.classList.remove('open');
+          });
+          menu.classList.toggle('open');
+          e.preventDefault();
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-bar')) {
+        document.querySelectorAll('.menu.open').forEach(openMenu => {
+          openMenu.classList.remove('open');
+        });
+      }
+    });
+
+    if (!modalOverlay || !iframe || !modalTitle || !closeBtn || triggers.length === 0) return;
+
+    function openModal(url, title) {
+      modalTitle.textContent = title;
+      iframe.src = url;
+      modalOverlay.classList.add('is-open');
+      modalOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modalOverlay.focus();
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('is-open');
+      modalOverlay.setAttribute('aria-hidden', 'true');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url   = trigger.getAttribute('data-form-url');
+        const title = trigger.getAttribute('data-title') || 'Form';
+        panel?.classList.remove('open'); // close mobile panel if open
+        if (url) openModal(url, title);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  });
+
+  // Mobile nav
+  const openPanel = document.getElementById('openPanel');
+  const closePanel = document.getElementById('closePanel');
+  const panel = document.getElementById('panel');
+  openPanel?.addEventListener('click', () => panel?.classList.add('open'));
+  closePanel?.addEventListener('click', (e) => {
+    e.preventDefault();
+    panel?.classList.remove('open');
+  });
+
+  // Footer scroll-to-top
   document.getElementById('tasScrollTop')?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-</script>
 
-
-<script>
-  // Smooth scroll to top via footer logo
-  document.getElementById('footerScrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-
-<script>
-  // Force all <a> links to open in the same tab
+  // Ensure all links open in same tab
   document.querySelectorAll('a').forEach(a => {
     a.removeAttribute('target');
     a.removeAttribute('rel');
