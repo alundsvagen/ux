@@ -3,340 +3,177 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Contact Take Away Studio – SaaS Branding Packages & UX Consulting</title>
+  <title>Contact Take Away Studio – SaaS Branding Packages & UX Consulting</title>
 
-<meta name="description" content="Contact Take Away Studio in Stockholm to talk about ready-made SaaS branding packages, UX and UI consulting. Book a call, connect on LinkedIn or email us about branding for your 10–50 person SaaS startup." />
+  <meta name="description" content="Contact Take Away Studio in Stockholm to talk about ready-made SaaS branding packages, UX and UI consulting. Book a call, connect on LinkedIn or email us about branding for your 10–50 person SaaS startup." />
 
-<link rel="canonical" href="https://alundsvagen.github.io/ux/contact.html" />
+  <link rel="canonical" href="https://alundsvagen.github.io/ux/contact.html" />
 
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Contact Take Away Studio – SaaS Branding Packages & UX Consulting" />
-<meta property="og:description" content="Reach Take Away Studio in Stockholm to discuss ready-made SaaS branding packages, UX and UI consulting, or custom brand work for your startup." />
-<meta property="og:url" content="https://alundsvagen.github.io/ux/contact.html" />
-<meta property="og:image" content="https://alundsvagen.github.io/ux/building2.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Take Away Studio – SaaS Branding Packages & UX Consulting" />
+  <meta property="og:description" content="Reach Take Away Studio in Stockholm to discuss ready-made SaaS branding packages, UX and UI consulting, or custom brand work for your startup." />
+  <meta property="og:url" content="https://alundsvagen.github.io/ux/contact.html" />
+  <meta property="og:image" content="https://alundsvagen.github.io/ux/building2.png" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Contact Take Away Studio – SaaS Branding & UX" />
-<meta name="twitter:description" content="Book a SaaS branding call, email us or connect on LinkedIn. Take Away Studio helps 10–50 person SaaS startups with ready-made brand packs and UX consulting." />
-<meta name="twitter:image" content="https://alundsvagen.github.io/ux/building2.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Take Away Studio – SaaS Branding & UX" />
+  <meta name="twitter:description" content="Book a SaaS branding call, email us or connect on LinkedIn. Take Away Studio helps 10–50 person SaaS startups with ready-made brand packs and UX consulting." />
+  <meta name="twitter:image" content="https://alundsvagen.github.io/ux/building2.png" />
 
-<link rel="icon"
-      href='data:image/svg+xml;utf8,
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="32" fill="%23D28137"/>
-  <circle cx="32" cy="32" r="24" fill="%23D35224"/>
-  <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
-</svg>'>
+  <link rel="icon"
+        href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="32" fill="%23D28137"/>
+    <circle cx="32" cy="32" r="24" fill="%23D35224"/>
+    <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
+  </svg>'>
 
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
 
-<style>
-/* ------------------------------------
-   Take Away Studio — Full Stylesheet
-   (nav + hero + sections, mobile-first)
-------------------------------------- */
+  <style>
+  /* ------------------------------------
+     Take Away Studio — Shared Layout
+  ------------------------------------- */
 
-/* ========== VARIABLES & BASE ========== */
-:root{
-  --bg:#F7F3ED;
-  --text:#000;
-  --muted:#8D8D8F;
-  --blue:#3C75F6;
-  --brand:#D28137;
-  --menuIcon:#8C8D91;
-}
+  :root{
+    --bg:#F7F3ED;
+    --text:#000;
+    --muted:#8D8D8F;
+    --blue:#3C75F6;
+    --brand:#D28137;
+    --menuIcon:#8C8D91;
+  }
 
-*{ box-sizing:border-box }
-html,body{ height:100% }
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font:400 16px/1.04 "Helvetica", Arial, sans-serif;
-}
-a{ color:inherit; text-decoration:none }
-.wrap{ width:min(1728px,100%); margin-inline:auto; position:relative; padding-inline:16px }
+  *{ box-sizing:border-box }
+  html,body{ height:100% }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:400 16px/1.04 "Helvetica", Arial, sans-serif;
+  }
+  a{ color:inherit; text-decoration:none }
+  .wrap{ width:min(1728px,100%); margin-inline:auto; position:relative; padding-inline:16px }
 
-/* =====================================
-   HEADER / NAV (scoped, responsive)
-===================================== */
-header{
-  position:relative; z-index:200; background:var(--bg);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:16px 14px; gap:12px;
-}
-
-/* Logo */
-header .logo{
-  font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
-  letter-spacing:-.04em;
-}
-header .logo a:hover{ color:var(--brand) }
-
-/* Contact button */
-header .btn-contact{
-  height:47px; min-width:151px; padding:0 18px;
-  border:1px solid #000; border-radius:10px; background:#000; color:#fff;
-  display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
-}
-header .btn-contact:hover{ background:var(--blue); border-color:var(--blue) }
-
-/* Desktop nav (hidden on mobile) */
-header .nav-bar{
-  display:none; /* mobile first */
-  list-style:none; margin:0; padding:0;
-}
-
-/* Hamburger (mobile) */
-header .hamburger{
-  display:flex; width:46px; height:45px; border-radius:22px; background:#E1E4E6;
-  align-items:center; justify-content:center;
-}
-header .hamburger span{
-  display:block; width:24px; height:16px; position:relative;
-  border-top:3px solid #000; border-bottom:3px solid #000;
-}
-header .hamburger span:after{
-  content:""; position:absolute; inset:0; height:3px; top:50%;
-  transform:translateY(-50%); background:#000;
-}
-
-/* Desktop layout */
-@media (min-width:981px){
+  /* HEADER / NAV */
   header{
-    display:grid;
-    grid-template-columns:auto 1fr auto; /* logo | nav | contact */
-    align-items:center; column-gap:32px; padding:28px 24px;
+    position:relative; z-index:200; background:var(--bg);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 14px; gap:12px;
   }
-  header .logo{ margin-left:16px; }
+
+  header .logo{
+    font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.04em;
+  }
+  header .logo a:hover{ color:var(--brand) }
+
+  header .btn-contact{
+    height:47px; min-width:151px; padding:0 18px;
+    border:1px solid #000; border-radius:10px; background:#000; color:#fff;
+    display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
+  }
+  header .btn-contact:hover{ background:var(--blue); border-color:var(--blue) }
+
   header .nav-bar{
-    display:flex; align-items:center; gap:72px;
-    justify-self:center;
-    font:400 20px/1.04 "Helvetica", Arial, sans-serif;
-    letter-spacing:-.03em;
+    display:none;
+    list-style:none; margin:0; padding:0;
   }
-  header .hamburger{ display:none !important; }
-  header .btn-contact{ justify-self:end; }
-}
 
-/* Top-level nav links */
-header .nav-bar > li{ position:relative }
-header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
-header .nav-link .caret{
-  width:0; height:0; display:inline-block;
-  border-left:6px solid transparent;
-  border-right:6px solid transparent;
-  border-top:8px solid var(--text);
-  transform:translateY(2px);
-}
+  header .hamburger{
+    display:flex; width:46px; height:45px; border-radius:22px; background:#E1E4E6;
+    align-items:center; justify-content:center;
+  }
+  header .hamburger span{
+    display:block; width:24px; height:16px; position:relative;
+    border-top:3px solid #000; border-bottom:3px solid #000;
+  }
+  header .hamburger span:after{
+    content:""; position:absolute; inset:0; height:3px; top:50%;
+    transform:translateY(-50%); background:#000;
+  }
 
-/* Dropdown card */
-header .menu{
-  position:absolute; left:50%; top:calc(100% + 14px);
-  transform:translateX(-50%);
-  display:none; min-width:320px; background:#fff;
-  border:2px solid #000; border-radius:24px; padding:14px;
-  box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
-  z-index:1000;
-}
-header .menu.open{ display:block; }
-header .menu::before{
-  content:""; position:absolute; inset:-30px -40px -40px -40px;
-  background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
-  border-radius:36px; z-index:-1;
-}
+  @media (min-width:981px){
+    header{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center; column-gap:32px; padding:28px 24px;
+      position:sticky; top:0;
+    }
+    header .logo{ margin-left:16px; }
+    header .nav-bar{
+      display:flex; align-items:center; gap:72px;
+      justify-self:center;
+      font:400 20px/1.04 "Helvetica", Arial, sans-serif;
+      letter-spacing:-.03em;
+    }
+    header .hamburger{ display:none !important; }
+    header .btn-contact{ justify-self:end; }
+  }
 
-header .menu a{
-  display:flex; align-items:center; gap:12px;
-  padding:14px; border-radius:14px; font-size:20px; letter-spacing:-.03em;
-}
-header .menu a:hover{ background:#F3F3F3; }
-header .menu a.is-heading{ background:#F3F3F3; font-weight:700; border-radius:16px; }
+  header .nav-bar > li{ position:relative }
+  header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
+  header .nav-link .caret{
+    width:0; height:0; display:inline-block;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:8px solid var(--text);
+    transform:translateY(2px);
+  }
 
-/* Icons in dropdown */
-header .menu svg,
-header .menu img.bi{
-  width:20px; height:20px; color:#888; filter:grayscale(1) brightness(.55);
-  flex:0 0 20px;
-}
-header .menu .icon-chip{
-  display:inline-grid; place-items:center;
-  width:28px; height:28px; border-radius:8px;
-  border:2px solid #CFCFCF; background:#fff; color:#888; flex:0 0 28px;
-}
+  header .menu{
+    position:absolute; left:50%; top:calc(100% + 14px);
+    transform:translateX(-50%);
+    display:none; min-width:320px; background:#fff;
+    border:2px solid #000; border-radius:24px; padding:14px;
+    box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
+    z-index:1000;
+  }
+  header .menu.open{ display:block; }
+  header .menu::before{
+    content:""; position:absolute; inset:-30px -40px -40px -40px;
+    background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
+    border-radius:36px; z-index:-1;
+  }
 
-/* Mobile sheet */
-.panel{
-  display:none; position:fixed; inset:0; background:#fff; z-index:300;
-  padding:18px 18px 32px; overflow:auto;
-}
-.panel.open{ display:block }
-.panel .close{ position:absolute; right:16px; top:12px; font-size:26px; color:#000; }
-.panel h4{ margin:18px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:#666; }
-.panel a{ display:flex; align-items:center; gap:10px; padding:12px 10px; border-radius:10px; font-size:18px; }
-.panel a:hover{ background:#F3F3F3; }
-.panel .panel-logo{
-  margin:4px 0 14px 2px;
-  font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em;
-}
-.panel .panel-logo a:hover{ color:var(--brand) }
+  header .menu a{
+    display:flex; align-items:center; gap:12px;
+    padding:14px; border-radius:14px; font-size:20px; letter-spacing:-.03em;
+  }
+  header .menu a:hover{ background:#F3F3F3; }
+  header .menu a.is-heading{ background:#F3F3F3; font-weight:700; border-radius:16px; }
 
-/* Force mobile behavior */
-@media (max-width:980px){
-  header .nav-bar{ display:none !important; }
-  header .hamburger{ display:flex !important; }
-}
+  header .menu svg,
+  header .menu img.bi{
+    width:20px; height:20px; color:#888; filter:grayscale(1) brightness(.55);
+    flex:0 0 20px;
+  }
+  header .menu .icon-chip{
+    display:inline-grid; place-items:center;
+    width:28px; height:28px; border-radius:8px;
+    border:2px solid #CFCFCF; background:#fff; color:#888; flex:0 0 28px;
+  }
 
-/* Optional: sticky header on desktop */
-@media (min-width:981px){
-  header{ position:sticky; top:0; }
-}
+  .panel{
+    display:none; position:fixed; inset:0; background:#fff; z-index:300;
+    padding:18px 18px 32px; overflow:auto;
+  }
+  .panel.open{ display:block }
+  .panel .close{ position:absolute; right:16px; top:12px; font-size:26px; color:#000; }
+  .panel h4{ margin:18px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:#666; }
+  .panel a{ display:flex; align-items:center; gap:10px; padding:12px 10px; border-radius:10px; font-size:18px; }
+  .panel a:hover{ background:#F3F3F3; }
+  .panel .panel-logo{
+    margin:4px 0 14px 2px;
+    font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em;
+  }
+  .panel .panel-logo a:hover{ color:var(--brand) }
 
-/* =====================================
-   HERO
-===================================== */
-.hero{ position:relative; padding:24px 0 60px }
-.hero h1{
-  margin:22px auto 0; max-width:1061px;
-  font-weight:700; font-size:clamp(38px, 7vw, 100px); line-height:1.04;
-  text-align:center; letter-spacing:-.03em; color:#000; transition:all .25s ease;
-}
-.hero h1:hover{
-  background:linear-gradient(90deg, #3C75F6 0%, #D35224 100%);
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent; color:transparent;
-}
-.hero p{
-  max-width:1020px; margin:24px auto 0; text-align:center; color:var(--muted);
-  font-size:clamp(15px, 2.1vw, 30px); letter-spacing:-.03em;
-}
-.ctas{ display:flex; gap:12px; justify-content:center; margin:28px auto 40px }
-.btn{ height:47px; display:grid; place-items:center; border-radius:10px; letter-spacing:-.03em; }
-.btn-primary{ width:128px; background:#000; color:#fff; font-weight:400 }
-.btn-primary:hover{
-  background:linear-gradient(91.89deg, #3C75F6 1.56%, #D35224 103.34%);
-  filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25)); color:#fff; font-weight:700;
-}
-.btn-outline{ width:151px; border:1px solid #000; background:transparent; color:#000; font-weight:400 }
-.btn-outline:hover{ border-color:transparent; font-weight:700; filter:drop-shadow(0px 2px 2px rgba(0,0,0,0.10)); }
-
-.media-wrap{ display:flex; justify-content:center; padding:16px 0 40px }
-.media{
-  width:min(1284px,92vw); aspect-ratio:1284/837;
-  background:linear-gradient(90deg,#3C75F6 0%, #D35224 100%); border-radius:8px;
-}
-
-/* =====================================
-   WHY BUY A READY-MADE DESIGN
-===================================== */
-.why-section{ background:#fff; padding:120px 0; display:flex; justify-content:center; }
-.why-section .wrap{ width:min(1728px,100%); margin-inline:auto; padding:0 5%; }
-
-.why-stat-group{ text-align:center; margin-bottom:100px; }
-.why-stat{
-  font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
-  font-size:clamp(32px,5.6vw,80px); line-height:1; letter-spacing:-.04em; color:#000; margin:0 0 40px;
-}
-.why-proof img{ width:100%; max-width:1436px; height:auto; display:block; margin-inline:auto; }
-
-.why-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
-  align-items:start; gap:60px;
-}
-.why-text h3{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 40px;
-}
-.why-text p{
-  font-weight:400; font-size:clamp(16px,2vw,30px); line-height:1.4; letter-spacing:-.03em; color:#8D8D8F; max-width:500px;
-}
-.why-media{ width:100%; aspect-ratio:909/716; background:#000; border-radius:12px; }
-@media(max-width:800px){
-  .why-grid{ grid-template-columns:1fr; }
-  .why-text h3{ text-align:center; } .why-text p{ text-align:center; margin-inline:auto; }
-}
-
-/* =====================================
-   BRAND KITS (renamed section)
-===================================== */
-.brandkits-section{ background:#fff; padding:120px 5% 160px; text-align:center; overflow:hidden; }
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
-
-/* animated concentric logo */
-.brandkits-logo-frame .logo{
-  position:relative; width:clamp(200px,40vw,440px); aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-.brandkits-logo-frame .ring{ position:absolute; border-radius:50%; animation:pulse 6s ease-in-out infinite; }
-.brandkits-logo-frame .ring.outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.brandkits-logo-frame .ring.middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.brandkits-logo-frame .ring.inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-@keyframes pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
-.brandkits-logo-frame .logo-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
-}
-
-.brandkits-header h2{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin-bottom:20px;
-}
-.brandkits-header p{ font-weight:400; font-size:clamp(18px,2vw,30px); color:#8D8D8F; margin-bottom:80px; }
-
-.brandkits-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:36px; justify-items:center;
-}
-.brandkits-card{
-  box-sizing:border-box; width:100%; max-width:460px; padding:40px 36px 42px;
-  border:2px solid #E1E4E6; border-radius:45px; background:#fff; color:#000;
-  transition:all .25s ease;
-}
-.brandkits-card:hover{
-  background:#F7F3ED; border-color:#E1E4E6; box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
-}
-.brandkits-card:hover p{ color:#000; }
-
-.pill{
-  display:inline-grid; place-items:center; min-width:172px; height:61px; padding:0 18px;
-  background:#DBF5FC; border-radius:30.5px; font-size:clamp(18px,2vw,30px); color:#000;
-}
-.pill-wide{ min-width:246px; }
-
-.brandkits-card h3{
-  margin:48px 0 10px; font-weight:700; font-size:clamp(28px,3vw,50px); line-height:1.04; letter-spacing:-.03em;
-}
-.brandkits-card p{
-  margin:10px auto 0; max-width:366px; font-weight:400; font-size:clamp(16px,1.7vw,30px); color:#8D8D8F; letter-spacing:-.03em;
-}
-
-/* mobile padding tweak */
-@media(max-width:600px){
-  .brandkits-section{ padding:80px 5% 100px; }
-  .brandkits-header p{ margin-bottom:50px; }
-}
-/* --- Animated concentric logo (scoped) --- */
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
-
-.bk-logo{
-  position:relative;
-  width:clamp(200px,40vw,440px);
-  aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-
-.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
-.bk-outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.bk-middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.bk-inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-
-@keyframes bk-pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
-
-.bk-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
-}
-</style>
+  @media (max-width:980px){
+    header .nav-bar{ display:none !important; }
+    header .hamburger{ display:flex !important; }
+  }
+  </style>
 </head>
 <body>
 
@@ -387,7 +224,7 @@ header .menu .icon-chip{
             </a>
             <a href="https://alundsvagen.github.io/ux/meditate.html">
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/brilliance.svg" alt="">
-              Mediate
+              Meditate
             </a>
           </div>          
         </li>
@@ -430,10 +267,10 @@ header .menu .icon-chip{
         Contact
       </a>
     </nav>
+  </div>
 
-
-    
-<section class="custom-hero">
+  <!-- CONTACT HERO -->
+  <section class="custom-hero anim-rise">
     <div class="custom-hero__wrap">
       <div class="custom-hero__text">
         <h1>Contact Take Away Studio for SaaS Branding & UX</h1>
@@ -444,12 +281,10 @@ header .menu .icon-chip{
           𖡡 Södermalm, Stockholm<br>
           +46 70 025 42 13
         </p>
-          
         <div class="custom-hero__cta">
-          <a class="btn btn-outline" 
-          href="https://www.linkedin.com/company/takeawaystudio">
-         Linkedin
-       </a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/company/takeawaystudio">
+            Linkedin
+          </a>
           <a class="btn btn-primary cta-modal-trigger" 
              href="#" 
              data-form-url="https://form.fillout.com/t/wSoN83phHnus"
@@ -458,13 +293,18 @@ header .menu .icon-chip{
           </a>
         </div>
       </div>
-  
+
       <figure class="custom-hero__media">
-        <img src="building2.png" alt="SaaS branding designer at work in the Take Away Studio Stockholm office" />
+        <img
+          src="building2.png"
+          alt="SaaS branding designer at work in the Take Away Studio Stockholm office"
+          decoding="async"
+          fetchpriority="high"
+        />
       </figure>      
     </div>
   </section>
-  
+
   <style>
   :root{
     --bg:#f8f8f8;
@@ -476,8 +316,8 @@ header .menu .icon-chip{
     --chip-tan:#DBF5FC;
     --radius:45px;
   }
-  
-  /* Shared buttons (match homepage hovers) */
+
+  /* Buttons */
   .btn{height:47px; display:inline-grid; place-items:center; border-radius:10px; padding:0 18px; letter-spacing:-.03em; text-decoration:none}
   .btn-primary{background:#000; color:#fff; border:1px solid #000}
   .btn-primary:hover{
@@ -488,14 +328,35 @@ header .menu .icon-chip{
   .btn-outline{border:1px solid #000; color:#000; background:transparent}
   .btn-outline:hover{border-color:transparent; font-weight:700; filter:drop-shadow(0px 2px 2px rgba(0,0,0,.10))}
   .btn-lg{height:64px; padding:0 24px; border-radius:12px; font-weight:700}
-  
-  /* Chips */
+
   .chip{display:inline-grid; place-items:center; height:40px; padding:0 14px; border-radius:20px; font-size:16px; letter-spacing:-.03em; white-space:nowrap}
   .chip-blue{background:var(--chip-blue); color:#000}
   .chip-tan{background:var(--chip-tan); color:#000}
   .chip-outline{border:1px solid #000; color:#000; background:transparent}
-  
-  /* ========== HERO ========== */
+
+  /* SOFT RISE-UP ANIMATION */
+  .anim-rise{
+    opacity:0;
+    transform:translateY(18px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+    will-change:opacity, transform;
+  }
+  .anim-rise.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion:reduce){
+    .anim-rise,
+    .anim-rise.is-visible{
+      opacity:1;
+      transform:none;
+      transition:none;
+    }
+  }
+
+  /* HERO */
   .custom-hero{background:var(--bg); padding:64px 5%}
   .custom-hero__wrap{max-width:1400px; margin:0 auto; display:grid; gap:28px; grid-template-columns:1fr; align-items:center}
   .custom-hero__text h1{
@@ -507,129 +368,91 @@ header .menu .icon-chip{
   .custom-hero__cta{display:flex; gap:12px; flex-wrap:wrap}
   .custom-hero__media{margin:0}
   .custom-hero__media img{width:100%; height:auto; border-radius:70px; display:block}
-  
+
   @media (min-width:980px){
     .custom-hero__wrap{grid-template-columns:1.1fr 1fr}
   }
 
-  /* ========== SERVICES GRID (Custom / Consulting Section) ========== */
-.services-grid {
-  background: #fff; /* white background like your mock */
-  padding: 100px 5%;
-}
+  /* Placeholder styles kept for consistency if you add more blocks later */
 
-.services-grid__wrap {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* Header: big left title + slim right text */
-.services-grid__head {
-  display: grid;
-  grid-template-columns: 1fr minmax(220px, 280px);
-  gap: 40px;
-  align-items: start;
-  margin: 0 0 40px;
-  background: #fff;
-}
-
-.services-grid__head h2 {
-  margin: 0;
-  font: 700 clamp(36px, 5.4vw, 100px) / 1.04 Helvetica, Arial, sans-serif;
-  letter-spacing: -0.03em;
-  color: #000;
-}
-
-.services-grid__head p {
-  margin: 0;
-  color: var(--muted);
-  font: 400 clamp(16px, 1.6vw, 30px) / 1.1 Helvetica, Arial, sans-serif;
-  letter-spacing: -0.03em;
-  max-width: 280px;
-}
-
-/* Cards layout */
-.cards {
-  display: grid;
-  gap: 36px;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-/* Card style */
-.card {
-  text-decoration: none;
-  color: #000;
-  border: 2px solid #E1E4E6;
-  border-radius: var(--radius);
-  padding: 32px 28px 34px;
-  transition: all 0.25s ease;
-  background: #fff;
-}
-
-.card:hover {
-  background: #F7F3ED;
-  box-shadow: 9px 9px 4px 9px rgba(0, 0, 0, 0.05);
-}
-
-.card .chip {
-  margin-right: 8px;
-  margin-bottom: 10px;
-}
-
-/* Remove blue chips completely */
-.chip-blue {
-  display: none !important;
-}
-
-/* Typography inside cards */
-.card h3 {
-  margin: 8px 0 8px;
-  font: 700 clamp(26px, 3vw, 50px) / 1.04 Helvetica, Arial, sans-serif;
-  letter-spacing: -0.03em;
-}
-
-.card p {
-  margin: 0;
-  color: var(--muted);
-  font: 400 clamp(15px, 1.6vw, 22px) / 1.25 Helvetica, Arial, sans-serif;
-}
-
-/* Responsive grid */
-@media (min-width: 800px) {
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .services-grid {
+    background:#fff;
+    padding:100px 5%;
   }
-}
-
-@media (min-width: 1100px) {
-  .cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .services-grid__wrap {
+    max-width:1400px;
+    margin:0 auto;
   }
-
-  /* visually balance last row */
-  .cards .card:nth-last-child(2) {
-    grid-column: 1;
-  }
-  .cards .card:last-child {
-    grid-column: 2;
-  }
-}
-
-/* Stack header on mobile */
-@media (max-width: 900px) {
   .services-grid__head {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display:grid;
+    grid-template-columns:1fr minmax(220px,280px);
+    gap:40px;
+    align-items:start;
+    margin:0 0 40px;
+    background:#fff;
+  }
+  .services-grid__head h2 {
+    margin:0;
+    font:700 clamp(36px,5.4vw,100px)/1.04 Helvetica, Arial, sans-serif;
+    letter-spacing:-0.03em;
+    color:#000;
   }
   .services-grid__head p {
-    max-width: none;
+    margin:0;
+    color:var(--muted);
+    font:400 clamp(16px,1.6vw,30px)/1.1 Helvetica, Arial, sans-serif;
+    letter-spacing:-0.03em;
+    max-width:280px;
   }
-}
+  .cards {
+    display:grid;
+    gap:36px;
+    grid-template-columns:repeat(1,minmax(0,1fr));
+  }
+  .card {
+    text-decoration:none;
+    color:#000;
+    border:2px solid #E1E4E6;
+    border-radius:var(--radius);
+    padding:32px 28px 34px;
+    transition:all 0.25s ease;
+    background:#fff;
+  }
+  .card:hover {
+    background:#F7F3ED;
+    box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
+  }
+  .card .chip {
+    margin-right:8px;
+    margin-bottom:10px;
+  }
+  .chip-blue { display:none !important; }
+  .card h3 {
+    margin:8px 0 8px;
+    font:700 clamp(26px,3vw,50px)/1.04 Helvetica, Arial, sans-serif;
+    letter-spacing:-0.03em;
+  }
+  .card p {
+    margin:0;
+    color:var(--muted);
+    font:400 clamp(15px,1.6vw,22px)/1.25 Helvetica, Arial, sans-serif;
+  }
+  @media (min-width:800px){
+    .cards{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (min-width:1100px){
+    .cards{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .cards .card:nth-last-child(2){grid-column:1;}
+    .cards .card:last-child{grid-column:2;}
+  }
+  @media (max-width:900px){
+    .services-grid__head{
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+    .services-grid__head p{max-width:none;}
+  }
 
-/* On wide screens: big headline left, short paragraph right */
-
-  
-  /* ========== SWEDEN SECTION ========== */
   .sweden{background:var(--bg); padding:100px 5%}
   .sweden__wrap{max-width:1400px; margin:0 auto; display:grid; gap:28px; grid-template-columns:1fr}
   .sweden__text h2{
@@ -640,16 +463,13 @@ header .menu .icon-chip{
   @media (min-width:980px){
     .sweden__wrap{grid-template-columns:1fr 1.2fr; align-items:center}
   }
-  
-  /* ========== TRUST + CONTACT ========== */
+
   .trust-contact{background:#fff; padding:100px 5%}
   .trust-contact__wrap{max-width:1400px; margin:0 auto}
   .trust-title{
     text-align:center; margin:0 0 24px;
     font:700 clamp(28px,4.2vw,80px)/1 Helvetica, Arial, sans-serif; letter-spacing:-.04em
   }
-  
-  /* marquee */
   .marquee{overflow:hidden; width:100%; border-radius:16px}
   .marquee .track{
     display:flex; align-items:center; gap:80px; animation:scroll 24s linear infinite
@@ -659,8 +479,6 @@ header .menu .icon-chip{
     0%{transform:translateX(0)}
     100%{transform:translateX(-66.66%)}
   }
-  
-  /* contact split */
   .contact-block{display:grid; grid-template-columns:1fr; gap:28px; align-items:center; margin-top:36px}
   .contact-block__text h3{
     font:700 clamp(36px,5.4vw,100px)/1.04 Helvetica, Arial, sans-serif; letter-spacing:-.03em; margin:12px 0 16px
@@ -671,341 +489,324 @@ header .menu .icon-chip{
   @media (min-width:980px){
     .contact-block{grid-template-columns:1fr 1.2fr}
   }
-  
-  /* Ensure all anchors stay same tab */
+
   .trust-contact a, .sweden a, .services-grid a, .custom-hero a{target-name:none}
   </style>
-  
+
   <script>
-    // Safety: strip target/rel so everything opens in same tab
-    document.querySelectorAll('.custom-hero a, .services-grid a, .sweden a, .trust-contact a')
-      .forEach(a => { a.removeAttribute('target'); a.removeAttribute('rel'); });
+    // Keep links in same tab
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.custom-hero a, .services-grid a, .sweden a, .trust-contact a')
+        .forEach(a => { a.removeAttribute('target'); a.removeAttribute('rel'); });
+    });
   </script>  
 
-<footer class="tas-footer--black full-bleed">
-  <div class="tas-fwrap full-bleed-inner">
-    <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
-      take away<br/>studio
-    </button>
+  <!-- FOOTER -->
+  <footer class="tas-footer--black full-bleed">
+    <div class="tas-fwrap full-bleed-inner">
+      <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
+        take away<br/>studio
+      </button>
 
-    <nav class="tas-fnav" aria-label="Footer">
-      <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
-      <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
-      <a href="https://alundsvagen.github.io/ux/About.html">About</a>
-      <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
-    </nav>
+      <nav class="tas-fnav" aria-label="Footer">
+        <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
+        <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
+        <a href="https://alundsvagen.github.io/ux/About.html">About</a>
+        <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
+      </nav>
 
-    <div class="tas-fmeta">
-      <div class="tas-fsocial">
-        <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
+      <div class="tas-fmeta">
+        <div class="tas-fsocial">
+          <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
+        </div>
+        <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
+        <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
       </div>
-      <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
-      <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
+
+      <p class="tas-fcopy">© Take Away Studio — 2025</p>
     </div>
+  </footer>
 
-    <p class="tas-fcopy">© Take Away Studio — 2025</p>
-  </div>
-</footer>
-
-<style>
-/* ===== Minimal Black Footer ===== */
-.tas-footer--black{
-  background:#000;
-  color:#fff;
-  font-family: Helvetica, Arial, sans-serif;
-}
-.tas-fwrap{
-  max-width:1400px; margin:0 auto;
-  display:grid; gap:24px;
-}
-
-/* ==== FULL BLEED HELPER ==== */
-/* Makes a section background stretch edge-to-edge, even inside .wrap */
-
-.full-bleed {
-  position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
-
-/* Inner content stays aligned with the rest of the site */
-.full-bleed-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 100px 5%;
-}
-
-
-/* Brand wordmark (text only) */
-.tas-fbrand{
-  margin:0; padding:0; border:0; background:transparent; cursor:pointer;
-  text-align:left;
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight:700; line-height:0.95;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing:-0.04em;
-  color:#fff;
-}
-
-/* Nav links */
-.tas-fnav{
-  display:flex; flex-wrap:wrap; gap:14px 28px;
-}
-.tas-fnav a{
-  color:#bbb; text-decoration:none; font-size:18px; letter-spacing:-.01em;
-  transition:color .18s ease;
-}
-.tas-fnav a:hover{ color:#fff; }
-
-/* Meta block */
-.tas-fmeta{
-  display:flex; flex-direction:column; gap:10px;
-}
-.tas-fsocial{
-  display:flex; gap:10px; align-items:center; color:#666; font-size:16px;
-}
-.tas-fsocial a{
-  color:#bbb; text-decoration:none; transition:color .18s ease;
-}
-.tas-fsocial a:hover{ color:#fff; }
-
-.tas-femail,
-.tas-ffeedback{
-  color:#bbb; text-decoration:none; font-size:16px;
-  transition:color .18s ease;
-}
-.tas-femail:hover,
-.tas-ffeedback:hover{ color:#fff; }
-
-/* Copyright */
-.tas-fcopy{
-  margin:8px 0 0; color:#777; font-size:14px;
-}
-
-/* Layout: stack on mobile, align on desktop */
-@media (min-width: 900px){
-  .tas-fwrap{
-    grid-template-columns: 1fr auto auto;
-    align-items:start;
+  <style>
+  .tas-footer--black{
+    background:#000;
+    color:#fff;
+    font-family: Helvetica, Arial, sans-serif;
   }
-  .tas-fbrand{ grid-column:1 / 2; }
-  .tas-fnav{ grid-column:2 / 3; justify-self:center; }
-  .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
-  .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
-}
-</style>
+  .tas-fwrap{
+    max-width:1400px; margin:0 auto;
+    display:grid; gap:24px;
+  }
 
-<script>
-  // Scroll to top on wordmark click
-  document.getElementById('tasScrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
+  .full-bleed {
+    position:relative;
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+  }
+  .full-bleed-inner {
+    max-width:1400px;
+    margin:0 auto;
+    padding:100px 5%;
+  }
 
+  .tas-fbrand{
+    margin:0; padding:0; border:0; background:transparent; cursor:pointer;
+    text-align:left;
+    font-family:"Bricolage Grotesque", system-ui, sans-serif;
+    font-weight:700; line-height:0.95;
+    font-size:clamp(32px, 5vw, 56px);
+    letter-spacing:-0.04em;
+    color:#fff;
+  }
+  .tas-fnav{
+    display:flex; flex-wrap:wrap; gap:14px 28px;
+  }
+  .tas-fnav a{
+    color:#bbb; text-decoration:none; font-size:18px; letter-spacing:-.01em;
+    transition:color .18s ease;
+  }
+  .tas-fnav a:hover{ color:#fff; }
 
-<script>
-  // Smooth scroll to top via footer logo
-  document.getElementById('footerScrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
+  .tas-fmeta{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .tas-fsocial{
+    display:flex; gap:10px; align-items:center; color:#666; font-size:16px;
+  }
+  .tas-fsocial a{
+    color:#bbb; text-decoration:none; transition:color .18s ease;
+  }
+  .tas-fsocial a:hover{ color:#fff; }
 
-<script>
-  // Force all <a> links to open in the same tab
-  document.querySelectorAll('a').forEach(a => {
-    a.removeAttribute('target');
-    a.removeAttribute('rel');
-  });
-</script>
+  .tas-femail,
+  .tas-ffeedback{
+    color:#bbb; text-decoration:none; font-size:16px;
+    transition:color .18s ease;
+  }
+  .tas-femail:hover,
+  .tas-ffeedback:hover{ color:#fff; }
 
-<script>
-  // --- Desktop dropdowns: open on click, close on outside click ---
-  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
-  const menus = new Map();
+  .tas-fcopy{
+    margin:8px 0 0; color:#777; font-size:14px;
+  }
 
-  triggerLinks.forEach(link => {
-    const id = link.dataset.dd;
-    const menu = document.getElementById(`dd-${id}`);
-    if (menu) menus.set(link, menu);
+  @media (min-width: 900px){
+    .tas-fwrap{
+      grid-template-columns: 1fr auto auto;
+      align-items:start;
+    }
+    .tas-fbrand{ grid-column:1 / 2; }
+    .tas-fnav{ grid-column:2 / 3; justify-self:center; }
+    .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
+    .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
+  }
+  </style>
 
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      menus.forEach((m, l) => {
-        if (l === link) {
-          m.classList.toggle('open');
-        } else {
-          m.classList.remove('open');
-        }
+  <script>
+    // Scroll to top on wordmark click
+    document.getElementById('tasScrollTop')?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <script>
+    // Desktop dropdowns
+    const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
+    const menus = new Map();
+
+    triggerLinks.forEach(link => {
+      const id = link.dataset.dd;
+      const menu = document.getElementById(`dd-${id}`);
+      if (menu) menus.set(link, menu);
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        menus.forEach((m, l) => {
+          if (l === link) {
+            m.classList.toggle('open');
+          } else {
+            m.classList.remove('open');
+          }
+        });
       });
     });
-  });
 
-  document.addEventListener('click', (e) => {
-    let inside = false;
-    menus.forEach((menu, link) => {
-      if (menu.contains(e.target) || link.contains(e.target)) inside = true;
+    document.addEventListener('click', (e) => {
+      let inside = false;
+      menus.forEach((menu, link) => {
+        if (menu.contains(e.target) || link.contains(e.target)) inside = true;
+      });
+      if (!inside) menus.forEach(m => m.classList.remove('open'));
     });
-    if (!inside) menus.forEach(m => m.classList.remove('open'));
-  });
 
-  // --- Mobile panel ---
-  const openPanelBtn = document.getElementById('openPanel');
-  const closePanelBtn = document.getElementById('closePanel');
-  const panel = document.getElementById('panel');
+    // Mobile panel
+    const openPanelBtn = document.getElementById('openPanel');
+    const closePanelBtn = document.getElementById('closePanel');
+    const panel = document.getElementById('panel');
 
-  openPanelBtn?.addEventListener('click', () => {
-    panel?.classList.add('open');
-  });
+    openPanelBtn?.addEventListener('click', () => {
+      panel?.classList.add('open');
+    });
 
-  closePanelBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    panel?.classList.remove('open');
-  });
-</script>
-
-<div id="cta-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modal-title">Contact Us</h3>
-      <button class="modal-close" id="close-modal" aria-label="Close modal">×</button>
-    </div>
-    <div class="modal-body">
-      <iframe id="modal-iframe" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
-
-<style>
-/* Modal CSS */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.3s;
-}
-
-.modal.is-open {
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal-content {
-  background: white;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 600px;
-  max-height: 90%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.modal-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-header h3 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0 5px;
-  color: #8D8D8F;
-}
-
-.modal-body {
-  flex-grow: 1;
-  padding: 0;
-}
-
-#modal-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  min-height: 400px; /* Adjust as needed */
-}
-</style>
-
-<script>
-  const modal = document.getElementById('cta-modal');
-  const closeButton = document.getElementById('close-modal');
-  const iframe = document.getElementById('modal-iframe');
-  const modalTitle = document.getElementById('modal-title');
-  const triggers = document.querySelectorAll('.cta-modal-trigger');
-
-  function openModal(url, title) {
-    iframe.src = url;
-    modalTitle.textContent = title;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling background
-  }
-
-  function closeModal() {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    // Give time for the modal transition before clearing the iframe
-    setTimeout(() => {
-      iframe.src = '';
-      modalTitle.textContent = 'Contact Us';
-    }, 300); 
-    document.body.style.overflow = ''; // Restore scrolling
-  }
-
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
+    closePanelBtn?.addEventListener('click', (e) => {
       e.preventDefault();
-      const url = trigger.dataset.formUrl;
-      const title = trigger.dataset.title || 'Contact Form';
-      if (url) {
-        openModal(url, title);
-      }
-      // If mobile panel is open, close it
       panel?.classList.remove('open');
     });
-  });
+  </script>
 
-  closeButton.addEventListener('click', closeModal);
+  <!-- Modal -->
+  <div id="cta-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Contact Us</h3>
+        <button class="modal-close" id="close-modal" aria-label="Close modal">×</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modal-iframe" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
-  // Close modal when clicking outside (on the overlay)
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
+  <style>
+  .modal {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    visibility:hidden;
+    opacity:0;
+    transition:visibility 0s, opacity 0.3s;
+  }
+  .modal.is-open {
+    visibility:visible;
+    opacity:1;
+  }
+  .modal-content {
+    background:white;
+    border-radius:12px;
+    width:90%;
+    max-width:600px;
+    max-height:90%;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  }
+  .modal-header {
+    padding:16px 20px;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .modal-header h3 {
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:-0.03em;
+  }
+  .modal-close {
+    background:none;
+    border:none;
+    font-size:30px;
+    cursor:pointer;
+    line-height:1;
+    padding:0 5px;
+    color:#8D8D8F;
+  }
+  .modal-body {
+    flex-grow:1;
+    padding:0;
+  }
+  #modal-iframe {
+    width:100%;
+    height:100%;
+    border:none;
+    min-height:400px;
+  }
+  </style>
+
+  <script>
+    // Modal logic
+    const modal = document.getElementById('cta-modal');
+    const closeButton = document.getElementById('close-modal');
+    const iframe = document.getElementById('modal-iframe');
+    const modalTitle = document.getElementById('modal-title');
+    const triggers = document.querySelectorAll('.cta-modal-trigger');
+
+    function openModal(url, title) {
+      iframe.src = url;
+      modalTitle.textContent = title;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
-  });
 
-  // Close modal when pressing the Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeModal();
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      setTimeout(() => {
+        iframe.src = '';
+        modalTitle.textContent = 'Contact Us';
+      }, 300);
+      document.body.style.overflow = '';
     }
-  });
-</script>
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = trigger.dataset.formUrl;
+        const title = trigger.dataset.title || 'Contact Form';
+        if (url) openModal(url, title);
+        panel?.classList.remove('open');
+      });
+    });
+
+    closeButton.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  </script>
+
+  <script>
+    // IntersectionObserver to trigger rise-up animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedBlocks = document.querySelectorAll('.anim-rise');
+
+      if (!('IntersectionObserver' in window)) {
+        animatedBlocks.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold:0.15 });
+
+      animatedBlocks.forEach(el => observer.observe(el));
+    });
+  </script>
 
 </body>
 </html>
+
