@@ -3,350 +3,557 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SaaS Branding Packages Pricing | Take Away Studio</title>
-  <meta name="description" content="Transparent pricing for ready-made SaaS branding packages and UX/UI design support, created for B2B SaaS startups with 10–50 employees who want agency-level design without hiring an agency." />  
-  <meta property="og:title" content="SaaS Branding Packages Pricing | Take Away Studio" />
-  <meta property="og:description" content="See transparent pricing for ready-made SaaS branding packages and UX/UI design support for B2B SaaS startups with 10–50 employees." />
-  <meta property="og:image" content="https://alundsvagen.github.io/ux/woman.png" />
-  <meta property="og:url" content="https://alundsvagen.github.io/ux/pricing.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SaaS Branding Packages Pricing | Take Away Studio" />
 
+  <title>Pricing — AI Brand System & Consulting | Take Away Studio</title>
+  <meta name="description" content="Pricing for Take Away Studio. An AI-powered brand system for €486, plus consulting with Alexandra Grisanti for established brands who want deeper brand discovery and product experience design." />
 
+  <!-- Favicon: stacked circles -->
+  <link rel="icon"
+        href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="32" fill="%23D28137"/>
+    <circle cx="32" cy="32" r="24" fill="%23D35224"/>
+    <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
+  </svg>'>
 
-<!-- Favicon: stacked circles -->
-<link rel="icon"
-      href='data:image/svg+xml;utf8,
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="32" fill="%23D28137"/>
-  <circle cx="32" cy="32" r="24" fill="%23D35224"/>
-  <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
-</svg>'>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
 
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
-
-<style>
-/* ------------------------------------
-   Take Away Studio — Full Stylesheet
-   (nav + hero + sections, mobile-first)
-------------------------------------- */
-
-/* ========== VARIABLES & BASE ========== */
-:root{
-  --bg:#ffffff;
-  --text:#000;
-  --muted:#8D8D8F;
-  --blue:#3C75F6;
-  --brand:#D28137;
-  --menuIcon:#8C8D91;
-}
-
-*{ box-sizing:border-box }
-html,body{ height:100% }
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font:400 16px/1.04 "Helvetica", Arial, sans-serif;
-}
-a{ color:inherit; text-decoration:none }
-.wrap{ width:min(1728px,100%); margin-inline:auto; position:relative; padding-inline:16px }
-
-/* =====================================
-   HEADER / NAV (scoped, responsive)
-===================================== */
-header{
-  position:relative; z-index:200; background:var(--bg);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:16px 14px; gap:12px;
-}
-
-/* Logo */
-header .logo{
-  font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
-  letter-spacing:-.04em;
-}
-header .logo a:hover{ color:var(--brand) }
-
-/* Contact button */
-header .btn-contact{
-  height:47px; min-width:151px; padding:0 18px;
-  border:1px solid #000; border-radius:10px; background:#000; color:#fff;
-  display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
-}
-header .btn-contact:hover{ background:var(--blue); border-color:var(--blue) }
-
-/* Desktop nav (hidden on mobile) */
-header .nav-bar{
-  display:none; /* mobile first */
-  list-style:none; margin:0; padding:0;
-}
-
-/* Hamburger (mobile) */
-header .hamburger{
-  display:flex; width:46px; height:45px; border-radius:22px; background:#E1E4E6;
-  align-items:center; justify-content:center;
-}
-header .hamburger span{
-  display:block; width:24px; height:16px; position:relative;
-  border-top:3px solid #000; border-bottom:3px solid #000;
-}
-header .hamburger span:after{
-  content:""; position:absolute; inset:0; height:3px; top:50%;
-  transform:translateY(-50%); background:#000;
-}
-
-/* Desktop layout */
-@media (min-width:981px){
-  header{
-    display:grid;
-    grid-template-columns:auto 1fr auto; /* logo | nav | contact */
-    align-items:center; column-gap:32px; padding:28px 24px;
+  <style>
+  /* ========= TOKENS ========= */
+  :root{
+    --page-bg:#FFFFFF;
+    --section-soft:#F7F3ED;
+    --text:#000;
+    --muted:#8D8D8F;
+    --blue:#3C75F6;
+    --brand:#D28137;
+    --chip-blue:#DBF5FC;
+    --radius-lg:45px;
   }
-  header .logo{ margin-left:16px; }
+
+  *{ box-sizing:border-box }
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+  }
+  body{
+    background:var(--page-bg);
+    color:var(--text);
+    font:400 16px/1.25 "Helvetica", Arial, sans-serif;
+  }
+  a{ color:inherit; text-decoration:none }
+
+  .page{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 16px 64px;
+  }
+
+  /* ========= HEADER / NAV ========= */
+  header{
+    position:relative; z-index:200; background:var(--page-bg);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0; gap:12px;
+  }
+
+  header .logo{
+    font:700 30px/1 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.04em;
+  }
+  header .logo a:hover{ color:var(--brand); }
+
+  header .btn-contact{
+    height:44px; min-width:140px; padding:0 16px;
+    border:1px solid #000; border-radius:10px; background:#000; color:#fff;
+    display:grid; place-items:center; font-weight:700; letter-spacing:-.03em;
+  }
+  header .btn-contact:hover{
+    background:var(--blue); border-color:var(--blue);
+  }
+
   header .nav-bar{
-    display:flex; align-items:center; gap:72px;
-    justify-self:center;
-    font:400 20px/1.04 "Helvetica", Arial, sans-serif;
+    display:none;
+    list-style:none; margin:0; padding:0;
+  }
+
+  header .hamburger{
+    display:flex; width:40px; height:40px; border-radius:20px; background:#E1E4E6;
+    align-items:center; justify-content:center; border:none;
+  }
+  header .hamburger span{
+    display:block; width:22px; height:14px; position:relative;
+    border-top:3px solid #000; border-bottom:3px solid #000;
+  }
+  header .hamburger span:after{
+    content:""; position:absolute; inset:0; height:3px; top:50%;
+    transform:translateY(-50%); background:#000;
+  }
+
+  @media (min-width:980px){
+    header{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      column-gap:32px;
+    }
+    header .nav-bar{
+      display:flex; align-items:center; gap:40px;
+      justify-self:center;
+      font:400 16px/1.04 "Helvetica", Arial, sans-serif;
+      letter-spacing:-.03em;
+    }
+    header .hamburger{ display:none !important; }
+    header .btn-contact{ justify-self:end; }
+  }
+
+  header .nav-bar > li{ position:relative }
+  header .nav-link{ display:inline-flex; align-items:center; gap:6px; }
+  header .nav-link .caret{
+    width:0; height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:7px solid var(--text);
+    transform:translateY(1px);
+  }
+
+  header .menu{
+    position:absolute; left:50%; top:calc(100% + 10px);
+    transform:translateX(-50%);
+    display:none; min-width:240px; background:#fff;
+    border:1px solid #000; border-radius:18px; padding:10px;
+    box-shadow:0 16px 40px rgba(0,0,0,.12);
+    z-index:1000;
+  }
+  header .menu.open{ display:block; }
+  header .menu a{
+    display:flex; align-items:center; gap:10px;
+    padding:10px; border-radius:10px; font-size:15px; letter-spacing:-.02em;
+  }
+  header .menu a:hover{ background:#F3F3F3; }
+  header .menu a.is-heading{ font-weight:700; }
+
+  header .menu img.bi{
+    width:18px; height:18px; filter:grayscale(1) brightness(.55);
+    flex:0 0 18px;
+  }
+
+  /* Mobile panel */
+  .panel{
+    display:none; position:fixed; inset:0; background:#fff; z-index:300;
+    padding:18px 18px 32px; overflow:auto;
+  }
+  .panel.open{ display:block }
+  .panel .close{
+    position:absolute; right:16px; top:12px;
+    font-size:26px; color:#000; text-decoration:none;
+  }
+  .panel h4{
+    margin:18px 0 8px; font-size:13px;
+    text-transform:uppercase; letter-spacing:.08em; color:#666;
+  }
+  .panel a{
+    display:flex; align-items:center; gap:10px;
+    padding:10px 8px; border-radius:8px; font-size:16px;
+  }
+  .panel a:hover{ background:#F3F3F3; }
+  .panel .panel-logo{
+    margin:4px 0 14px 2px;
+    font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.04em;
+  }
+
+  @media (max-width:979px){
+    header .nav-bar{ display:none !important; }
+    header .hamburger{ display:flex !important; }
+  }
+
+  /* ========= UTILITIES ========= */
+  .btn{
+    height:47px;
+    display:inline-grid; place-items:center;
+    padding:0 18px;
+    border-radius:10px;
+    border:1px solid #000;
+    letter-spacing:-.03em;
+    font-weight:600;
+    background:#000;
+    color:#fff;
+    cursor:pointer;
+  }
+  .btn:hover{
+    background:linear-gradient(91.89deg, #3C75F6 1.56%, #D35224 103.34%);
+    border-color:transparent;
+    filter:drop-shadow(0px 3px 4px rgba(0,0,0,0.2));
+  }
+  .btn-outline{
+    background:transparent;
+    color:#000;
+  }
+  .btn-outline:hover{
+    background:#000;
+    color:#fff;
+  }
+  .btn-lg{
+    height:56px; padding:0 24px; border-radius:12px;
+  }
+
+  .chip{
+    display:inline-grid; place-items:center;
+    height:30px; padding:0 12px;
+    border-radius:15px;
+    font-size:13px; letter-spacing:-.02em;
+    white-space:nowrap;
+  }
+  .chip-outline{
+    border:1px solid #000; background:transparent; color:#000;
+  }
+  .chip-blue{
+    background:var(--chip-blue); color:#000;
+  }
+
+  section{
+    margin-top:56px;
+  }
+
+  /* ========= HERO PRICING ========= */
+  .pricing-hero{
+    background:var(--section-soft);
+    border-radius:32px;
+    padding:32px 24px;
+  }
+  .pricing-hero__wrap{
+    display:grid;
+    gap:24px;
+    grid-template-columns:1fr;
+    align-items:center;
+  }
+  .pricing-hero__kicker{
+    margin-bottom:8px;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--muted);
+  }
+  .pricing-hero h1{
+    margin:0 0 10px;
+    font:700 clamp(32px,4vw,52px)/1.04 "Bricolage Grotesque", system-ui, sans-serif;
     letter-spacing:-.03em;
   }
-  header .hamburger{ display:none !important; }
-  header .btn-contact{ justify-self:end; }
-}
+  .pricing-hero p{
+    margin:0 0 8px;
+    max-width:580px;
+    color:var(--muted);
+    font-size:15px;
+  }
+  .pricing-price{
+    margin-top:12px;
+    padding:10px 14px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid #E1E4E6;
+    display:inline-flex;
+    flex-wrap:wrap;
+    gap:6px 10px;
+    align-items:baseline;
+    font-size:14px;
+  }
+  .pricing-price strong{
+    font-size:18px;
+  }
+  .pricing-hero__cta{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .pricing-hero__note{
+    font-size:13px; color:var(--muted); margin-top:6px;
+  }
+  .pricing-hero__side img{
+    width:100%; max-width:420px; height:auto;
+    border-radius:24px;
+    display:block;
+  }
 
-/* Top-level nav links */
-header .nav-bar > li{ position:relative }
-header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
-header .nav-link .caret{
-  width:0; height:0; display:inline-block;
-  border-left:6px solid transparent;
-  border-right:6px solid transparent;
-  border-top:8px solid var(--text);
-  transform:translateY(2px);
-}
+  @media (min-width:900px){
+    .pricing-hero__wrap{
+      grid-template-columns:1.1fr 1fr;
+    }
+    .pricing-hero{
+      padding:40px 40px;
+    }
+  }
 
-/* Dropdown card */
-header .menu{
-  position:absolute; left:50%; top:calc(100% + 14px);
-  transform:translateX(-50%);
-  display:none; min-width:320px; background:#fff;
-  border:2px solid #000; border-radius:24px; padding:14px;
-  box-shadow:0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(0,0,0,.06);
-  z-index:1000;
-}
-header .menu.open{ display:block; }
-header .menu::before{
-  content:""; position:absolute; inset:-30px -40px -40px -40px;
-  background:radial-gradient(60% 60% at 50% 0%, rgba(0,0,0,.08), transparent 60%);
-  border-radius:36px; z-index:-1;
-}
+  /* ========= AI BRAND SYSTEM ========= */
+  .bundle-header h2{
+    margin:0 0 8px;
+    font:700 28px/1.04 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.03em;
+  }
+  .bundle-header p{
+    margin:0;
+    color:var(--muted);
+    max-width:620px;
+    font-size:15px;
+  }
 
-header .menu a{
-  display:flex; align-items:center; gap:12px;
-  padding:14px; border-radius:14px; font-size:20px; letter-spacing:-.03em;
-}
-header .menu a:hover{ background:#F3F3F3; }
-header .menu a.is-heading{ background:#F3F3F3; font-weight:700; border-radius:16px; }
+  .bundle-card{
+    margin-top:20px;
+    border-radius:var(--radius-lg);
+    border:1px solid #E1E4E6;
+    padding:26px 22px 24px;
+    background:#fff;
+    box-shadow:0 8px 18px rgba(0,0,0,0.04);
+  }
 
-/* Icons in dropdown */
-header .menu svg,
-header .menu img.bi{
-  width:20px; height:20px; color:#888; filter:grayscale(1) brightness(.55);
-  flex:0 0 20px;
-}
-header .menu .icon-chip{
-  display:inline-grid; place-items:center;
-  width:28px; height:28px; border-radius:8px;
-  border:2px solid #CFCFCF; background:#fff; color:#888; flex:0 0 28px;
-}
+  .bundle-top{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 20px;
+    align-items:baseline;
+    justify-content:space-between;
+  }
+  .bundle-label{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--muted);
+  }
+  .bundle-price-main{
+    font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.03em;
+  }
+  .bundle-discount{
+    font-size:13px;
+    color:var(--muted);
+    text-align:right;
+  }
+  .bundle-discount del{ opacity:.7; }
 
-/* Mobile sheet */
-.panel{
-  display:none; position:fixed; inset:0; background:#fff; z-index:300;
-  padding:18px 18px 32px; overflow:auto;
-}
-.panel.open{ display:block }
-.panel .close{ position:absolute; right:16px; top:12px; font-size:26px; color:#000; }
-.panel h4{ margin:18px 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:#666; }
-.panel a{ display:flex; align-items:center; gap:10px; padding:12px 10px; border-radius:10px; font-size:18px; }
-.panel a:hover{ background:#F3F3F3; }
-.panel .panel-logo{
-  margin:4px 0 14px 2px;
-  font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em;
-}
-.panel .panel-logo a:hover{ color:var(--brand) }
+  .bundle-intro{
+    margin:14px 0 18px;
+    color:var(--muted);
+    font-size:14px;
+    max-width:680px;
+  }
 
-/* Force mobile behavior */
-@media (max-width:980px){
-  header .nav-bar{ display:none !important; }
-  header .hamburger{ display:flex !important; }
-}
+  .bundle-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  @media (min-width:800px){
+    .bundle-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+  }
 
-/* =====================================
-   HERO
-===================================== */
-.hero{ position:relative; padding:24px 0 60px }
-.hero h1{
-  margin:22px auto 0; max-width:1061px;
-  font-weight:700; font-size:clamp(38px, 7vw, 100px); line-height:1.04;
-  text-align:center; letter-spacing:-.03em; color:#000; transition:all .25s ease;
-}
-.hero h1:hover{
-  background:linear-gradient(90deg, #3C75F6 0%, #D35224 100%);
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent; color:transparent;
-}
-.hero p{
-  max-width:1020px; margin:24px auto 0; text-align:center; color:var(--muted);
-  font-size:clamp(15px, 2.1vw, 30px); letter-spacing:-.03em;
-}
-.ctas{ display:flex; gap:12px; justify-content:center; margin:28px auto 40px }
-.btn{ height:47px; display:grid; place-items:center; border-radius:10px; letter-spacing:-.03em; }
-.btn-primary{ width:128px; background:#000; color:#fff; font-weight:400 }
-.btn-primary:hover{
-  background:linear-gradient(91.89deg, #3C75F6 1.56%, #D35224 103.34%);
-  filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25)); color:#fff; font-weight:700;
-}
-.btn-outline{ width:151px; border:1px solid #000; background:transparent; color:#000; font-weight:400 }
-.btn-outline:hover{ border-color:transparent; font-weight:700; filter:drop-shadow(0px 2px 2px rgba(0,0,0,0.10)); }
+  .bundle-item{
+    border-radius:16px;
+    border:1px solid #E1E4E6;
+    padding:14px 12px 12px;
+    background:#FAFAFA;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .bundle-item-header{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:baseline;
+  }
+  .bundle-item-title{
+    font-weight:600;
+    font-size:14px;
+  }
+  .bundle-item-price{
+    font-weight:600;
+    font-size:13px;
+  }
+  .bundle-item-desc{
+    margin:0;
+    font-size:13px;
+    color:var(--muted);
+  }
 
-.media-wrap{ display:flex; justify-content:center; padding:16px 0 40px }
-.media{
-  width:min(1284px,92vw); aspect-ratio:1284/837;
-  background:linear-gradient(90deg,#3C75F6 0%, #D35224 100%); border-radius:8px;
-}
+  .bundle-foot{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .bundle-foot small{
+    font-size:12px;
+    color:var(--muted);
+    max-width:420px;
+  }
 
-/* =====================================
-   WHY BUY A READY-MADE DESIGN
-===================================== */
-.why-section{ background:#fff; padding:120px 0; display:flex; justify-content:center; }
-.why-section .wrap{ width:min(1728px,100%); margin-inline:auto; padding:0 5%; }
+  /* ========= CONSULTING ========= */
+  .consult-header h2{
+    margin:0 0 8px;
+    font:700 28px/1.04 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.03em;
+  }
+  .consult-header p{
+    margin:0;
+    color:var(--muted);
+    max-width:680px;
+    font-size:15px;
+  }
 
-.why-stat-group{ text-align:center; margin-bottom:100px; }
-.why-stat{
-  font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
-  font-size:clamp(32px,5.6vw,80px); line-height:1; letter-spacing:-.04em; color:#000; margin:0 0 40px;
-}
-.why-proof img{ width:100%; max-width:1436px; height:auto; display:block; margin-inline:auto; }
+  .consult-wrapper{
+    background:#F2F4F7;
+    border-radius:32px;
+    padding:26px 22px 28px;
+    margin-top:20px;
+  }
 
-.why-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(400px,1fr));
-  align-items:start; gap:60px;
-}
-.why-text h3{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 40px;
-}
-.why-text p{
-  font-weight:400; font-size:clamp(16px,2vw,30px); line-height:1.4; letter-spacing:-.03em; color:#8D8D8F; max-width:500px;
-}
-.why-media{ width:100%; aspect-ratio:909/716; background:#000; border-radius:12px; }
-@media(max-width:800px){
-  .why-grid{ grid-template-columns:1fr; }
-  .why-text h3{ text-align:center; } .why-text p{ text-align:center; margin-inline:auto; }
-}
+  .consult-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-top:14px;
+  }
+  @media (min-width:900px){
+    .consult-grid{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+  }
 
-/* =====================================
-   BRAND KITS (renamed section)
-===================================== */
-.brandkits-section{ background:#fff; padding:120px 5% 160px; text-align:center; overflow:hidden; }
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
+  .consult-card{
+    border-radius:22px;
+    border:1px solid #E1E4E6;
+    padding:18px 16px 16px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .consult-card h3{
+    margin:0;
+    font:700 18px/1.15 Helvetica, Arial, sans-serif;
+    letter-spacing:-.02em;
+  }
+  .consult-tag{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--muted);
+  }
+  .consult-body{
+    margin:0;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .consult-list{
+    margin:6px 0 0;
+    padding-left:18px;
+    font-size:13px;
+    color:var(--text);
+  }
+  .consult-list li{ margin-bottom:4px; }
 
-/* animated concentric logo */
-.brandkits-logo-frame .logo{
-  position:relative; width:clamp(200px,40vw,440px); aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-.brandkits-logo-frame .ring{ position:absolute; border-radius:50%; animation:pulse 6s ease-in-out infinite; }
-.brandkits-logo-frame .ring.outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.brandkits-logo-frame .ring.middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.brandkits-logo-frame .ring.inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-@keyframes pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
-.brandkits-logo-frame .logo-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
-}
+  .consult-foot{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 16px;
+    align-items:center;
+  }
+  .consult-foot p{
+    margin:0;
+    font-size:13px;
+    color:var(--muted);
+  }
 
-.brandkits-header h2{
-  font-weight:700; font-size:clamp(36px,5vw,100px); line-height:1.04; letter-spacing:-.03em; color:#000; margin-bottom:20px;
-}
-.brandkits-header p{ font-weight:400; font-size:clamp(18px,2vw,30px); color:#8D8D8F; margin-bottom:80px; }
+  /* ========= CONTACT CALLOUT ========= */
+  .contact-wrap{
+    text-align:center;
+  }
+  .contact-wrap h2{
+    margin:8px 0 8px;
+    font:700 26px/1.04 "Bricolage Grotesque", system-ui, sans-serif;
+    letter-spacing:-.03em;
+  }
+  .contact-wrap p{
+    margin:0 0 16px;
+    color:var(--muted);
+    font-size:14px;
+    max-width:520px;
+    margin-inline:auto;
+  }
 
-.brandkits-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:36px; justify-items:center;
-}
-.brandkits-card{
-  box-sizing:border-box; width:100%; max-width:460px; padding:40px 36px 42px;
-  border:2px solid #E1E4E6; border-radius:45px; background:#fff; color:#000;
-  transition:all .25s ease;
-}
-.brandkits-card:hover{
-  background:#F7F3ED; border-color:#E1E4E6; box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
-}
-.brandkits-card:hover p{ color:#000; }
-
-.pill{
-  display:inline-grid; place-items:center; min-width:172px; height:61px; padding:0 18px;
-  background:#DBF5FC; border-radius:30.5px; font-size:clamp(18px,2vw,30px); color:#000;
-}
-.pill-wide{ min-width:246px; }
-
-.brandkits-card h3{
-  margin:48px 0 10px; font-weight:700; font-size:clamp(28px,3vw,50px); line-height:1.04; letter-spacing:-.03em;
-}
-.brandkits-card p{
-  margin:10px auto 0; max-width:366px; font-weight:400; font-size:clamp(16px,1.7vw,30px); color:#8D8D8F; letter-spacing:-.03em;
-}
-
-/* mobile padding tweak */
-@media(max-width:600px){
-  .brandkits-section{ padding:80px 5% 100px; }
-  .brandkits-header p{ margin-bottom:50px; }
-}
-/* --- Animated concentric logo (scoped) --- */
-.brandkits-logo-frame{ display:flex; justify-content:center; margin-bottom:80px; }
-
-.bk-logo{
-  position:relative;
-  width:clamp(200px,40vw,440px);
-  aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-
-.bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
-.bk-outer{ width:100%; height:100%; background:#D28137; animation-delay:0s; }
-.bk-middle{ width:77%; height:77%; background:#D35224; animation-delay:1s; }
-.bk-inner{ width:49%; height:49%; background:#CE3520; animation-delay:2s; }
-
-@keyframes bk-pulse{ 0%,100%{ transform:scale(1); opacity:1 } 50%{ transform:scale(1.04); opacity:.9 } }
-
-.bk-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(36px,6vw,70px); line-height:1; letter-spacing:-.04em;
-}
-/* Full-bleed backgrounds regardless of parent max-width */
-.human,
-.trust-contact,
-footer.tas-footer--black {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
-</style>
-
+  /* ========= FOOTER ========= */
+  footer.tas-footer--black{
+    background:#000;
+    color:#fff;
+    padding:40px 16px 32px;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .tas-fwrap{
+    max-width:1200px; margin:0 auto;
+    display:grid; gap:20px;
+  }
+  .tas-fbrand{
+    margin:0; padding:0; border:0; background:transparent; cursor:pointer;
+    text-align:left;
+    font-family:"Bricolage Grotesque", system-ui, sans-serif;
+    font-weight:700; line-height:0.95;
+    font-size:clamp(28px,4vw,46px);
+    letter-spacing:-0.04em;
+    color:#fff;
+  }
+  .tas-fnav{
+    display:flex; flex-wrap:wrap; gap:12px 22px;
+  }
+  .tas-fnav a{
+    color:#bbb; text-decoration:none; font-size:15px; letter-spacing:-.01em;
+    transition:color .18s ease;
+  }
+  .tas-fnav a:hover{ color:#fff; }
+  .tas-fmeta{
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .tas-fsocial{
+    display:flex; gap:8px; align-items:center; color:#666; font-size:14px;
+  }
+  .tas-fsocial a{
+    color:#bbb; text-decoration:none; transition:color .18s ease;
+  }
+  .tas-fsocial a:hover{ color:#fff; }
+  .tas-femail,
+  .tas-ffeedback{
+    color:#bbb; text-decoration:none; font-size:14px;
+    transition:color .18s ease;
+  }
+  .tas-femail:hover,
+  .tas-ffeedback:hover{ color:#fff; }
+  .tas-fcopy{
+    margin:6px 0 0; color:#777; font-size:13px;
+  }
+  @media (min-width:900px){
+    .tas-fwrap{
+      grid-template-columns:1fr auto auto;
+      align-items:start;
+    }
+    .tas-fnav{ justify-self:center; }
+    .tas-fmeta{ align-items:flex-end; text-align:right; }
+    .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
+  }
+  </style>
 </head>
 <body>
 
-  <div class="wrap">
+  <div class="page">
     <!-- HEADER -->
     <header>
       <div class="logo">
         <a href="https://alundsvagen.github.io/ux/brands.html" target="_blank" rel="noopener">take away<br/>studio</a>
       </div>
 
-      <!-- top-level nav (no icons here) -->
       <ul class="nav-bar" aria-label="Main">
         <li>
           <a href="https://alundsvagen.github.io/ux/brands.html" class="nav-link" data-dd="product">
@@ -361,7 +568,7 @@ footer.tas-footer--black {
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/box-seam.svg" alt="">
               UX packs
             </a>
-          </div>          
+          </div>
         </li>
 
         <li>
@@ -371,7 +578,6 @@ footer.tas-footer--black {
           <div class="menu" id="dd-philosophy" role="menu" aria-label="Philosophy submenu">
             <a href="https://alundsvagen.github.io/ux/philosophy.html" class="is-heading">
               <span class="icon-chip">
-                <!-- arrow-down-left-square -->
                 <svg viewBox="0 0 16 16" fill="currentColor">
                   <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
                   <path d="M10.5 5.5L6 10h3v1H5v-4h1v3l4.5-4.5z"/>
@@ -380,21 +586,18 @@ footer.tas-footer--black {
               Philosophy
             </a>
             <a href="https://alundsvagen.github.io/ux/About.html">
-              <!-- asterisk -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/asterisk.svg" alt="">
               About
             </a>
             <a href="https://alundsvagen.github.io/ux/services.html">
-              <!-- back -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/back.svg" alt="">
               Services
             </a>
             <a href="https://alundsvagen.github.io/ux/meditate.html">
-              <!-- brilliance -->
               <img class="bi" src="https://icons.getbootstrap.com/assets/icons/brilliance.svg" alt="">
-              Mediate
+              Meditate
             </a>
-          </div>          
+          </div>
         </li>
 
         <li><a class="nav-link" href="https://alundsvagen.github.io/ux/custom.html">Custom</a></li>
@@ -408,7 +611,9 @@ footer.tas-footer--black {
     <!-- MOBILE PANEL -->
     <nav class="panel" id="panel" aria-label="Mobile">
       <a href="#" class="close" id="closePanel" aria-label="Close">×</a>
-      <div class="panel-logo"><a href="https://alundsvagen.github.io/ux/index.html">take away<br/>studio</a></div>
+      <div class="panel-logo">
+        <a href="https://alundsvagen.github.io/ux/brands.html">take away<br/>studio</a>
+      </div>
 
       <h4>Product</h4>
       <a href="https://alundsvagen.github.io/ux/brands.html">Product</a>
@@ -427,1144 +632,277 @@ footer.tas-footer--black {
       <a href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
     </nav>
 
-    <!doctype html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SaaS Branding Packages Pricing | Take Away Studio</title>
-    
-    <!-- Favicon: stacked circles -->
-    <link rel="icon"
-          href='data:image/svg+xml;utf8,
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="32" fill="%23D28137"/>
-      <circle cx="32" cy="32" r="24" fill="%23D35224"/>
-      <circle cx="32" cy="32" r="15" fill="%23CE3520"/>
-    </svg>'>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet" />
-    <!-- ===================== SCANDINAVIAN DESIGN / KITS ===================== -->
-<section class="brandkits-section">
-    <div class="brandkits-container">
-  
-      <!-- Top row: logo left, heading right -->
-      <div class="brandkits-top">
-        <!-- Animated logo (scoped classes) -->
-        <div class="brandkits-logo-frame">
-          <div class="bk-logo">
-            <div class="bk-ring bk-outer"></div>
-            <div class="bk-ring bk-middle"></div>
-            <div class="bk-ring bk-inner"></div>
-            <div class="bk-text">take away<br>studio</div>
+    <!-- HERO -->
+    <section class="pricing-hero">
+      <div class="pricing-hero__wrap">
+        <div>
+          <div class="pricing-hero__kicker">Pricing</div>
+          <h1>One clear AI brand system. Deeper consulting when you need it.</h1>
+          <p>
+            If you’re just getting started, you can get a full brand system generated and tailored for your business.
+            If you’re more established, you can work directly with me, Alexandra Grisanti, on a proper brand and product experience process.
+          </p>
+
+          <div class="pricing-price">
+            <span>AI Brand System</span>
+            <span>·</span>
+            <strong>€486</strong>
+            <span>for the full bundle</span>
+          </div>
+
+          <div class="pricing-hero__cta">
+            <a class="btn" href="https://alundsvagen.github.io/ux/contact.html">
+              Talk to Alexandra about the AI brand system
+            </a>
+          </div>
+          <p class="pricing-hero__note">
+            No commitment when you reach out. We’ll walk through whether this is a good fit for where you are today.
+          </p>
+        </div>
+
+        <div class="pricing-hero__side">
+          <img src="red.png" alt="Calm, Scandinavian-inspired brand materials on a table." />
+        </div>
+      </div>
+    </section>
+
+    <!-- AI BRAND SYSTEM -->
+    <section>
+      <div class="bundle-header">
+        <h2>AI Brand System — what’s included in the €486.</h2>
+        <p>
+          Four parts that cover how you look, how you talk, and how people find you online. Bought together, you get a 10% bundle discount.
+        </p>
+      </div>
+
+      <div class="bundle-card">
+        <div class="bundle-top">
+          <div>
+            <div class="bundle-label">AI Brand System</div>
+            <div class="bundle-price-main">€486</div>
+          </div>
+          <div class="bundle-discount">
+            <div>Individual items: <del>€540</del></div>
+            <div>Bundle saves you 10%.</div>
           </div>
         </div>
-  
-        <!-- Heading -->
-        <div class="brandkits-header">
-          <h2>Ready-made SaaS branding, UX & UI design packages.</h2>
-          <p>Scandinavian design at our core. Branding, UX & UI at your fingertips.</p>
+
+        <p class="bundle-intro">
+          Everything is generated and then tailored to your business name, industry and target audience — so it feels like a real brand, not a random template.
+        </p>
+
+        <div class="bundle-grid">
+          <div class="bundle-item">
+            <div class="bundle-item-header">
+              <div class="bundle-item-title">Motion typography logo</div>
+              <div class="bundle-item-price">€90</div>
+            </div>
+            <p class="bundle-item-desc">
+              Your business name set in a motion logo that can be used on socials, intros and your website — in a style that fits your brand direction.
+            </p>
+          </div>
+
+          <div class="bundle-item">
+            <div class="bundle-item-header">
+              <div class="bundle-item-title">On-brand pitch deck</div>
+              <div class="bundle-item-price">€150</div>
+            </div>
+            <p class="bundle-item-desc">
+              A slide deck designed around your brand with AI-written filler text for your industry and audience, backed by pitch deck research.
+            </p>
+          </div>
+
+          <div class="bundle-item">
+            <div class="bundle-item-header">
+              <div class="bundle-item-title">Brand assets</div>
+              <div class="bundle-item-price">€100</div>
+            </div>
+            <p class="bundle-item-desc">
+              A small library of images, icons, components and social templates so you can start posting and presenting right away.
+            </p>
+          </div>
+
+          <div class="bundle-item">
+            <div class="bundle-item-header">
+              <div class="bundle-item-title">HTML website</div>
+              <div class="bundle-item-price">€200</div>
+            </div>
+            <p class="bundle-item-desc">
+              A mobile-responsive HTML “pull-in” website that carries your new brand, ready for you or a developer to hook into your product or CMS.
+            </p>
+          </div>
+        </div>
+
+        <div class="bundle-foot">
+          <a class="btn btn-outline" href="https://alundsvagen.github.io/ux/contact.html">
+            Ask about the AI brand system
+          </a>
+          <small>
+            Not sure if you only need part of this? We can talk about using single pieces, but the full bundle is usually the best value.
+          </small>
         </div>
       </div>
-  
-      <!-- Cards -->
-      <div class="brandkits-grid">
-        <a href="https://alundsvagen.github.io/ux/brands.html" class="brandkits-card">
-          <span class="pill">Simple</span>
-          <h3>Branding<br>Design</h3>
-          <p>Right now we offer just 2 standardised brand packs but you can sign up for the waitlist for our others. See them here.</p>
-        </a>
-  
-        <a href="https://alundsvagen.github.io/ux/ux.html" class="brandkits-card">
-          <span class="pill">Robust</span>
-          <h3>User<br>Experience</h3>
-          <p>Right now we have a check out standard experience and an analytical dashboard but more to come soon.</p>
-        </a>
-  
-        <a href="https://alundsvagen.github.io/ux/ux.html" class="brandkits-card">
-          <span class="pill pill-wide">Consistent</span>
-          <h3>UI<br>Library</h3>
-          <p>Our designs come with HTML &amp; instructions for you to easily implement them yourself.</p>
+    </section>
+
+    <!-- CONSULTING -->
+    <section>
+      <div class="consult-header">
+        <h2>Consulting with Alexandra Grisanti.</h2>
+        <p>
+          For more established teams who want a proper brand discovery process, product experience design help,
+          or someone to think through the customer journey with you. Pricing depends on scope — we’ll define it together.
+        </p>
+      </div>
+
+      <div class="consult-wrapper">
+        <div class="consult-grid">
+          <article class="consult-card">
+            <div class="consult-tag">For growing brands</div>
+            <h3>Brand discovery & identity</h3>
+            <p class="consult-body">
+              A deeper process when you’ve outgrown your old look and need to clarify who you are now.
+            </p>
+            <ul class="consult-list">
+              <li>Workshops around story, values and positioning</li>
+              <li>Visual direction and identity routes to explore</li>
+              <li>Guidelines for using your brand across touchpoints</li>
+            </ul>
+          </article>
+
+          <article class="consult-card">
+            <div class="consult-tag">For product teams</div>
+            <h3>Product experience design</h3>
+            <p class="consult-body">
+              Help tightening the experience from “first impression” to “repeat visit” — not just the UI screens.
+            </p>
+            <ul class="consult-list">
+              <li>UX reviews and experience mapping</li>
+              <li>Wireframes and flows for key journeys</li>
+              <li>Design direction that matches your brand</li>
+            </ul>
+          </article>
+
+          <article class="consult-card">
+            <div class="consult-tag">For ongoing work</div>
+            <h3>Ongoing design support</h3>
+            <p class="consult-body">
+              A calm design partner in your corner when you need consistent help over time.
+            </p>
+            <ul class="consult-list">
+              <li>Monthly or project-based collaboration</li>
+              <li>Support across brand, product and communication</li>
+              <li>Someone who already knows your context and system</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="consult-foot">
+          <a class="btn" href="https://alundsvagen.github.io/ux/contact.html">
+            Talk to Alexandra about consulting
+          </a>
+          <p>
+            We’ll look at where you are, what you’re building and what kind of collaboration makes sense — before we talk numbers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CALLOUT -->
+    <section>
+      <div class="contact-wrap">
+        <span class="chip chip-outline">Not sure where to start?</span>
+        <h2>Bring your situation. We’ll find the right level together.</h2>
+        <p>
+          Whether you choose the AI brand system or a custom consulting engagement, the first step is the same:
+          a calm conversation about what you’re trying to do.
+        </p>
+        <a class="btn btn-lg" href="https://alundsvagen.github.io/ux/contact.html">
+          Contact Alexandra
         </a>
       </div>
-    </div>
-  </section>
-  
-  <style>
-  /* =============================================================================
-     SHARED BRAND TOKENS (scoped within sections below via colors/spacing)
-     ========================================================================== */
-  
-  /* ===================== KITS SECTION (white bg) ===================== */
-  .brandkits-section{
-    background:#fff;
-    padding:120px 5% 160px;
-    overflow:hidden;
-  }
-  .brandkits-top{
-    display:grid;
-    grid-template-columns: minmax(220px, 440px) 1fr; /* logo | text */
-    align-items:center;
-    gap:48px;
-    max-width:1400px;
-    margin:0 auto 48px;
-  }
-  .brandkits-header h2{
-    font-family:'Helvetica',sans-serif;
-    font-weight:700;
-    font-size:clamp(36px,5vw,100px);
-    line-height:1.04;
-    letter-spacing:-.03em;
-    color:#000;
-    margin:0 0 14px;
-  }
-  .brandkits-header p{
-    font-family:'Helvetica',sans-serif;
-    font-weight:400;
-    font-size:clamp(16px,1.8vw,30px);
-    color:#8D8D8F;
-    margin:0;
-  }
-  
-  /* Animated logo (scoped) */
-  .brandkits-logo-frame{ display:flex; justify-content:flex-start; }
-  .bk-logo{
-    position:relative;
-    width:clamp(200px, 26vw, 440px);
-    aspect-ratio:1/1;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .bk-ring{ position:absolute; border-radius:50%; animation:bk-pulse 6s ease-in-out infinite; }
-  .bk-outer{ width:100%; height:100%; background:#DBF5FC; animation-delay:0s; }
-  .bk-middle{ width:77%; height:77%; background:#3CA2F6; animation-delay:1s; }
-  .bk-inner{ width:49%; height:49%; background:#3C75F6; animation-delay:2s; }
-  @keyframes bk-pulse{ 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.04);opacity:.9} }
-  .bk-text{
-    position:relative; z-index:2; color:#fff;
-    font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-    font-size:clamp(28px,4vw,70px); line-height:1; letter-spacing:-.04em;
-    text-align:center;
-  }
-  
-  /* Cards (white) */
-  .brandkits-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(260px, 1fr));
-    gap:36px;
-    max-width:1400px;
-    margin:24px auto 0;
-  }
-  .brandkits-card{
-    box-sizing:border-box;
-    width:100%;
-    border:2px solid #E1E4E6;
-    border-radius:45px;
-    padding:32px 28px 38px;
-    background:#fff; color:#000; text-decoration:none;
-    transition:all .25s ease;
-  }
-  .brandkits-card:hover{
-    background:#ffffff;
-    border-color:#E1E4E6;
-    box-shadow:9px 9px 4px 9px rgba(0,0,0,0.05);
-  }
-  .brandkits-card:hover p{ color:#000; }
-  
-  /* Pill/tag (smaller, shared spec) */
-  .pill,
-  .philo-chip{
-    display:inline-grid; place-items:center;
-    min-width:118px; height:40px; padding:0 12px;
-    background:#DBF5FC; border-radius:20px;
-    font-family:'Helvetica',sans-serif;
-    font-size:clamp(14px,1.4vw,20px);
-    color:#000;
-  }
-  .pill-wide,
-  .philo-chip--wide{ min-width:150px; }
-  
-  /* Card headings/body */
-  .brandkits-card h3{
-    margin:40px 0 10px;
-    font-family:'Helvetica',sans-serif;
-    font-weight:700;
-    font-size:clamp(26px,2.8vw,50px);
-    line-height:1.04; letter-spacing:-.03em;
-  }
-  .brandkits-card p{
-    font-family:'Helvetica',sans-serif;
-    font-weight:400;
-    font-size:clamp(15px,1.5vw,22px);
-    color:#8D8D8F;
-    max-width:520px; margin:8px 0 0;
-  }
-  
-  /* Responsive (kits) */
-  @media(max-width:1100px){
-    .brandkits-top{ grid-template-columns:1fr; gap:28px; text-align:center; }
-    .brandkits-logo-frame{ justify-content:center; }
-    .brandkits-grid{ grid-template-columns:repeat(2, minmax(240px, 1fr)); }
-  }
-  @media(max-width:700px){
-    .brandkits-grid{ grid-template-columns:1fr; }
-    .brandkits-section{ padding:80px 5% 100px; }
-  }
-  
-  /* ===================== PHILOSOPHY SECTION (light grey bg) ===================== */
-  .philo-section{
-    background:#EBEEF5;
-    padding:120px 5% 120px;
-  }
-  .philo-wrap{
-    width:min(1728px,100%);
-    margin:0 auto;
-  }
-  
-  /* Top row */
-  .philo-top{
-    display:flex;
-    align-items:center;
-    gap:28px;
-    flex-wrap:wrap;
-    margin:0 auto 36px;
-    max-width:1400px;
-  }
-  .philo-title{
-    margin:0;
-    font-family:'Helvetica',sans-serif;
-    font-weight:700;
-    font-size:clamp(36px,5vw,100px);
-    line-height:1.04;
-    letter-spacing:-.03em;
-    color:#000;
-  }
-  .philo-chip-outline{
-    display:inline-grid; place-items:center;
-    min-width:180px; height:44px; padding:0 18px;
-    border:1px solid #000; border-radius:30.5px;
-    font-family:'Helvetica',sans-serif; color:#000;
-    font-size:clamp(16px,1.7vw,30px);
-    background:transparent;
-  }
-  
-  /* Grid */
-  .philo-grid{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(260px,1fr));
-    gap:36px;
-    max-width:1400px;
-    margin:36px auto 0;
-  }
-  
-  /* Card (image + dark caption on desktop for contrast) */
-  .philo-card{
-    position:relative;
-    display:block;
-    border:2px solid #E1E4E6;
-    border-radius:45px;
-    overflow:hidden;
-    background:#fff;
-    isolation:isolate;
-    transition:transform .25s ease, box-shadow .25s ease;
-    text-decoration:none;
-    color:inherit;
-  }
-  .philo-img{
-    display:block;
-    width:100%; height:100%;
-    aspect-ratio: 463 / 672;
-    object-fit:cover;
-  }
-  
-  /* darken-on-hover overlay */
-  .philo-card::after{
-    content:"";
-    position:absolute; inset:0;
-    background:transparent;
-    transition:background .25s ease;
-    border-radius:45px;
-    z-index:1;
-  }
-  .philo-card:hover::after{ background:#000; }
-  
-  /* small chips (same spec as pill, but white per design) */
-  .philo-chip{
-    position:absolute; left:28px; top:28px;
-    background:#fff;
-    z-index:2;
-  }
-  .philo-chip--small{ min-width:118px; height:40px; }
-  
-  /* dark caption */
-  .philo-caption{
-    position:absolute; left:24px; right:24px; bottom:24px;
-    background:rgba(0,0,0,.85);
-    border-radius:20px; padding:18px 18px;
-    z-index:2;
-  }
-  .philo-caption h3{
-    margin:0; color:#fff;
-    font-family:'Helvetica',sans-serif;
-    font-weight:700;
-    font-size:clamp(22px,3vw,50px);
-    line-height:1.04; letter-spacing:-.03em;
-  }
-  
-  /* hover lift */
-  .philo-card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.10);
-  }
+    </section>
+  </div>
 
-  
-  
-  /* ---------- Mobile: make Philosophy cards match kits cards (white) ---------- */
-  @media (max-width:700px){
-    .philo-grid{ grid-template-columns:1fr; }
-    .philo-section{ padding:80px 5% 90px; }
-  
-    .philo-card{
-      border:2px solid #E1E4E6;
-      border-radius:45px;
-      background:#FFFFFF;
-      overflow:hidden;
-      box-shadow:none;
-      transform:none;
-    }
-    .philo-card::after{ background:transparent !important; }
-  
-    .philo-img{
-      width:100%;
-      aspect-ratio: 463 / 380;
-      object-fit:cover;
-      border-radius:45px 45px 0 0;
-    }
-  
-    .philo-chip{
-      left:20px; top:20px;
-      min-width:118px; height:40px;
-      border-radius:20px;
-      background:#DBF5FC; /* match kits tag color on mobile */
-    }
-    .philo-chip--wide{ min-width:150px; }
-  
-    .philo-caption{
-      position:static;
-      background:transparent;
-      border-radius:0;
-      padding:20px 22px 28px;
-    }
-    .philo-caption h3{
-      color:#000;
-      font-size:26px;
-    }
-  
-    .philo-card:hover{
-      background:#ffffff;
-      border-color:#E1E4E6;
-      box-shadow:0 8px 18px rgba(0,0,0,0.05);
-      transform:translateY(0);
-    }
-  }
-  
-  /* Tablet layout harmony */
-  @media (max-width:1100px) and (min-width:701px){
-    .philo-grid{ grid-template-columns:repeat(2, minmax(240px,1fr)); }
-  }
-  </style>
-  
-  
+  <!-- FOOTER -->
+  <footer class="tas-footer--black">
+    <div class="tas-fwrap">
+      <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
+        take away<br/>studio
+      </button>
+
+      <nav class="tas-fnav" aria-label="Footer">
+        <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
+        <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
+        <a href="https://alundsvagen.github.io/ux/About.html">About</a>
+        <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
+      </nav>
+
+      <div class="tas-fmeta">
+        <div class="tas-fsocial">
+          <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
+        </div>
+        <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
+        <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
+      </div>
+
+      <p class="tas-fcopy">© Take Away Studio — 2025</p>
+    </div>
+  </footer>
+
   <script>
-    // --- Desktop dropdowns: open on click, close on outside click ---
+    // Scroll to top on footer wordmark
+    document.getElementById('tasScrollTop')?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Force links to open in same tab
+    document.querySelectorAll('a').forEach(a => {
+      a.removeAttribute('target');
+      a.removeAttribute('rel');
+    });
+
+    // Desktop dropdown menus
     const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
     const menus = new Map();
-  
-    triggerLinks.forEach(link=>{
+
+    triggerLinks.forEach(link => {
       const id = link.dataset.dd;
       const menu = document.getElementById(`dd-${id}`);
-      if(menu){ menus.set(link, menu); }
-  
-      link.addEventListener('click', (e)=>{
+      if (menu) menus.set(link, menu);
+
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        // toggle this one, close others
-        menus.forEach((m, l)=>{
-          if(l===link){ m.classList.toggle('open'); }
-          else{ m.classList.remove('open'); }
+        menus.forEach((m, l) => {
+          if (l === link) m.classList.toggle('open');
+          else m.classList.remove('open');
         });
       });
     });
-  
-    document.addEventListener('click', (e)=>{
-      // close if clicking away from any open menu/trigger
+
+    document.addEventListener('click', (e) => {
       let inside = false;
-      menus.forEach((menu, link)=>{
-        if(menu.contains(e.target) || link.contains(e.target)) inside = true;
+      menus.forEach((menu, link) => {
+        if (menu.contains(e.target) || link.contains(e.target)) inside = true;
       });
-      if(!inside){ menus.forEach(m=>m.classList.remove('open')); }
+      if (!inside) menus.forEach(m => m.classList.remove('open'));
     });
-  
-    // --- Mobile panel ---
-    const open = document.getElementById('openPanel');
-    const close = document.getElementById('closePanel');
+
+    // Mobile panel
+    const openPanelBtn = document.getElementById('openPanel');
+    const closePanelBtn = document.getElementById('closePanel');
     const panel = document.getElementById('panel');
-    open?.addEventListener('click', ()=> panel.classList.add('open'));
-    close?.addEventListener('click', (e)=> { e.preventDefault(); panel.classList.remove('open'); });
-  </script>
 
-    <style>
-      :root{
-        --bg:#ffffff;
-        --ink:#000;
-        --muted:#8D8D8F;
-        --blue:#3C75F6;
-        --tan:#DBF5FC;
-        --chip-blue:#DBF5FC;
-        --dark:#0A0B06;
-        --offwhite:#ffffff;
-        --radius:45px;
-      }
-      
-      /* base */
-      *{box-sizing:border-box}
-      body{margin:0; color:var(--ink); background:var(--bg); font:400 16px/1.25 Helvetica, Arial, sans-serif;}
-      a{text-decoration:none; color:inherit}
-      .wrap{max-width:1400px; margin:0 auto; padding-inline:5%}
-      
-      /* ===== NAV (black, compact) ===== */
-      header.philo-nav{
-        position:fixed; top:0; z-index:50;
-        background:var(--dark); color:#fff;
-        display:grid; grid-template-columns:auto 1fr auto; align-items:center;
-        padding:18px 5%;
-        border-bottom:1px solid rgba(255,255,255,.06);
-      }
-      .brand{font:700 26px/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em;}
-      .brand a{color:#fff}
-      .navbar{display:flex; gap:36px; justify-content:center; align-items:center;}
-      .navbar a{color:#fff; opacity:.9}
-      .navbar a:hover{opacity:1}
-      .btn-contact{
-        background:var(--blue); color:#fff; border:1px solid var(--blue);
-        height:40px; padding:0 18px; border-radius:10px; display:inline-grid; place-items:center;
-        font-weight:700; letter-spacing:-.03em;
-      }
-      .btn-contact:hover{filter:brightness(1.05)}
-      @media (max-width:880px){
-        header.philo-nav{grid-template-columns:1fr auto; gap:12px}
-        .navbar{display:none}
-      }
-      
-      /* ===== HERO – fixed 933px, gradient + BG image ===== */
-    /* ===== HERO — image + interactive gradient + floating icons ===== */
-    .philo-hero-fixed{
-      position: relative;
-      height: 933px;
-      padding-inline: 5%;
-      overflow: hidden;
-    
-      /* interactive gradient coords */
-      --gx: 50%;
-      --gy: 60%;
-    
-      /* gradient FIRST, image SECOND + blend for pop */
-      background:
-        radial-gradient(circle at var(--gx) var(--gy),
-          rgba(76,117,228,0.55) 0%,
-          rgba(76,117,228,0.45) 25%,
-          rgba(191,91,56,0.45) 65%,
-          rgba(191,91,56,0.35) 80%,
-          rgba(191,91,56,0.00) 100%
-        ),
-        url("light.png") center bottom / cover no-repeat;
-      background-blend-mode: screen;
-      will-change: background;
-    }
-    
-    /* floating icon chips */
-    .hero-float{ pointer-events:none; position:absolute; inset:0; z-index:1; }
-    .spark{
-      position:absolute; width:20px; height:20px; opacity:.95; color:#fff;
-      transform:translate(-50%,-50%) scale(.9);
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.2));
-      animation: drift var(--dur,18s) linear infinite, wobble 3.6s ease-in-out infinite;
-    }
-    .spark svg{ width:100%; height:100%; display:block; }
-    
-    @keyframes drift{
-      from{ transform:translate(var(--x0), var(--y0)) rotate(0deg) scale(var(--s,1)); }
-      to  { transform:translate(var(--x1), var(--y1)) rotate(360deg) scale(var(--s,1)); }
-    }
-    @keyframes wobble{ 0%,100%{ translate:0 0 } 50%{ translate:2px -3px } }
-    
-    @media (max-width:900px){
-      .philo-hero-fixed{ height:78vh; padding-inline:6%; }
-      .philo-hero-fixed .copy{ left:6%; right:6%; width:auto; top:18vh; text-align:left; }
-    }
-    @media (prefers-reduced-motion:reduce){
-      .spark{ animation:none }
-    }
-    
-    
-    
-    /* text block (left-aligned with same gutters as your mock) */
-    .philo-hero-fixed .copy{
-      position:absolute;
-      left:calc(max(5%, (100vw - 1400px)/2 + 5%));
-      top:clamp(120px, 22vh, 356px);
-      width:min(605px, calc(100vw - 10%));
-      color:var(--offwhite);
-      text-align:left;
-    }
-    .philo-hero-fixed h1{
-      margin:0 0 12px;
-      font:700 clamp(44px, 7vw, 100px)/1.04 "Bricolage Grotesque", system-ui, sans-serif;
-      letter-spacing:-.03em; color:var(--offwhite);
-    }
-    .philo-hero-fixed p{
-      margin:0; max-width:555px;
-      font:400 clamp(16px, 2.1vw, 30px)/1.04 Helvetica, Arial, sans-serif;
-      letter-spacing:-.03em; color:var(--offwhite); margin-top:10px;
-    }
-    
-    /* floating icon layer (non-blocking) */
-    .hero-float{
-      pointer-events:none;
-      position:absolute; inset:0;
-      z-index:1;
-    }
-    .spark{
-      position:absolute;
-      width:14px; height:14px;
-      opacity:.9;
-      transform:translate(-50%,-50%) scale(.9);
-      animation: drift var(--dur,18s) linear infinite, wobble 3.6s ease-in-out infinite;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
-    }
-    .spark svg{ width:100%; height:100%; display:block }
-    @keyframes drift{
-      from{ transform:translate(var(--x0), var(--y0)) rotate(0deg) scale(var(--s,1)); opacity:.95 }
-      to  { transform:translate(var(--x1), var(--y1)) rotate(360deg) scale(var(--s,1)); opacity:.95 }
-    }
-    @keyframes wobble{
-      0%,100%{ translate:0 0 } 50%{ translate:2px -3px }
-    }
-    
-    @media (max-width:900px){
-      .philo-hero-fixed{ height:78vh; padding-inline:6%; }
-      .philo-hero-fixed .copy{ left:6%; right:6%; width:auto; top:18vh; }
-    }
-    
-    /* reduced motion: keep the look, stop the movement */
-    @media (prefers-reduced-motion:reduce){
-      .spark{ animation: none }
-    }
-    
-    /* Mobile responsiveness */
-    @media (max-width:900px){
-      .philo-hero-fixed{height:78vh; padding-inline:6%;}
-      .philo-hero-fixed .copy{left:6%; right:6%; width:auto; top:18vh; text-align:left;}
-    }
-    
-    /* Mobile tweaks */
-    @media (max-width:900px){
-      .philo-hero-fixed{height:78vh; padding-inline:6%;}
-      .philo-hero-fixed .copy{
-        left:6%; right:6%; width:auto; top:18vh; text-align:left;
-      }
-    }
-    
-      
-    /* =========================
-       AUTHENTICITY (light) — MOBILE FIRST
-    ========================= */
-    .authenticity{
-      padding:96px 0 80px;
-      background:#ffffff;
-    }
-    
-    /* Main center card */
-    .authenticity .center-card{
-      width:100%;
-      max-width:640px;
-      min-height:360px;
-      margin:0 auto 40px;
-      padding:56px 28px;
-      border:2px solid #E1E4E6;
-      border-radius:24px;
-      background:#fff;
-      box-shadow:0 6px 10px rgba(0,0,0,.10);
-      display:grid;
-      place-items:center;
-      text-align:center;
-      transition:all 0.35s ease;
-    }
-    
-    /* Main center card hover — shift to #F7F3EE and lift */
-    .authenticity .center-card:hover{
-      background:#ffffff;
-      transform:translateY(-6px);
-      box-shadow:0 10px 22px rgba(0,0,0,.12);
-    }
-    
-    .authenticity .center-card h2{
-      margin:0;
-      font:700 clamp(40px, 9vw, 64px)/1.04 "Bricolage Grotesque", system-ui, sans-serif;
-      letter-spacing:-.03em;
-      color:#000;
-    }
-    
-    /* Tiles grid */
-    .tiles{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:28px;
-      justify-items:center;
-    }
-    
-    /* Base tile */
-    .tile{
-      width:100%;
-      max-width:560px;
-      min-height:520px;
-      border:2px solid #E1E4E6;
-      border-radius:24px;
-      background:#fff;
-      box-shadow:0 6px 10px rgba(0,0,0,.08);
-      padding:32px 24px 28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:flex-start;
-      text-align:left;
-      transition:all 0.35s ease;
-    }
-    
-    /* Hover state — invert colors */
-    .tile:hover{
-      background:#000;
-      color:#fff;
-      border-color:#E1E4E6;
-      transform:translateY(-6px);
-      box-shadow:0 12px 20px rgba(0,0,0,.25);
-    }
-    
-    /* Tan chip (label) */
-    .tile .chip-tan{
-      align-self:flex-start;
-      height:36px;
-      padding:0 16px;
-      border-radius:999px;
-      background:#DBF5FC;
-      color:#000;
-      font:400 16px/36px Helvetica, Arial, sans-serif;
-      letter-spacing:-.03em;
-      margin-bottom:18px;
-      transition:all 0.3s ease;
-    }
-    
-    /* When tile hovered, make chip light (cream) */
-    .tile:hover .chip-tan{
-      background:#FEFFF6;
-      color:#000;
-    }
-    
-    /* Typography */
-    .tile h3,
-    .tile p{
-      margin:0;
-      font:700 clamp(22px, 6.2vw, 28px)/1.15 Helvetica, Arial, sans-serif;
-      letter-spacing:-.03em;
-      color:#000;
-      transition:color 0.3s ease;
-    }
-    
-    /* White text on hover */
-    .tile:hover h3,
-    .tile:hover p{
-      color:#fff;
-    }
-    
-    .tile h3 + p{margin-top:8px;}
-    
-    /* AUTHENTICITY — DESKTOP */
-    @media (min-width:1024px){
-      .authenticity{
-        padding:120px 0;
-      }
-    
-      .authenticity .center-card{
-        max-width:851px;
-        min-height:672px;
-        border-radius:45px;
-        padding:80px 48px;
-        box-shadow:0 8px 18px rgba(0,0,0,.12);
-        margin-bottom:56px;
-      }
-    
-      .authenticity .center-card h2{
-        font-size:100px;
-      }
-    
-      .authenticity .tiles{
-        grid-template-columns:repeat(3, minmax(0,1fr));
-        gap:40px;
-      }
-    
-      .authenticity .tile{
-        max-width:463px;
-        width:100%;
-        min-height:672px;
-        border-radius:45px;
-        padding:64px 40px 40px;
-        box-shadow:0 8px 16px rgba(0,0,0,.10);
-      }
-    
-      .authenticity .tile h3,
-      .authenticity .tile p{
-        font-size:32px;
-        line-height:1.15;
-        max-width:327px;
-      }
-    }
-    
-      
-      /* =========================
-         HUMAN CONNECTION (dark) — MOBILE FIRST
-         ========================= */
-      .human{background:var(--dark); color:var(--offwhite); padding:96px 0 80px;}
-      .human .center-card{
-        width:100%; max-width:640px; min-height:360px; margin:0 auto 40px;
-        padding:56px 28px; border:2px solid #E1E4E6; border-radius:24px; background:transparent;
-        box-shadow:0 6px 10px rgba(0,0,0,.25); display:grid; place-items:center; text-align:center;
-      }
-      .human .center-card h2{
-        margin:0; font:700 clamp(40px, 9vw, 64px)/1.04 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.03em; color:var(--offwhite);
-      }
-      .human .tiles{display:grid; grid-template-columns:1fr; gap:28px; justify-items:center;}
-      .human .tile{
-        width:100%; max-width:560px; min-height:520px;
-        border:2px solid #3a3b34; border-radius:24px; background:#0C0D08;
-        box-shadow:0 6px 10px rgba(0,0,0,.30);
-        padding:40px 32px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; text-align:left; color:var(--offwhite);
-      }
-      .human .chip-tan{background:var(--tan); color:#000;}
-      .human .tile h3, .human .tile p{color:var(--offwhite);}
-      
-      /* HUMAN — DESKTOP (scoped) */
-      @media (min-width:1024px){
-        .human{padding:120px 0;}
-        .human .center-card{max-width:851px; min-height:672px; border-radius:45px; padding:80px 48px;}
-        .human .center-card h2{font-size:100px;}
-        .human .tiles{grid-template-columns:repeat(3, minmax(0,1fr)); gap:40px;}
-        .human .tile{max-width:463px; width:100%; min-height:672px; border-radius:45px; padding:64px 40px;}
-        .human .tile h3, .human .tile p{font-size:32px; line-height:1.15; max-width:327px;}
-      }
-      
-      /* Optional hover polish */
-      @media (hover:hover){
-        .tile:hover{transform:translateY(-2px); transition:transform .2s ease, box-shadow .2s ease;}
-        .authenticity .tile:hover{box-shadow:0 12px 22px rgba(0,0,0,.14);}
-        .human .tile:hover{box-shadow:0 12px 22px rgba(0,0,0,.45);}
-      }
-      
-      /* ===== TRUST + CONTACT ===== */
-      .trust-contact{background:#fff; padding:100px 0}
-      .trust-title{
-        text-align:center; margin:0 0 24px;
-        font:700 clamp(28px,4.2vw,80px)/1 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em; color:#000;
-      }
-      .marquee{overflow:hidden}
-      .marquee .track{display:flex; align-items:center; gap:80px; animation:scroll 24s linear infinite}
-      .marquee img{height:120px; width:auto; display:block}
-      @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-66.66%)}}
-      .contact-block{display:grid; grid-template-columns:1fr; gap:28px; align-items:center; margin-top:36px}
-      .contact-block__text h3{
-        margin:12px 0 16px; color:#000;
-        font:700 clamp(36px,5.4vw,100px)/1.04 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.03em;
-      }
-      .contact-block__cta{margin:6px 0 16px}
-      .pill-row{display:flex; flex-wrap:wrap; gap:10px}
-      .contact-block__media img{width:100%; height:auto; border-radius:45px; display:block}
-      .chip-blue{background:var(--chip-blue); color:#000}
-      @media (min-width:980px){ .contact-block{grid-template-columns:1fr 1.2fr} }
-      
-      /* ===== FOOTER ===== */
-      footer.tas-footer--black{
-        background:#000; color:#fff; padding:56px 5% 36px; font-family:Helvetica, Arial, sans-serif;
-      }
-      .tas-fwrap{max-width:1400px; margin:0 auto; display:grid; gap:24px}
-      .tas-fbrand{
-        margin:0; padding:0; border:0; background:transparent; color:#fff; cursor:pointer;
-        font:700 clamp(32px,5vw,56px)/.95 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing:-.04em; text-align:left;
-      }
-      .tas-fnav{display:flex; flex-wrap:wrap; gap:14px 28px}
-      .tas-fnav a{color:#bbb}
-      .tas-fnav a:hover{color:#fff}
-      .tas-fmeta{display:flex; flex-direction:column; gap:10px}
-      .tas-femail,.tas-ffeedback{color:#bbb}
-      .tas-femail:hover,.tas-ffeedback:hover{color:#fff}
-      .tas-fcopy{margin:8px 0 0; color:#777; font-size:14px}
-      @media (min-width:900px){
-        .tas-fwrap{grid-template-columns:1fr auto auto; align-items:start}
-        .tas-fnav{justify-self:center}
-        .tas-fmeta{align-items:flex-end; text-align:right}
-        .tas-fcopy{grid-column:1 / 4; justify-self:end}
-      }
-      </style>
-      
-      
-    </head>
-    <body>
+    openPanelBtn?.addEventListener('click', () => {
+      panel?.classList.add('open');
+    });
 
-      <!-- ===== PHILOSOPHY HERO — minimal, tasteful hover ===== -->
-<section class="hero-philo" id="heroPhilo" aria-label="Design philosophy">
-  <div class="hp-wrap">
-    <h1 class="hp-title" id="hpTitle">Pricing for Consulting Timeline & Prices</h1>
-    <p class="hp-sub">Full service consulting to improve your UX, UI, branding using Product Growth Theory.</p>
-    <span class="hp-underline" aria-hidden="true"></span>
-  </div>
-</section>
-  
-  <style>
-    .hero-philo{
-      position:relative;
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      margin-right:calc(50% - 50vw);
-      background:#ffffff;
-      padding:clamp(64px,10vw,120px) 5% clamp(56px,8vw,96px);
-      --gx:50%; --gy:50%;
-    }
-  
-    /* Center everything inside the hero */
-    .hp-wrap{ max-width:1400px; margin:0 auto; text-align:center; }
-  
-    .hp-title{
-      margin:0;
-      font:700 clamp(44px,7vw,120px)/1.02 "Bricolage Grotesque",system-ui,sans-serif;
-      letter-spacing:-.03em;
-      color:#000;
-      position:relative;
-      display:inline-block; /* keeps underline centering easy */
-      background:
-        radial-gradient(360px 360px at var(--gx) var(--gy),
-          #aaa7a7 30%,
-          #8c480d 45%,
-          #431902 30%)
-        fixed;
-      background-size:200% 200%;
-      -webkit-background-clip:text; background-clip:text;
-      transition:letter-spacing .35s ease, background-position .2s linear;
-    }
-    .hero-philo:hover .hp-title,
-    .hero-philo:focus-within .hp-title{
-      color:transparent; -webkit-text-fill-color:transparent; letter-spacing:-.02em;
-    }
-  
-    .hp-sub{
-      margin:.6rem auto 0;             /* center the subline */
-      max-width:46ch;
-      color:#151515;
-      font:400 clamp(16px,2.1vw,28px)/1.2 Helvetica,Arial,sans-serif;
-      letter-spacing:-.02em;
-      text-align:center;                /* ensures centering on narrow widths */
-    }
-  
-    /* Centered underline, animate from center */
-    .hp-underline{
-      display:block;
-      height:3px;
-      width:min(520px, 40vw);
-      background:linear-gradient(90deg,#d66305,#fcd2df,#DBF5FC);
-      border-radius:3px;
-      margin:clamp(18px,2.2vw,28px) auto 0; /* auto centers it */
-      transform-origin:center center;       /* draw from middle */
-      transform:scaleX(0);
-      opacity:.9;
-      transition:transform .6s cubic-bezier(.2,.8,.2,1);
-    }
-    .hero-philo:hover .hp-underline,
-    .hero-philo:focus-within .hp-underline{ transform:scaleX(1); }
-  
-    @media (max-width:900px){
-      .hp-underline{ width:64%; }
-    }
-  </style>
-  
-
-<script>
-  // Cursor-tracked gradient inside the headline (subtle, buttery).
-  (function(){
-    const hero  = document.getElementById('heroPhilo');
-    const move = e => {
-      const r = hero.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width) * 50;
-      const y = ((e.clientY - r.top)  / r.height) * 50;
-      hero.style.setProperty('--gx', Math.max(10, Math.min(90, x)) + '%');
-      hero.style.setProperty('--gy', Math.max(10, Math.min(90, y)) + '%');
-    };
-    // idle, gentle drift
-    let t=0, raf;
-    const idle = ()=>{ t+=0.004;
-      const x = 50 + Math.sin(t)*12, y = 52 + Math.cos(t*0.9)*8;
-      hero.style.setProperty('--gx', x+'%'); hero.style.setProperty('--gy', y+'%');
-      raf = requestAnimationFrame(idle);
-    };
-    idle();
-    hero.addEventListener('mouseenter', ()=> cancelAnimationFrame(raf), {passive:true});
-    hero.addEventListener('mousemove', move, {passive:true});
-    hero.addEventListener('mouseleave', ()=>{ cancelAnimationFrame(raf); idle(); }, {passive:true});
-  })();
-</script>
-
-    
-    <!-- ===== AUTHENTICITY ===== -->
-    <section class="authenticity">
-    
-        <div class="tiles">
-          <div class="tile">
-            <span class="chip chip-tan">50K SEK per month</span>
-            <h3>Good but Slow for Projects that take 6-8 months.</h3>
-          </div>
-    
-          <div class="tile">
-            <span class="chip chip-tan">100K SEK per month</span>
-            <h3>Just Right for Projects that take 4-6 months.</h3>
-          </div>
-    
-          <div class="tile">
-            <span class="chip chip-tan">200K SEK per month</span>
-            <h3>Good & Fast, if you're looking for full time help and need launch now.</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- ===== HUMAN CONNECTION ===== -->
-    <section class="human">
-      <div class="wrap">
-        <div class="center-card"><h2>Custom SaaS branding and ready-made brand kit options</h2></div>
-    
-        <div class="tiles">
-          <div class="tile">
-            <span class="chip chip-tan">Custom</span>
-            <h3>Want a custom branding design? This takes us 4 months to get a proper understanding of your company, 200K total.</h3>
-          </div>
-    
-          <div class="tile">
-            <span class="chip chip-tan">Remake</span>
-            <h3>See something you like but want it adjusted? We charge 35K for a new package like this. Takes about 3 weeks.</h3>
-          </div>
-    
-          <div class="tile">
-            <span class="chip chip-tan">HubSpot</span>
-            <h3>Need a little extra help if you have a special CRM? We can implement our design in hubspot or similar. We charge 150K for this and it takes 2 months.</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- ===== TRUST + CONTACT ===== -->
-    <section class="trust-contact">
-      <div class="wrap">
-        <h2 class="trust-title">Trusted by ambitious SaaS and tech teams</h2>
-    
-        <div class="marquee" aria-label="Client logos">
-          <div class="track">
-            <img src="proof.png" alt="Client logos">
-            <img src="proof.png" alt="" aria-hidden="true">
-            <img src="proof.png" alt="" aria-hidden="true">
-          </div>
-        </div>
-    
-        <div class="contact-block">
-          <div class="contact-block__text">
-            <span class="chip chip-outline">We are here.</span>
-            <h3>Let's talk about<br>what you are<br>building.</h3>
-    
-            <div class="contact-block__cta">
-              <a class="btn btn-primary btn-lg" href="https://alundsvagen.github.io/ux/contact.html">Contact</a>
-            </div>
-    
-            <div class="pill-row">
-            </div>
-          </div>
-    
-          <figure class="contact-block__media">
-            <img src="woman.png" alt="SaaS branding designer at Take Away Studio speaking with a startup founder" />
-          </figure>
-        </div>
-      </div>
-    </section>   
-
-<!-- ===== FOOTER — Minimal Black ===== -->
-<footer class="tas-footer--black">
-  <div class="tas-fwrap">
-    <!-- Wordmark (scroll to top) -->
-    <button class="tas-fbrand" id="tasScrollTop" aria-label="Scroll to top">
-      take away<br/>studio
-    </button>
-
-    <!-- Nav -->
-    <nav class="tas-fnav" aria-label="Footer">
-      <a href="https://alundsvagen.github.io/ux/custom.html">Custom</a>
-      <a href="https://alundsvagen.github.io/ux/pricing.html">Pricing</a>
-      <a href="https://alundsvagen.github.io/ux/About.html">About</a>
-      <a href="https://alundsvagen.github.io/ux/services.html">Services</a>
-    </nav>
-
-    <!-- Contact / Social -->
-    <div class="tas-fmeta">
-      <div class="tas-fsocial">
-        <a href="https://www.linkedin.com/company/takeawaystudio">LinkedIn</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://www.instagram.com/apgrisanti/">Instagram</a>
-      </div>
-      <a class="tas-femail" href="mailto:alexandrapgrisanti@gmail.com">Email</a>
-      <a class="tas-ffeedback" href="https://form.fillout.com/t/3UFDRGZ9g8us">Leave Feedback</a>
-    </div>
-
-    <p class="tas-fcopy">© Take Away Studio — 2025</p>
-  </div>
-</footer>
-
-<style>
-/* ===== Minimal Black Footer ===== */
-.tas-footer--black{
-  background:#000;
-  color:#fff;
-  padding:56px 5% 36px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-.tas-fwrap{
-  max-width:1400px; margin:0 auto;
-  display:grid; gap:24px;
-}
-
-/* Brand wordmark (text only) */
-.tas-fbrand{
-  margin:0; padding:0; border:0; background:transparent; cursor:pointer;
-  text-align:left;
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight:700; line-height:0.95;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing:-0.04em;
-  color:#fff;
-}
-
-/* Nav links */
-.tas-fnav{
-  display:flex; flex-wrap:wrap; gap:14px 28px;
-}
-.tas-fnav a{
-  color:#bbb; text-decoration:none; font-size:18px; letter-spacing:-.01em;
-  transition:color .18s ease;
-}
-.tas-fnav a:hover{ color:#fff; }
-
-/* Meta block */
-.tas-fmeta{
-  display:flex; flex-direction:column; gap:10px;
-}
-.tas-fsocial{
-  display:flex; gap:10px; align-items:center; color:#666; font-size:16px;
-}
-.tas-fsocial a{
-  color:#bbb; text-decoration:none; transition:color .18s ease;
-}
-.tas-fsocial a:hover{ color:#fff; }
-
-.tas-femail,
-.tas-ffeedback{
-  color:#bbb; text-decoration:none; font-size:16px;
-  transition:color .18s ease;
-}
-.tas-femail:hover,
-.tas-ffeedback:hover{ color:#fff; }
-
-/* Copyright */
-.tas-fcopy{
-  margin:8px 0 0; color:#777; font-size:14px;
-}
-
-/* Layout: stack on mobile, align on desktop */
-@media (min-width: 900px){
-  .tas-fwrap{
-    grid-template-columns: 1fr auto auto;
-    align-items:start;
-  }
-  .tas-fbrand{ grid-column:1 / 2; }
-  .tas-fnav{ grid-column:2 / 3; justify-self:center; }
-  .tas-fmeta{ grid-column:3 / 4; align-items:flex-end; text-align:right; }
-  .tas-fcopy{ grid-column:1 / 4; justify-self:end; }
-}
-</style>
-
-<script>
-  // Scroll to top on wordmark click
-  document.getElementById('tasScrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-<script>
-  // Smooth scroll to top via footer logo
-  document.getElementById('footerScrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-<script>
-  // Force all <a> links to open in the same tab
-  document.querySelectorAll('a').forEach(a => {
-    a.removeAttribute('target');
-    a.removeAttribute('rel');
-  });
-</script>
-
-<script>
-  // --- Desktop dropdowns: open on click, close on outside click ---
-  const triggerLinks = document.querySelectorAll('.nav-link[data-dd]');
-  const menus = new Map();
-
-  triggerLinks.forEach(link => {
-    const id = link.dataset.dd;
-    const menu = document.getElementById(`dd-${id}`);
-    if (menu) menus.set(link, menu);
-
-    link.addEventListener('click', (e) => {
+    closePanelBtn?.addEventListener('click', (e) => {
       e.preventDefault();
-      menus.forEach((m, l) => {
-        if (l === link) {
-          m.classList.toggle('open');
-        } else {
-          m.classList.remove('open');
-        }
-      });
+      panel?.classList.remove('open');
     });
-  });
-
-  document.addEventListener('click', (e) => {
-    let inside = false;
-    menus.forEach((menu, link) => {
-      if (menu.contains(e.target) || link.contains(e.target)) inside = true;
-    });
-    if (!inside) menus.forEach(m => m.classList.remove('open'));
-  });
-
-  // --- Mobile panel ---
-  const openPanelBtn = document.getElementById('openPanel');
-  const closePanelBtn = document.getElementById('closePanel');
-  const panel = document.getElementById('panel');
-
-  openPanelBtn?.addEventListener('click', () => {
-    panel?.classList.add('open');
-  });
-
-  closePanelBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    panel?.classList.remove('open');
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
