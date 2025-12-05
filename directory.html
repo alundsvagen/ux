@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Astroscrape — The Business Directory.</title>
+<meta name="description" content="Astroscrape builds simple, consent-first B2B email lists by industry and location." />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="icon" type="image/svg+xml"
+href='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="%23dbfbd7"/>
+      <stop offset="100%" stop-color="%23e0f4f9"/>
+    </linearGradient>
+  </defs>
+  <rect rx="14" ry="14" width="64" height="64" fill="url(%23g)"/>
+  <rect x="10" y="18" width="44" height="28" rx="6" ry="6" fill="%23ffffff" stroke="%23111" stroke-width="3"/>
+  <path d="M12 20l20 15L52 20" fill="none" stroke="%23111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>'>
+<meta name="theme-color" content="#ffffff">
+
+<!-- Hotjar -->
+<script>
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:6425621,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQCRY4KX4Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZQCRY4KX4Q');
+</script>
+
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --ink:#202124;
+  --muted:#5f6368;
+  --border-subtle:#dadce0;
+  --border-strong:#202124;
+  --accent:#1a73e8;
+  --accent-hover:#1558b8;
+  --pill-bg:#ffffff;
+  --pill-border:#dadce0;
+  --green:#1e8e3e;
+  --shadow-soft:0 4px 14px rgba(0,0,0,0.10);
+  --shadow-card:0 2px 10px rgba(0,0,0,0.06);
+}
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{height:100%}
+
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;text-decoration:none}
+
+/* PAGE SHELL */
+.page-shell{
+  width:100%;
+  max-width:1040px;
+  margin:0 auto;
+  padding:20px 20px 40px;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+
+/* TOP BAR */
+.top-row{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.brand-lockup{
+  font-family:'Shrikhand',cursive;
+  font-weight:400;
+  font-size:28px;
+  line-height:0.9;
+  color:#000;
+  cursor:pointer;
+}
+
+.top-actions{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  gap:20px;
+}
+
+.top-about-link{
+  font-size:14px;
+  font-weight:500;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  color:var(--muted);
+}
+
+.top-cta{
+  padding:9px 18px;
+  border-radius:999px;
+  border:1px solid var(--border-subtle);
+  background:var(--surface);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+
+@media (min-width:768px){
+  .top-row{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand-lockup{
+    font-size:32px;
+  }
+}
+
+/* HERO */
+.hero-center{
+  margin-top:48px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  text-align:left;
+}
+
+.hero-heading{
+  font-weight:700;
+  font-size:clamp(26px,4vw,36px);
+  line-height:1.25;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+
+.hero-subtitle{
+  font-size:15px;
+  color:var(--muted);
+  max-width:560px;
+}
+
+.hero-subtitle + .hero-subtitle{
+  margin-top:6px;
+}
+
+/* BUILDER CARD */
+.hero-card-wrap{
+  width:100%;
+  margin-top:28px;
+}
+
+.hero-card{
+  position:relative;           /* IMPORTANT for dropdown positioning */
+  background:var(--surface);
+  border-radius:999px;
+  border:1px solid var(--border-subtle);
+  box-shadow:var(--shadow-soft);
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-bar{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+@media (min-width:768px){
+  .hero-card{
+    padding:12px 20px;
+  }
+  .hero-bar{
+    flex-direction:row;
+    align-items:center;
+    gap:10px;
+  }
+}
+
+/* FIELD PILLS */
+.field-row{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+@media (min-width:768px){
+  .field-row{
+    flex-direction:row;
+  }
+}
+
+.field-pill{
+  position:relative;
+  flex:1;
+  background:var(--pill-bg);
+  border-radius:999px;
+  padding:10px 40px 10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  cursor:pointer;
+  border:1px solid var(--pill-border);
+  transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.field-pill:hover{
+  border-color:var(--border-subtle);
+  box-shadow:0 1px 2px rgba(0,0,0,0.06);
+  background:#f8f9fa;
+}
+
+.field-pill-label{
+  font-size:14px;
+  font-weight:500;
+  color:#9aa0a6;
+}
+
+.field-pill-label.selected{
+  color:var(--ink);
+}
+
+.field-pill-caret{
+  position:absolute;
+  right:16px;
+  font-size:12px;
+  color:#dadce0;
+}
+
+/* BUILD BUTTON */
+.build-pill{
+  width:100%;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  padding:11px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:background .12s ease, transform .08s ease, box-shadow .12s ease;
+  box-shadow:0 2px 6px rgba(26,115,232,0.35);
+}
+
+.build-pill:hover{
+  background:var(--accent-hover);
+}
+
+.build-pill:active{
+  transform:translateY(1px);
+  box-shadow:0 1px 3px rgba(26,115,232,0.35);
+}
+
+@media (min-width:768px){
+  .build-pill{
+    width:150px;
+    flex:none;
+  }
+}
+
+/* ERROR MESSAGE */
+.error{
+  margin-top:8px;
+  font-size:12px;
+  color:#d93025;
+  text-align:left;
+  display:none;
+}
+.error.show{display:block;}
+
+/* DROPDOWN SHEET */
+.dropdown-sheet{
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% + 6px);
+  margin:0 auto;
+  max-width:520px;
+  background:var(--surface);
+  border-radius:16px;
+  border:1px solid var(--border-subtle);
+  box-shadow:var(--shadow-card);
+  padding:10px 10px 8px;
+  display:none;
+  z-index:20;
+  max-height:60vh;
+  overflow-y:auto;
+}
+
+.dropdown-sheet.open{display:block;}
+
+.dropdown-label{
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#9aa0a6;
+  margin-bottom:4px;
+}
+
+.dropdown-list{
+  list-style:none;
+}
+
+.dropdown-item{
+  padding:8px 8px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:500;
+  color:var(--ink);
+  cursor:pointer;
+}
+.dropdown-item + .dropdown-item{margin-top:2px;}
+.dropdown-item.selected{
+  background:#e8f0fe;
+}
+
+/* RESULTS / CARDS */
+.results{
+  margin-top:32px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+
+.results-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.results-title{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#9aa0a6;
+}
+.results-meta{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.cards{
+  margin-top:10px;
+  display:grid;
+  gap:12px;
+}
+
+@media (min-width:768px){
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+
+/* CARD */
+.card{
+  background:var(--surface);
+  border-radius:16px;
+  border:1px solid var(--border-subtle);
+  padding:16px 14px 14px;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .12s ease, transform .08s ease, border-color .12s ease, opacity .12s ease;
+  opacity:0;
+  transform:translateY(10px);
+}
+.card.reveal{
+  animation:cardRise .35s ease-out forwards;
+}
+@keyframes cardRise{
+  to{opacity:1;transform:translateY(0);}
+}
+.card:hover{
+  border-color:#dadce0;
+  box-shadow:0 4px 12px rgba(0,0,0,0.10);
+  transform:translateY(-1px);
+}
+.card-context{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#9aa0a6;
+  margin-bottom:10px;
+}
+.card-icon{
+  font-size:24px;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.card-price{
+  font-size:18px;
+  font-weight:700;
+  color:var(--green);
+}
+.card-name{
+  margin-top:2px;
+  font-size:15px;
+  font-weight:600;
+}
+.card-note{
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* MODALS (shared styles) */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(32,33,36,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  backdrop-filter:blur(4px);
+}
+.modal-overlay.open{display:flex;}
+
+.modal-shell,
+.custom-shell{
+  width:100%;
+  max-width:520px;
+  padding:16px;
+}
+
+.modal-box{
+  position:relative;
+  background:#ffffff;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,0.06);
+  box-shadow:0 18px 40px rgba(32,33,36,0.28);
+  padding:20px 22px 18px;
+}
+
+/* PRODUCT MODAL HEADER */
+.modal-header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+.modal-heading-block{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.modal-icon-circle{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#f1f3f4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.modal-title-stack{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.modal-context{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#5f6368;
+}
+.modal-price{
+  font-size:18px;
+  font-weight:700;
+  color:#16a34a;
+}
+.modal-list-name{
+  font-size:15px;
+  font-weight:600;
+  color:#202124;
+}
+
+/* Close button */
+.modal-close-scribble{
+  position:relative;
+  width:24px;
+  height:24px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+}
+.modal-close-scribble::before,
+.modal-close-scribble::after{
+  content:"";
+  position:absolute;
+  left:5px;
+  right:5px;
+  top:50%;
+  border-top:2px solid #9aa0a6;
+  transform-origin:center;
+}
+.modal-close-scribble::before{transform:rotate(45deg);}
+.modal-close-scribble::after{transform:rotate(-45deg);}
+
+/* Product modal body */
+.modal-body{
+  margin-top:18px;
+  font-size:14px;
+  color:#202124;
+}
+.modal-label{
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:6px;
+  color:#5f6368;
+}
+.modal-bullets{
+  list-style:none;
+  margin:0 0 14px;
+  padding:0;
+}
+.modal-bullets li{
+  margin-bottom:4px;
+  font-size:14px;
+}
+.modal-subline{
+  margin-top:4px;
+  font-size:14px;
+}
+
+/* Step 2: form only */
+.modal-step-2{
+  display:none;
+  margin-top:14px;
+}
+.modal-form{
+  border-radius:12px;
+  border:1px solid #e0e0e0;
+  width:100%;
+  background:#fff;
+  height:60vh;
+}
+
+/* Footer */
+.modal-footer{
+  margin-top:18px;
+  display:flex;
+  justify-content:flex-end;
+}
+.modal-get-btn{
+  padding:9px 22px;
+  border-radius:999px;
+  border:none;
+  background:#1a73e8;
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 3px 6px rgba(26,115,232,0.35);
+  transition:background .12s ease, box-shadow .12s ease, transform .08s ease;
+}
+.modal-get-btn:hover{
+  background:#185abc;
+  box-shadow:0 4px 12px rgba(26,115,232,0.4);
+  transform:translateY(-1px);
+}
+.modal-get-btn:active{
+  background:#185abc;
+  box-shadow:0 2px 4px rgba(26,115,232,0.35);
+  transform:translateY(0);
+}
+
+/* When form is open */
+.modal-box.form-open .modal-body,
+.modal-box.form-open .modal-footer{
+  display:none;
+}
+.modal-box.form-open .modal-step-2{
+  display:block;
+}
+
+/* CUSTOM FORM MODAL (top-right button) */
+.custom-shell{
+  max-width:640px;
+}
+.custom-box{
+  padding:20px 22px 18px;
+}
+.custom-title{
+  font-size:16px;
+  font-weight:600;
+  color:#202124;
+}
+.custom-sub{
+  font-size:13px;
+  color:#5f6368;
+  margin-top:4px;
+  margin-bottom:10px;
+}
+.custom-form{
+  width:100%;
+  height:65vh;
+  border-radius:12px;
+  border:1px solid #e0e0e0;
+}
+
+/* Mobile tweaks */
+@media (max-width:600px){
+  .modal-shell,
+  .custom-shell{
+    padding:12px;
+  }
+  .modal-box,
+  .custom-box{
+    border-radius:16px;
+    padding:18px 16px 16px;
+  }
+}
+
+/* Close button */
+.modal-close-scribble{
+  position:relative;
+  width:24px;
+  height:24px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+}
+.modal-close-scribble::before,
+.modal-close-scribble::after{
+  content:"";
+  position:absolute;
+  left:5px;
+  right:5px;
+  top:50%;
+  border-top:2px solid #9aa0a6;
+  transform-origin:center;
+}
+.modal-close-scribble::before{transform:rotate(45deg);}
+.modal-close-scribble::after{transform:rotate(-45deg);}
+
+/* Product modal body */
+.modal-body{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--ink);
+}
+.modal-label{
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:6px;
+  color:#5f6368;
+}
+.modal-bullets{
+  list-style:none;
+  margin:0 0 12px;
+  padding:0;
+}
+.modal-bullets li{
+  margin-bottom:4px;
+  font-size:14px;
+}
+.modal-subline{
+  margin-top:4px;
+  font-size:14px;
+}
+
+/* Step 2: form only */
+.modal-step-2{
+  display:none;
+  margin-top:12px;
+}
+.modal-form{
+  border-radius:8px;
+  border:1px solid var(--border-subtle);
+  width:100%;
+  background:#fff;
+  height:60vh;
+}
+
+/* Footer */
+.modal-footer{
+  margin-top:14px;
+  display:flex;
+  justify-content:flex-end;
+}
+.modal-get-btn{
+  padding:9px 18px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* When form is open */
+.modal-box.form-open .modal-body,
+.modal-box.form-open .modal-footer{
+  display:none;
+}
+.modal-box.form-open .modal-step-2{
+  display:block;
+}
+
+/* CUSTOM FORM MODAL */
+.custom-shell{max-width:640px;}
+.custom-box{padding:18px 18px 16px;}
+.custom-title{
+  font-size:16px;
+  font-weight:600;
+}
+.custom-sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:4px;
+  margin-bottom:10px;
+}
+.custom-form{
+  width:100%;
+  height:65vh;
+  border-radius:8px;
+  border:1px solid var(--border-subtle);
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border-subtle);
+  padding:16px 0 0;
+  margin-top:40px;
+  font-size:12px;
+  color:#9aa0a6;
+  text-align:center;
+}
+
+/* Mobile fixes for builder bubble */
+@media (max-width: 640px){
+  .hero-card{
+    border-radius:24px;      /* instead of huge pill */
+    padding:16px 16px 18px;  /* a bit more breathing room */
+    box-shadow:0 4px 12px rgba(0,0,0,0.08); /* slightly softer */
+  }
+
+  .hero-card-wrap{
+    margin-top:20px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <header class="top-row">
+    <div class="brand-lockup" id="brandReset">
+      Astro<br/>Scrape
+    </div>
+
+    <div class="top-actions">
+      <a href="about.html" class="top-about-link">About</a>
+      <button class="top-cta" type="button" id="customBtn">
+        Subscribe
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO CENTER -->
+  <main class="hero-center">
+    <h1 class="hero-heading">
+        The Business Directory.
+    </h1>
+    <p class="hero-subtitle">
+      Browse the database. Over 6000+ businesses listed by Name, Location, URL and some emails. What do you get?
+    </p>
+    <p class="hero-subtitle">
+        A CSV straight to your inbox. Cutting your prospecting time in half.
+    </p>
+
+    <div class="hero-card-wrap">
+      <section class="hero-card" aria-label="List builder">
+        <div class="hero-bar">
+          <div class="field-row">
+            <!-- Industry -->
+            <button class="field-pill" type="button" data-field="industry">
+              <span class="field-pill-label" id="industryLabel" data-placeholder="industry">industry</span>
+              <span class="field-pill-caret">▾</span>
+            </button>
+            <!-- Location -->
+            <button class="field-pill" type="button" data-field="location">
+              <span class="field-pill-label" id="locationLabel" data-placeholder="location">location</span>
+              <span class="field-pill-caret">▾</span>
+            </button>
+          </div>
+
+          <button id="buildBtn" type="button" class="build-pill">Sort List</button>
+        </div>
+
+        <p id="errorMsg" class="error">Please choose both an industry and a location.</p>
+
+        <!-- Dropdown sheet -->
+        <div class="dropdown-sheet" id="dropdownSheet" aria-hidden="true">
+          <div class="dropdown-label" id="dropdownLabel"></div>
+          <ul class="dropdown-list" id="dropdownOptions"></ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Results / cards -->
+    <section id="results" class="results">
+      <div class="results-header">
+        <div class="results-title">Available lists</div>
+        <div id="selectionSummary" class="results-meta"></div>
+      </div>
+
+      <div class="cards"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 Astroscrape. B2B emails, built with love from Sweden.
+  </footer>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal-shell">
+    <div id="productModal" class="modal-box" role="dialog" aria-modal="true">
+      <div class="modal-header-row">
+        <div class="modal-heading-block">
+          <div class="modal-icon-circle">
+            <i class="bi card-icon" id="modalIcon" aria-hidden="true"></i>
+          </div>
+          <div class="modal-title-stack">
+            <div class="modal-context" id="modalContext">INDUSTRY • LOCATION</div>
+            <div class="modal-price" id="modalPrice">Free</div>
+            <div class="modal-list-name" id="modalListName">LIST NAME</div>
+          </div>
+        </div>
+        <button type="button" class="modal-close-scribble" data-close></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-label">What you get</div>
+          <ul class="modal-bullets">
+            <li id="modalLineCount">Businesses is in (industry), in (location)</li>
+            <li>- URLS to Real Businesses, to start Outreach</li>
+            <li>- Get 3 Customers to start talking to you this week.</li>
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-label">How?</div>
+          <div class="modal-subline">We send you an excel sheet. Take the excel sheet and filter for companies you find interesting. Tailor your message as a win-win. Send this to 10% of them using the form on their website. This gets a 10-30% response rate. You got this!</div>
+        </div>
+      </div>
+
+      <div class="modal-step-2">
+        <iframe class="modal-form" id="modalForm" src="" frameborder="0"></iframe>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="modal-get-btn" id="modalGetBtn">Get List</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM FORM MODAL -->
+<div id="customOverlay" class="modal-overlay" aria-hidden="true">
+  <div class="custom-shell">
+    <div class="modal-box custom-box" role="dialog" aria-modal="true">
+      <div class="modal-header-row">
+        <div>
+          <div class="custom-title">Subscribe to Astroscrape</div>
+          <p class="custom-sub">
+            100% Free. Get Updates & occassional lists from us.
+          </p>
+        </div>
+        <button type="button" class="modal-close-scribble" data-close-custom></button>
+      </div>
+      <iframe id="customForm" class="custom-form" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ====== FORM URLS (60 products + 1 custom) ======
+  const FORM_URLS = {
+    sample: {
+      "banking-finance": {
+        sweden:        "https://form.fillout.com/t/6e45T172Pxus",
+        germany:       "https://form.fillout.com/t/ntJyfChhYBus",
+        "northern-europe": "https://form.fillout.com/t/dsy8Tpq3Pnus",
+        uk:            "https://form.fillout.com/t/1sa9Zu6bCrus",
+        usa:           "https://form.fillout.com/t/mtbrwBEcR7us",
+      },
+      "b2b-smes-small-medium-enterprise": {
+        sweden:        "https://form.fillout.com/t/xcrS3NhU4Pus",
+        germany:       "https://form.fillout.com/t/k9bRmwQVhRus",
+        "northern-europe": "https://form.fillout.com/t/byP3u1cthQus",
+        uk:            "https://form.fillout.com/t/t4GDW3X1VYus",
+        usa:           "https://form.fillout.com/t/htPm62GBEsus",
+      },
+      "it-and-start-up-companies": {
+        sweden:        "https://form.fillout.com/t/eWZe2uki3Uus",
+        germany:       "https://form.fillout.com/t/2rW31Kziu5us",
+        "northern-europe": "https://form.fillout.com/t/eFJy3MSUJFus",
+        uk:            "https://form.fillout.com/t/nPDBj5VWCXus",
+        usa:           "https://form.fillout.com/t/usC7YX1xvSus",
+      },
+      "b2c-smes": {
+        sweden:        "https://form.fillout.com/t/9NNGrHmsEWus",
+        germany:       "https://form.fillout.com/t/ncFJEBDEM5us",
+        "northern-europe": "https://form.fillout.com/t/9XJtehLunUus",
+        uk:            "https://form.fillout.com/t/9KNUDpPu1Cus",
+        usa:           "https://form.fillout.com/t/grUWCwKSeRus",
+      }
+    },
+
+    list100: {
+      "banking-finance": {
+        sweden:        "https://form.fillout.com/t/6UTkRz47Lcus",
+        germany:       "https://form.fillout.com/t/m6dYNqwW7Rus",
+        "northern-europe": "https://form.fillout.com/t/tnbEKVCbT4us",
+        uk:            "https://form.fillout.com/t/sWHFoqsKQMus",
+        usa:           "https://form.fillout.com/t/sFfgjLTCUYus",
+      },
+      "b2b-smes-small-medium-enterprise": {
+        sweden:        "https://form.fillout.com/t/nQWD3y9KXNus",
+        germany:       "https://form.fillout.com/t/4uVkLau8Lius",
+        "northern-europe": "https://form.fillout.com/t/99LvD94Nidus",
+        uk:            "https://form.fillout.com/t/fxZ62tZXSSus",
+        usa:           "https://form.fillout.com/t/2uD4eGvaEYus",
+      },
+      "it-and-start-up-companies": {
+        sweden:        "https://form.fillout.com/t/oQDP5Vknzgus",
+        germany:       "https://form.fillout.com/t/x3q4WYGPy5us",
+        "northern-europe": "https://form.fillout.com/t/6317VdmTxHus",
+        uk:            "https://form.fillout.com/t/sWHFoqsKQMus",
+        usa:           "https://form.fillout.com/t/eYghzTMj93us",
+      },
+      "b2c-smes": {
+        sweden:        "https://form.fillout.com/t/jLwBTeDa53us",
+        germany:       "https://form.fillout.com/t/c29AsTzHQqus",
+        "northern-europe": "https://form.fillout.com/t/r59D8GEQnPus",
+        uk:            "https://form.fillout.com/t/56R4P8XNYjus",
+        usa:           "https://form.fillout.com/t/54xq7uKn1Sus",
+      }
+    },
+
+    list300: {
+      "banking-finance": {
+        sweden:        "https://form.fillout.com/t/94WKWYH5p8us",
+        germany:       "https://form.fillout.com/t/sC6BXuh5VBus",
+        "northern-europe": "https://form.fillout.com/t/9u9Es9a8BJus",
+        uk:            "https://form.fillout.com/t/3DbQEKYp8vus",
+        usa:           "https://form.fillout.com/t/nsHHjnGyzMus",
+      },
+      "b2b-smes-small-medium-enterprise": {
+        sweden:        "https://form.fillout.com/t/fBGTKa2bTSus",
+        germany:       "https://form.fillout.com/t/j5mjx6haaPus",
+        "northern-europe": "https://form.fillout.com/t/v78yJcThkRus",
+        uk:            "https://form.fillout.com/t/oiwMLvpTsDus",
+        usa:           "https://form.fillout.com/t/akjaHaR9bbus",
+      },
+      "it-and-start-up-companies": {
+        sweden:        "https://form.fillout.com/t/9ZamsVH33Lus",
+        germany:       "https://form.fillout.com/t/fEsaG9TH9eus",
+        "northern-europe": "https://form.fillout.com/t/3P3FCMgfh7us",
+        uk:            "https://form.fillout.com/t/qYKCQaNeaaus",
+        usa:           "https://form.fillout.com/t/uH6Ci5d4zZus",
+      },
+      "b2c-smes": {
+        sweden:        "https://form.fillout.com/t/jYf3kzQepwus",
+        germany:       "https://form.fillout.com/t/f2kaoRXTFFus",
+        "northern-europe": "https://form.fillout.com/t/otTyBoS6Lous",
+        uk:            "https://form.fillout.com/t/vUXkAgvUw4us",
+        usa:           "https://form.fillout.com/t/njQHqcSiyQus",
+      }
+    }
+  };
+
+  // Custom list form (top-right button)
+  const customFormUrl = "https://form.fillout.com/t/7kPj1VZj95us";
+
+  // ====== STATE / CONSTANTS ======
+  let selectedIndustry = null;
+  let selectedLocation = null;
+  let openField = null;
+
+  const industryOptions = [
+    "Banking / Finance",
+    "B2B SMEs (small medium enterprise)",
+    "IT & Start-up companies",
+    "B2C SMEs"
+  ];
+  const locationOptions = [
+    "Sweden",
+    "Germany",
+    "Northern Europe",
+    "UK",
+    "USA"
+  ];
+
+  // ---- DOM references ----
+  const industryLabel = document.getElementById('industryLabel');
+  const locationLabel = document.getElementById('locationLabel');
+  const dropdownSheet = document.getElementById('dropdownSheet');
+  const dropdownLabel = document.getElementById('dropdownLabel');
+  const dropdownOptions = document.getElementById('dropdownOptions');
+  const triggers = document.querySelectorAll('.field-pill');
+  const buildBtn = document.getElementById('buildBtn');
+  const errorMsg = document.getElementById('errorMsg');
+  const results = document.getElementById('results');
+  const selectionSummary = document.getElementById('selectionSummary');
+  const heroCard = document.querySelector('.hero-card');
+  const brandReset = document.getElementById('brandReset');
+  const customBtn = document.getElementById('customBtn');
+  const cardsContainer = document.querySelector('.cards');
+  let cards = [];
+
+  // ====== HELPERS ======
+  function slugify(str){
+    return str
+      .toLowerCase()
+      .replace(/&/g,'and')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+  }
+
+  function resetApp(){
+    selectedIndustry = null;
+    selectedLocation = null;
+    industryLabel.textContent = industryLabel.dataset.placeholder;
+    locationLabel.textContent = locationLabel.dataset.placeholder;
+    industryLabel.classList.remove('selected');
+    locationLabel.classList.remove('selected');
+    errorMsg.classList.remove('show');
+    applyFilters();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  brandReset.addEventListener('click', resetApp);
+
+  // ====== DROPDOWN LOGIC ======
+  function openDropdown(field){
+    openField = field;
+    const options = field === 'industry' ? industryOptions : locationOptions;
+    const current = field === 'industry' ? selectedIndustry : selectedLocation;
+
+    dropdownLabel.textContent = field.toUpperCase();
+    dropdownOptions.innerHTML = '';
+
+    options.forEach(opt => {
+      const li = document.createElement('li');
+      li.className = 'dropdown-item' + (opt === current ? ' selected' : '');
+      li.textContent = opt;
+      li.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(field === 'industry'){
+          selectedIndustry = opt;
+          industryLabel.textContent = opt;
+          industryLabel.classList.add('selected');
+        } else {
+          selectedLocation = opt;
+          locationLabel.textContent = opt;
+          locationLabel.classList.add('selected');
+        }
+        closeDropdown();
+      });
+      dropdownOptions.appendChild(li);
+    });
+
+    dropdownSheet.classList.add('open');
+    dropdownSheet.setAttribute('aria-hidden','false');
+  }
+
+  function closeDropdown(){
+    openField = null;
+    dropdownSheet.classList.remove('open');
+    dropdownSheet.setAttribute('aria-hidden','true');
+  }
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const field = btn.getAttribute('data-field');
+      if(openField === field) closeDropdown();
+      else openDropdown(field);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if(!dropdownSheet.contains(e.target) && ![...triggers].some(t => t.contains(e.target))){
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      closeDropdown();
+      closeProductModal();
+      closeCustomModal();
+    }
+  });
+
+  function animateCards(){
+    cards.forEach(card => {
+      card.classList.remove('reveal');
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(10px)';
+    });
+
+    cards.forEach((card, idx) => {
+      const delay = idx * 50;
+      setTimeout(() => {
+        card.classList.add('reveal');
+        card.style.opacity = '';
+        card.style.transform = '';
+      }, delay);
+    });
+  }
+
+  // ====== FILTERING ======
+  function applyFilters(){
+    if (!cards.length) return;
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cIndustry = card.dataset.industry;
+      const cLocation = card.dataset.location;
+
+      const matchIndustry = !selectedIndustry || cIndustry === selectedIndustry;
+      const matchLocation = !selectedLocation || cLocation === selectedLocation;
+
+      if(matchIndustry && matchLocation){
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const industryText = selectedIndustry || 'All industries';
+    const locationText = selectedLocation || 'All locations';
+    selectionSummary.textContent = `${industryText} • ${locationText} — ${visibleCount} lists`;
+  }
+
+  buildBtn.addEventListener('click', () => {
+    closeDropdown();
+    errorMsg.classList.remove('show');          // no more "must choose both"
+    applyFilters();
+    results.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  // ====== PRODUCT MODAL ======
+  const productOverlay = document.getElementById('modalOverlay');
+  const modalBox = document.getElementById('productModal');
+  const modalIcon = document.getElementById('modalIcon');
+  const modalContext = document.getElementById('modalContext');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalListName = document.getElementById('modalListName');
+  const modalLineCount = document.getElementById('modalLineCount');
+  const modalForm = document.getElementById('modalForm');
+  const modalStep2 = document.querySelector('.modal-step-2');
+  const modalGetBtn = document.getElementById('modalGetBtn');
+  const closeButtons = document.querySelectorAll('[data-close]');
+  let currentFormUrl = '';
+
+  function buildCountLine(count, industry, location){
+    if(!industry || !location) return 'Industry + location list';
+    if(!count || isNaN(Number(count))){
+      return `Sample of ${industry} businesses in ${location}`;
+    }
+    return `${count} ${industry} businesses in ${location}`;
+  }
+
+  function findFormUrl(variant, industry, location){
+    if(!variant || !industry || !location) return "";
+    const v = FORM_URLS[variant];
+    if(!v) return "";
+    const iSlug = slugify(industry);
+    const lSlug = slugify(location);
+    return v[iSlug]?.[lSlug] || "";
+  }
+
+  function openModalForCard(card){
+    const listName = card.querySelector('.card-name').textContent.trim();
+    const count = card.getAttribute('data-count') || '';
+    const price = card.getAttribute('data-price') || card.querySelector('.card-price').textContent.trim();
+    const iconClass = card.getAttribute('data-icon') || '';
+    const industry = card.dataset.industry || selectedIndustry || 'Industry';
+    const location = card.dataset.location || selectedLocation || 'Location';
+    const variant = card.getAttribute('data-product-id');
+
+    modalIcon.className = `bi card-icon ${iconClass}`;
+    modalContext.textContent = `${industry} • ${location}`.toUpperCase();
+    modalPrice.textContent = price;
+    modalListName.textContent = listName;
+    modalLineCount.textContent = buildCountLine(count, industry, location);
+
+    currentFormUrl = findFormUrl(variant, industry, location) || "https://google.com";
+
+    modalBox.classList.remove('form-open');
+    modalStep2.style.display = 'none';
+    modalForm.removeAttribute('src');
+    modalGetBtn.textContent = 'Get List';
+
+    productOverlay.classList.add('open');
+    productOverlay.setAttribute('aria-hidden','false');
+  }
+
+  function closeProductModal(){
+    productOverlay.classList.remove('open');
+    productOverlay.setAttribute('aria-hidden','true');
+  }
+
+  modalGetBtn.addEventListener('click', () => {
+    if(!currentFormUrl){
+      closeProductModal();
+      return;
+    }
+    modalBox.classList.add('form-open');
+    modalStep2.style.display = 'block';
+    if(!modalForm.src){
+      modalForm.src = currentFormUrl;
+    }
+  });
+
+  closeButtons.forEach(btn => btn.addEventListener('click', closeProductModal));
+  productOverlay.addEventListener('click', (e) => {
+    if(e.target === productOverlay) closeProductModal();
+  });
+
+  // ====== CUSTOM FORM MODAL ======
+  const customOverlay = document.getElementById('customOverlay');
+  const customForm = document.getElementById('customForm');
+  const customCloseBtns = document.querySelectorAll('[data-close-custom]');
+
+  function openCustomModal(){
+    customOverlay.classList.add('open');
+    customOverlay.setAttribute('aria-hidden','false');
+    if (!customForm.getAttribute('src')) {
+      customForm.setAttribute('src', customFormUrl);
+    }
+  }
+
+  function closeCustomModal(){
+    customOverlay.classList.remove('open');
+    customOverlay.setAttribute('aria-hidden','true');
+  }
+
+  customBtn.addEventListener('click', openCustomModal);
+  customCloseBtns.forEach(btn => btn.addEventListener('click', closeCustomModal));
+  customOverlay.addEventListener('click', (e) => {
+    if(e.target === customOverlay) closeCustomModal();
+  });
+
+  // ====== BUILD ALL 60 CARDS ======
+  function createAllCards(){
+    const variantMeta = {
+      sample: {
+        count: 'Sample',
+        priceDisplay: 'Free',
+        icon: 'bi-brightness-alt-high-fill',
+        note: '10 companies to test our directory.'
+      },
+      list100: {
+        count: '100',
+        priceDisplay: 'Campaign',
+        icon: 'bi-brightness-high-fill',
+        note: 'Test Your Messaging with Prospects.'
+      },
+      list300: {
+        count: '300',
+        priceDisplay: 'Rocket',
+        icon: 'bi-cup-hot-fill',
+        note: 'Convert them into Customers.'
+      }
+    };
+
+    cardsContainer.innerHTML = '';
+
+    industryOptions.forEach(industry => {
+      locationOptions.forEach(location => {
+        Object.keys(FORM_URLS).forEach(variant => {
+          const iSlug = slugify(industry);
+          const lSlug = slugify(location);
+          if (!FORM_URLS[variant][iSlug] || !FORM_URLS[variant][iSlug][lSlug]) return;
+
+          const meta = variantMeta[variant];
+          const article = document.createElement('article');
+          article.className = 'card';
+          article.dataset.count = meta.count;
+          article.dataset.price = meta.priceDisplay;
+          article.dataset.productId = variant;
+          article.dataset.icon = meta.icon;
+          article.dataset.industry = industry;
+          article.dataset.location = location;
+
+          const listTitle =
+            meta.count === 'Sample'
+              ? 'Sample list'
+              : `List of ${meta.count} Company URLs`;
+
+          article.innerHTML = `
+            <div class="card-context">${(industry + ' • ' + location).toUpperCase()}</div>
+            <i class="bi ${meta.icon} card-icon" aria-hidden="true"></i>
+            <div class="card-price">${meta.priceDisplay}</div>
+            <div class="card-name">${listTitle}</div>
+            <div class="card-note">${meta.note}</div>
+          `;
+          cardsContainer.appendChild(article);
+        });
+      });
+    });
+
+    cards = Array.from(document.querySelectorAll('.cards .card'));
+
+    // attach modal open handler
+    cards.forEach(card => {
+      card.addEventListener('click', () => openModalForCard(card));
+    });
+  }
+
+  // ====== INIT ======
+  createAllCards();     // build 60 cards
+  applyFilters();       // show all by default + summary text
+  animateCards();       // nice entrance animation
+</script>
+
+</body>
+</html>
