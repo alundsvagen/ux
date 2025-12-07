@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ready-Made SaaS Branding & UX Packs | Take Away Studio</title>
-<meta name="description" content="Take Away Studio in Stockholm creates ready-made SaaS branding and UX packs for 10–50 person startups who want a fresh, consistent brand without hiring a full agency. Choose brand packs, UX flows or custom consulting." />
+<title>AI Brand Packages for SaaS Teams | Take Away Studio</title>
+<meta name="description" content="AI Brand Packages for 10–50 person SaaS teams chasing product–market fit. A first step to beautiful brand consistency for launch, without hiring a full agency." />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Ready-Made SaaS Branding & UX Packs | Take Away Studio" />
-<meta property="og:description" content="Take Away Studio creates ready-made SaaS branding and UX packs for 10–50 person startups who want a fresh, consistent brand without hiring a full agency." />
+<meta property="og:title" content="AI Brand Packages for SaaS Teams | Take Away Studio" />
+<meta property="og:description" content="Pre-built, AI-assisted brand systems for SaaS teams who need a launch-ready brand, fast." />
 <meta property="og:url" content="https://alundsvagen.github.io/ux/index.html" />
 <meta property="og:image" content="https://alundsvagen.github.io/ux/landing2.gif" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Ready-Made SaaS Branding & UX Packs | Take Away Studio" />
-<meta name="twitter:description" content="Ready-made SaaS brand and UX packs so your 10–50 person startup can launch a fresh, consistent brand without hiring an agency." />
+<meta name="twitter:title" content="AI Brand Packages for SaaS Teams | Take Away Studio" />
+<meta name="twitter:description" content="AI Brand Packages so your 10–50 person SaaS team can launch with a fresh, consistent brand without a full agency engagement." />
 <meta name="twitter:image" content="https://alundsvagen.github.io/ux/landing2.gif" />
 
 <!-- Favicon -->
@@ -29,12 +29,11 @@
 <style>
 /* ------------------------------------
    Take Away Studio — Unified Stylesheet
-   Mobile-first + desktop overrides
 ------------------------------------- */
 
 /* ========== VARIABLES & BASE ========== */
 :root{
-  --bg: #F9F9F9;
+  --bg: #ffffff; /* white background */
   --text:#000;
   --muted:#6A6B70;
   --blue:#3C75F6;
@@ -51,7 +50,7 @@ body{
   color:var(--text);
   font:400 17px/1.4 "Helvetica", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 70px; /* for sticky footer CTA on mobile */
+  padding-bottom: 0;
 }
 a{ color:inherit; text-decoration:none }
 .wrap{ width:100%; margin-inline:auto; position:relative; padding-inline:16px }
@@ -109,357 +108,101 @@ header .hamburger span:after{
 .panel .panel-logo a:hover{ color:var(--brand) }
 
 /* =====================================
-   HERO (Mobile)
+   LANDING HERO (Google-style)
 ===================================== */
-.hero{ position:relative; padding:16px 0 40px }
-.hero h1{
-  margin:28px 0 0;
-  font-weight:700; font-size:clamp(44px, 11vw, 84px); line-height:1.05;
-  text-align:left;
-  letter-spacing:-.03em;
-  background: var(--gradient);
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent; color:transparent;
-  opacity:0;
-  transform:translateY(18px);
-  animation: heroFadeUp 0.7s ease-out forwards;
-  animation-delay: 0.05s;
-}
-.hero p{
-  max-width:100%; margin:16px 0 0; text-align:left; color:var(--muted);
-  font-size:clamp(18px, 4vw, 24px); line-height:1.4; letter-spacing:-.03em;
-  opacity:0;
-  transform:translateY(14px);
-  animation: heroFadeUp 0.7s ease-out forwards;
-  animation-delay: 0.25s;
-}
-.ctas{
-  display:flex; flex-direction:column; gap:16px;
-  justify-content:flex-start; margin:32px 0 40px;
-}
-.btn{
-  height:56px; display:grid; place-items:center; border-radius:12px;
-  letter-spacing:-.03em; font-size:18px; font-weight:700;
-  width:100%; max-width:350px;
-  cursor:pointer; transition:background .2s, border .2s, transform .15s;
-}
-.btn-primary{
-  background:var(--blue); color:#fff; border:none;
-  box-shadow: 0 4px 12px rgba(60, 117, 246, 0.4);
-}
-.btn-outline{
-  border:2px solid var(--brand);
-  background:transparent; color:var(--brand);
-}
-.btn-outline:hover{
-  border-color:var(--brand); background:rgba(210,129,55,0.1);
-}
-.btn:active{
-  transform:scale(0.97);
-}
-.media-wrap {
-  display: flex; justify-content: center; padding: 16px 0 40px;
-}
-.media {
-  width: 100%; border-radius: 12px; display: block; height: auto; object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+.main-landing{
+  padding:56px 0 96px;
 }
 
-/* Hero fade-up */
-@keyframes heroFadeUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* =====================================
-   WHY BUY A READY-MADE DESIGN
-===================================== */
-.why-section{
-  background:#fff; padding:60px 0;
-  display:flex; justify-content:center;
-}
-.why-section .wrap{
-  width:100%; margin-inline:auto; padding-inline:16px;
-}
-.why-stat-group{
-  text-align:left; margin-bottom:40px;
-}
-.why-stat{
-  font-family:'Bricolage Grotesque', sans-serif; font-weight:700;
-  font-size:clamp(28px, 7vw, 50px); line-height:1.2;
-  letter-spacing:-.04em; color:#000;
-  margin:0 0 8px;
-  opacity:0; transform:translateY(20px);
-  animation: riseUp 0.8s ease-out forwards;
-  animation-delay:0.2s;
-}
-@keyframes riseUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-.why-proof{
-  background:none; border-radius:0; padding:0; box-shadow:none;
-  text-align:left;
-  display:flex; flex-wrap:wrap; gap:15px; margin-top:15px;
-}
-.why-proof img{
-  height:40px; width:auto; margin:0;
-  display:inline-block; opacity:0.7; max-width:150px;
-  transition:opacity 0.3s ease;
-}
-.why-proof img:hover{ opacity:1; }
-
-.why-grid{
-  display:grid; grid-template-columns:1fr;
-  align-items:start; gap:40px; padding-top:40px;
-}
-.why-text h3{
-  font-weight:700; font-size:clamp(36px,5vw,100px);
-  line-height:1.04; letter-spacing:-.03em; color:#000; margin:0 0 20px;
-}
-.why-text p{
-  font-weight:400; font-size:clamp(16px,2vw,30px);
-  line-height:1.4; letter-spacing:-.03em; color:var(--muted);
-  max-width:500px;
-}
-.why-media img{
-  width:100%; height:auto; display:block; object-fit:cover; border-radius:12px;
-}
-
-/* Hide client logos on mobile */
-@media (max-width: 980px) {
-  .why-proof img {
-    display: none;
-  }
-  .why-proof {
-    margin-top: 0;   /* remove extra gap under the +14 stat */
-  }
-}
-
-/* =====================================
-   HORIZONTAL SCROLL NAV
-===================================== */
-.scroll-nav-section{
-  background:var(--bg);
-  padding:0 0 40px;
-}
-.scroll-nav-list{
-  display:flex; gap:12px;
-  overflow-x:auto;
-  padding:8px 16px 12px;
-  margin:0;
-  list-style:none;
-  -webkit-overflow-scrolling:touch;
-  scroll-snap-type:x mandatory;
-  scroll-padding-inline:16px;
-}
-.scroll-nav-list::-webkit-scrollbar{ display:none; }
-
-.scroll-nav-item a{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  width:110px; min-width:200px; height:310px;
-  background:#fff; border:1px solid #E1E4E6; border-radius:18px;
-  text-align:center; font-size:14px; font-weight:700;
-  letter-spacing:-.02em; color:var(--text);
-  transition:all .2s ease;
-  scroll-snap-align:start;
-  box-shadow:0 4px 10px rgba(0,0,0,0.03);
-  animation: floatCard 5s ease-in-out infinite;
-}
-.scroll-nav-item:nth-child(2) a{ animation-delay:0.4s; }
-.scroll-nav-item:nth-child(3) a{ animation-delay:0.8s; }
-.scroll-nav-item:nth-child(4) a{ animation-delay:1.2s; }
-
-.scroll-nav-item a:hover,
-.scroll-nav-item a:focus-visible,
-.scroll-nav-item a.is-active{
-  border-color:var(--blue); background:var(--blue); color:#fff;
-  box-shadow:0 8px 20px rgba(60,117,246,0.35);
-}
-.scroll-nav-item img.bi,
-.scroll-nav-item svg{
-  width:24px; height:24px; margin-bottom:6px;
-  color:var(--menuIcon);
-  filter:grayscale(1) brightness(.55);
-  transition:inherit;
-}
-.scroll-nav-item a:hover img.bi,
-.scroll-nav-item a:hover svg,
-.scroll-nav-item a.is-active img.bi,
-.scroll-nav-item a.is-active svg{
-  filter:none; color:#fff;
-}
-
-@keyframes floatCard{
-  0%,100% { transform:translateY(0); }
-  50%     { transform:translateY(-6px); }
-}
-
-/* =====================================
-   PHILOSOPHY SECTION
-===================================== */
-.philo-section{
-  background:#F3F3F3;
-  padding:60px 0;
-}
-.philo-section .wrap{
-  width:100%; margin-inline:auto; padding-inline:16px;
-}
-.philo-top{
-  margin-bottom:40px; text-align:left;
-}
-.philo-chip-outline{
-  display:inline-block; border:1px solid var(--text); padding:4px 12px;
-  border-radius:20px; font-size:14px; font-weight:700;
-  letter-spacing:.05em; text-transform:uppercase;
-  margin-bottom:12px;
-}
-.philo-title{
-  font-weight:700; font-size:clamp(32px, 8vw, 60px);
-  line-height:1.1; letter-spacing:-.04em; margin:0;
-}
-.philo-grid{
-  display:grid; grid-template-columns:1fr; gap:24px;
-}
-.philo-card{
-  display:block; border-radius:16px; overflow:hidden; position:relative;
-  min-height:280px; background:#000;
-  text-decoration:none; color:inherit;
-}
-.philo-img{
-  width:100%; height:100%; object-fit:cover;
-  display:block; opacity:.8; transition:opacity .3s ease;
-}
-.philo-card:hover .philo-img{ opacity:.5; }
-.philo-caption{
-  position:absolute; bottom:0; left:0; right:0; padding:16px;
-  color:#fff;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
-}
-.philo-caption h3{
-  font-weight:700; font-size:clamp(24px, 5vw, 40px);
-  line-height:1.1; letter-spacing:-.03em; margin:0;
-}
-.philo-chip{
-  position:absolute; top:16px; right:16px;
-  display:inline-block; padding:6px 14px; border-radius:20px;
-  background:rgba(255,255,255,0.9); color:var(--text);
-  font-weight:700; font-size:14px;
-}
-
-/* =====================================
-   BRAND KITS SECTION
-===================================== */
-.brandkits-section{
-  background:#fff;
-  padding:60px 0 100px;
-  overflow:hidden;
-}
-.brandkits-section .wrap{
-  width:100%; margin-inline:auto; padding-inline:16px;
-}
-.brandkits-top{
-  display:block; text-align:center;
-  margin:0 auto 40px;
-}
-.brandkits-logo-frame{
-  display:flex; justify-content:center; margin-bottom:20px;
-}
-
-/* Animated logo */
-.bk-logo{
-  position:relative;
-  width:clamp(150px, 30vw, 440px);
-  aspect-ratio:1/1;
-  display:flex; align-items:center; justify-content:center;
-}
-.bk-ring{
-  position:absolute; border-radius:50%;
-  animation:bk-pulse 6s ease-in-out infinite;
-}
-.bk-outer{ width:100%; height:100%; background:#DBF5FC; animation-delay:0s; }
-.bk-middle{ width:77%; height:77%; background:#3CA2F6; animation-delay:1s; }
-.bk-inner{ width:49%; height:49%; background:#3C75F6; animation-delay:2s; }
-
-@keyframes bk-pulse{
-  0%,100% { transform:scale(1); opacity:1; }
-  50%     { transform:scale(1.04); opacity:.9; }
-}
-
-.bk-text{
-  position:relative; z-index:2; color:#fff;
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(20px, 4vw, 70px); line-height:1; letter-spacing:-.04em;
+.landing-wrap{
+  max-width:1100px;
+  margin:0 auto;
   text-align:center;
 }
 
-.brandkits-header h2{
+.landing-title{
+  margin:40px 0 12px;
+  font-family:"Bricolage Grotesque", system-ui, sans-serif;
   font-weight:700;
-  font-size:clamp(36px,9vw,60px);
-  line-height:1.04;
-  letter-spacing:-.03em;
-  color:#000;
-  margin:0 0 10px;
+  font-size:clamp(34px, 6vw, 54px);
+  line-height:1.05;
+  letter-spacing:-0.04em;
 }
-.brandkits-header p{
-  font-weight:400;
-  font-size:clamp(16px,4vw,24px);
+
+.landing-title strong{
+  font-weight:700;
+}
+
+.landing-subtitle{
+  max-width:820px;
+  margin:0 auto 32px;
   color:var(--muted);
-  margin:0;
+  font-size:clamp(16px, 2.4vw, 20px);
+  line-height:1.5;
 }
 
-.brandkits-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:24px;
-  margin:24px auto 0;
+/* search bar */
+.search-shell{
+  max-width:960px;
+  margin:0 auto 18px;
 }
-.brandkits-card{
-  box-sizing:border-box;
+
+.search-input{
   width:100%;
-  border:2px solid #E1E4E6;
-  border-radius:30px;
-  padding:32px;
-  transition:all .25s ease;
-  text-align:left;
-  text-decoration:none; color:inherit;
+  border-radius:999px;
+  border:1px solid #E1E4E6;
+  padding:16px 22px;
+  font-size:17px;
+  outline:none;
+  box-shadow:0 16px 40px rgba(0,0,0,0.06);
 }
-.brandkits-card:hover{
-  background:#F7F3ED;
-  border-color:#E1E4E6;
-  box-shadow:5px 5px 2px 5px rgba(0,0,0,0.05);
-}
-.pill{
-  display:inline-grid; place-items:center;
-  min-width:120px; height:40px; padding:0 14px;
-  background:#DBF5FC; border-radius:20px;
-  font-size:16px; color:#000; font-weight:700;
-}
-.pill-wide{ min-width:160px; }
-.brandkits-card h3{
-  margin:20px 0 8px;
-  font-weight:700; font-size:clamp(24px,5vw,50px);
-  line-height:1.04; letter-spacing:-.03em;
-}
-.brandkits-card p{
-  margin:0;
-  font-weight:400; font-size:clamp(15px,3vw,30px);
-  color:var(--muted); letter-spacing:-.03em;
+.search-input::placeholder{
+  color:#A0A3AA;
 }
 
-/* =====================================
-   STICKY FOOTER CTA (Mobile)
-===================================== */
-@media (max-width: 980px) {
-  .sticky-cta-footer{
-    position:fixed; bottom:0; left:0; right:0; z-index:250;
-    padding:12px 16px;
-    background:#fff;
-    border-top:1px solid #eee;
-    box-shadow:0 -4px 10px rgba(0,0,0,0.05);
-  }
-  .sticky-cta-footer .btn{
-    width:100%; margin:0;
+/* action buttons */
+.search-actions{
+  margin-top:8px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn-pill{
+  min-width:160px;
+  padding:10px 20px;
+  border-radius:999px;
+  border:none;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  cursor:pointer;
+  transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+.btn-pill:active{
+  transform:scale(0.97);
+}
+
+/* blue primary */
+.btn-pill--primary{
+  background:var(--blue);
+  color:#fff;
+}
+
+/* black secondary */
+.btn-pill--secondary{
+  background:#000;
+  color:#fff;
+}
+
+/* stack on very small screens, but still look compact */
+@media (max-width:480px){
+  .btn-pill{
+    width:100%;
+    max-width:260px;
   }
 }
 
@@ -527,8 +270,6 @@ header .hamburger span:after{
    DESKTOP & TABLET OVERRIDES (≥981px)
 ===================================== */
 @media (min-width:981px){
-  body{ padding-bottom:0; }
-
   .wrap{
     max-width:1728px;
     padding-inline:24px;
@@ -559,9 +300,7 @@ header .hamburger span:after{
     justify-self:end;
   }
   header .btn-contact:hover{ background:var(--blue); border-color:var(--blue); }
-  .sticky-cta-footer{ display:none !important; }
 
-  /* Desktop dropdown nav */
   header .nav-bar > li{ position:relative; }
   header .nav-link{ display:inline-flex; align-items:center; gap:8px; }
   header .nav-link .caret{
@@ -607,151 +346,13 @@ header .hamburger span:after{
     flex:0 0 28px;
   }
 
-  /* Hero Desktop */
-  .hero{ padding:120px 0 80px; }
-  .hero .wrap{ padding-inline:0; max-width:1728px; }
-  .hero h1{
-    text-align:center;
-    max-width:1061px;
-    margin-inline:auto;
-    font-size:100px;
-  }
-  .hero p{
-    text-align:center;
-    max-width:1020px;
-    margin-inline:auto;
-    font-size:30px;
-  }
-  .ctas{
-    flex-direction:row;
-    justify-content:center;
-    max-width:none;
-  }
-  .btn{
-    width:151px; max-width:none; height:47px;
-  }
-  .btn-primary{ width:128px; }
-
-  /* Scroll nav desktop: centered, no overflow */
-  .scroll-nav-section{ padding-bottom:60px; }
-  .scroll-nav-list{
-    max-width:1200px;
-    margin-inline:auto;
-    padding-inline:0;
-    justify-content:center;
-    overflow-x:hidden;
-  }
-  .scroll-nav-item a{
-    width:110px; min-width:110px; height:110px;
+  .main-landing{
+    padding:96px 0 140px;
   }
 
-  /* Why Section Desktop */
-  .why-section{ padding:120px 0; }
-  .why-section .wrap{ max-width:1728px; padding-inline:5%; }
-  .why-stat-group{ text-align:center; margin-bottom:100px; }
-  .why-stat{ font-size:80px; }
-  .why-proof{
-    justify-content:center; flex-wrap:nowrap;
+  .landing-title{
+    font-size:64px;
   }
-  .why-proof img{
-    height:auto; max-width:1436px;
-    display:block; opacity:1;
-  }
-  .why-grid{
-    grid-template-columns:repeat(2, minmax(400px,1fr));
-    gap:60px;
-  }
-  .why-text h3{ text-align:left; }
-  .why-text p{ text-align:left; margin-inline:0; }
-
-  /* Philosophy Desktop */
-  .philo-section{ padding:120px 0; }
-  .philo-section .wrap{ max-width:1728px; padding-inline:5%; }
-  .philo-top{
-    text-align:center;
-  }
-  .philo-title{
-    font-size:80px; max-width:1000px; margin-inline:auto;
-  }
-  .philo-grid{
-    grid-template-columns:repeat(3, 1fr);
-    gap:36px;
-  }
-
-  /* Kits Desktop */
-  .brandkits-section{ padding:120px 0 160px; }
-  .brandkits-section .wrap{ max-width:1728px; padding-inline:5%; }
-  .brandkits-top{
-    display:grid;
-    grid-template-columns: minmax(220px, 440px) 1fr;
-    gap:48px; max-width:1400px;
-    text-align:left; margin-bottom:48px;
-  }
-  .brandkits-logo-frame{ justify-content:flex-start; margin-bottom:0; }
-  .brandkits-header h2{
-    font-size:100px; margin:0 0 14px;
-  }
-  .brandkits-header p{ font-size:30px; }
-  .bk-logo{
-    width:clamp(200px, 26vw, 440px);
-  }
-  .bk-text{
-    font-size:clamp(28px, 4vw, 70px);
-  }
-  .brandkits-grid{
-    max-width:1400px;
-  }
-  .brandkits-card{
-    padding:40px 36px 42px;
-    border-radius:45px;
-    text-align:center;
-  }
-  .brandkits-card p{
-    max-width:366px;
-    margin-inline:auto;
-  }
-  .pill{
-    font-size:30px; min-width:172px; height:61px;
-    border-radius:30.5px;
-  }
-}
-
-/* =====================================
-   CTA & Misc Animations
-===================================== */
-.btn-shine{
-  position:relative; overflow:hidden;
-}
-.btn-shine::before{
-  content:"";
-  position:absolute; inset:-50%;
-  background:linear-gradient(120deg,
-    transparent 0%,
-    rgba(255,255,255,0.75) 35%,
-    transparent 70%);
-  transform:translateX(-130%);
-  animation: btnShineSweep 4s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes btnShineSweep{
-  to{ transform:translateX(130%); }
-}
-.btn-rise{
-  opacity:0; transform:translateY(14px);
-  animation: heroFadeUp 0.7s ease-out forwards;
-  animation-delay:0.45s;
-}
-.footer-gradient-cta{
-  background: var(--gradient);
-  background-size:220% 220%;
-  border:none; color:#fff;
-  box-shadow:0 10px 28px rgba(0,0,0,0.25);
-  animation: gradientShift 5s ease-in-out infinite;
-}
-@keyframes gradientShift{
-  0%   { background-position:0% 50%; }
-  50%  { background-position:100% 50%; }
-  100% { background-position:0% 50%; }
 }
 
 /* =====================================
@@ -838,7 +439,7 @@ header .hamburger span:after{
 </div>
 
 <div class="wrap">
-  <!-- HEADER -->
+  <!-- HEADER (unchanged) -->
   <header>
     <div class="logo">
       <a href="/">take away<br/>studio</a>
@@ -932,171 +533,52 @@ header .hamburger span:after{
   </a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <h1>Ready-Made SaaS Branding & UX Packs for Startups</h1>
-    <p>
-      Finally, there is an easier way for SaaS startups to implement a fresh, consistent brand and UX.
-      Instead of hiring an agency, you can launch with ready-made SaaS branding and UX packs today and
-      save the big custom project for later.
+<!-- MAIN LANDING CONTENT -->
+<main class="main-landing">
+  <div class="wrap landing-wrap">
+    <h1 class="landing-title">
+      Start to Finish Branding with
+      <strong>AI Workflows.</strong>
+    </h1>
+
+    <p class="landing-subtitle">
+      Get a comprehensive beautiful, consistent brand pack for launch. Pre-built, AI-assisted brand systems tuned
+      for SaaS – so you look put together long before you hire a full agency.
     </p>
 
-    <div class="ctas">
-      <a class="btn btn-primary btn-shine" href="https://alundsvagen.github.io/ux/brands.html">
-        Brand Packs
-      </a>
-      <button class="btn btn-outline btn-rise cta-modal-trigger"
-              data-form-url="https://form.fillout.com/t/4ZUPhq7GzKus"
-              data-title="Test Drive the Product">
+    <!-- search-style input (optional, no required) -->
+    <form class="search-shell" id="brand-search">
+      <input
+        id="brand-query"
+        name="q"
+        type="text"
+        class="search-input"
+        placeholder="a dev tool that makes onboarding engineers easier…"
+      />
+    </form>
+
+    <!-- buttons side-by-side -->
+    <div class="search-actions">
+      <button
+        type="button"
+        class="btn-pill btn-pill--primary cta-modal-trigger"
+        data-form-url="https://form.fillout.com/t/4ZUPhq7GzKus"
+        data-title="Try an AI Brand Mini Pack"
+      >
         Get Mini Pack
       </button>
-    </div>
 
-    <div class="media-wrap">
-      <img src="landing2.gif"
-           alt="Ready-made SaaS branding and UX packs landing page demo"
-           class="media" />
-    </div>
-  </div>
-</section>
-
-<!-- HORIZONTAL SCROLL NAV -->
-<section class="scroll-nav-section">
-  <ul class="scroll-nav-list">
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/brands.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/cart3.svg" alt="">
-        Brands
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/ux.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/box-seam.svg" alt="">
-        UX Packs
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/services.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/back.svg" alt="">
-        Services
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/About.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/asterisk.svg" alt="">
-        About
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/meditate.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/brilliance.svg" alt="">
-        Meditate
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/custom.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/wrench-adjustable.svg" alt="">
-        Custom
-      </a>
-    </li>
-    <li class="scroll-nav-item">
-      <a href="https://alundsvagen.github.io/ux/pricing.html">
-        <img class="bi" src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/coin.svg" alt="">
-        Pricing
-      </a>
-    </li>
-  </ul>
-</section>
-
-<!-- WHY SECTION (from desktop, styled mobile-first) -->
-<section class="why-section">
-  <div class="wrap">
-    <div class="why-stat-group">
-      <h2 class="why-stat">+14 SaaS & tech design consulting clients</h2>
-      <div class="why-proof">
-        <img src="proof.png"
-             alt="Logos of SaaS and fintech clients working with Take Away Studio" />
-      </div>
-    </div>
-
-    <div class="why-grid">
-      <div class="why-text">
-        <h3>Why buy a ready-made SaaS brand pack?</h3>
-        <p>
-          Design is a skill and it takes time to build it. Rather than hire
-          someone to spend time and money to create a brand you might not like...
-          Now you can buy it, as a standard package. We just got started so we
-          don’t offer a lot of packages yet but we are so excited you are here.
-        </p>
-      </div>
-
-      <div class="why-media">
-        <img src="landing.gif"
-             alt="Demo of ready-made SaaS brand pack applied to a product UI" />
-      </div>
+      <button
+        type="button"
+        class="btn-pill btn-pill--secondary cta-modal-trigger"
+        data-form-url="https://form.fillout.com/t/wSoN83phHnus"
+        data-title="Free Go To Market Strategy Figma File"
+      >
+        Go To Market Strategy
+      </button>
     </div>
   </div>
-</section>
-
-<!-- PHILOSOPHY / ABOUT -->
-<section class="philo-section">
-  <div class="wrap">
-    <div class="philo-top">
-      <span class="philo-chip-outline">Background</span>
-      <h2 class="philo-title">Our SaaS branding philosophy, UX packs &amp; story</h2>
-    </div>
-
-    <div class="philo-grid">
-      <a class="philo-card" href="https://alundsvagen.github.io/ux/ux.html">
-        <img src="dark1.png"
-             alt="SaaS UX pack interface for fast implementation"
-             class="philo-img" />
-        <span class="philo-chip philo-chip--small">UX Packs</span>
-        <div class="philo-caption"><h3>Fast Implementation</h3></div>
-      </a>
-
-      <a class="philo-card" href="https://alundsvagen.github.io/ux/brands.html">
-        <img src="dark2.png"
-             alt="SaaS brand design pack showcasing quality design work"
-             class="philo-img" />
-        <span class="philo-chip philo-chip--small">Brand Packs</span>
-        <div class="philo-caption"><h3>Quality Design Work</h3></div>
-      </a>
-
-      <a class="philo-card" href="https://alundsvagen.github.io/ux/About.html">
-        <img src="dark3.png"
-             alt="Custom SaaS branding and UX design option"
-             class="philo-img" />
-        <span class="philo-chip philo-chip--wide philo-chip--small">About</span>
-        <div class="philo-caption"><h3>Customization if you need it.</h3></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- BRAND KITS -->
-    <div class="brandkits-grid">
-      <a href="https://alundsvagen.github.io/ux/brands.html" class="brandkits-card">
-        <span class="pill">Simple</span>
-        <h3>SaaS user<br>experience packs</h3>
-        <p>Start with ready-made SaaS UX packs for checkout flows and analytics dashboards, with more patterns coming soon.</p>
-      </a>
-
-      <a href="https://alundsvagen.github.io/ux/ux.html" class="brandkits-card">
-        <span class="pill">Robust</span>
-        <h3>SaaS UI<br>components</h3>
-        <p>Our ready-made SaaS UI components come with HTML and clear instructions so your team can implement them quickly.</p>
-      </a>
-
-      <a href="https://alundsvagen.github.io/ux/ux.html" class="brandkits-card">
-        <span class="pill pill-wide">Consistent</span>
-        <h3>UI<br>Components</h3>
-        <p>Our designs come with HTML &amp; instructions for you to easily implement them yourself.</p>
-      </a>
-    </div>
-  </div>
-</section>
+</main>
 
 <!-- FOOTER -->
 <footer class="tas-footer--black">
@@ -1126,17 +608,8 @@ header .hamburger span:after{
   </div>
 </footer>
 
-<!-- STICKY CTA (mobile only) -->
-<div class="sticky-cta-footer">
-  <button class="btn btn-primary footer-gradient-cta btn-shine cta-modal-trigger"
-          data-form-url="https://form.fillout.com/t/wSoN83phHnus"
-          data-title="Branding, Design, UX.">
-    Say hello 👋
-  </button>
-</div>
-
 <script>
-  // MODAL + DROPDOWNS + CTA
+  // MODAL + DROPDOWNS + CTA + SEARCH
   document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.getElementById('cta-modal-overlay');
     const iframe       = document.getElementById('modal-iframe');
@@ -1168,10 +641,9 @@ header .hamburger span:after{
       }
     });
 
-    if (!modalOverlay || !iframe || !modalTitle || !closeBtn || triggers.length === 0) return;
-
     function openModal(url, title) {
-      modalTitle.textContent = title;
+      if (!modalOverlay || !iframe || !modalTitle) return;
+      modalTitle.textContent = title || 'Form';
       iframe.src = url;
       modalOverlay.classList.add('is-open');
       modalOverlay.setAttribute('aria-hidden', 'false');
@@ -1180,6 +652,7 @@ header .hamburger span:after{
     }
 
     function closeModal() {
+      if (!modalOverlay || !iframe) return;
       modalOverlay.classList.remove('is-open');
       modalOverlay.setAttribute('aria-hidden', 'true');
       iframe.src = '';
@@ -1196,15 +669,29 @@ header .hamburger span:after{
       });
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
+    closeBtn?.addEventListener('click', closeModal);
+    modalOverlay?.addEventListener('click', (e) => {
       if (e.target === modalOverlay) closeModal();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalOverlay.classList.contains('is-open')) {
+      if (e.key === 'Escape' && modalOverlay?.classList.contains('is-open')) {
         closeModal();
       }
     });
+
+    // Search submit -> go to Brands (with optional query)
+    const searchForm  = document.getElementById('brand-search');
+    const searchInput = document.getElementById('brand-query');
+    if (searchForm && searchInput) {
+      searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const value = searchInput.value.trim();
+        const baseUrl = "https://alundsvagen.github.io/ux/brands.html";
+        const url = value ? baseUrl + "?q=" + encodeURIComponent(value) : baseUrl;
+        window.location.href = url;
+      });
+    }
+
   });
 
   // Mobile nav
